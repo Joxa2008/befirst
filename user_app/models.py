@@ -23,16 +23,19 @@ class CustomUserModel(AbstractUser):
     birth_date = models.DateField(blank=False, null=False)
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
-    gender = models.CharField(blank=False, null=False, max_length=1, choices=Choices, default='M')
+
+    gender = models.CharField(blank=False, null=False, max_length=1, choices=CHOICES, default='M')
 
     password = models.CharField(blank=False, null=False, max_length=100, help_text='Create your own password.')
 
     news_agreement = models.BooleanField(blank=False, null=False, default=False,
                                          help_text='Are you agree to receive news from BeFirst?')
 
-    region = models.ForeignKey(Region, on_delete=models.SET_NULL)
+    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True,  related_name='users')
 
     address = models.TextField(blank=True, null=True)
+
+    REQUIRED_FIELDS = ['birth_date', 'gender', 'news_agreement']
 
     def __str__(self):
         return self.first_name + self.last_name

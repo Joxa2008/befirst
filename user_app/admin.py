@@ -11,6 +11,8 @@ class CustomUserAdmin(UserAdmin):
             {
                 'fields': (
                     'profile_img',
+                    'phone_number',
+                    'birth_date'
                 )
             }
         )
