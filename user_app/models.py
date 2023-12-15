@@ -1,16 +1,16 @@
-"""Declare models for DjangoUseEmailAsUsername app."""
+import os
+
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager as DjangoBaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from contest_app.models import Region
-
 
 class BaseUserManager(DjangoBaseUserManager):
-    """Define a model manager for User model with no username field."""
-
+    """
+    Define a model manager for User model with no username field.
+    """
     use_in_migrations = True
 
     def _create_user(self, email, password, birth_date, gender, **extra_fields):
@@ -45,26 +45,30 @@ class BaseUserManager(DjangoBaseUserManager):
 class CustomUserModel(AbstractUser):
     """User model."""
 
+    def user_directory_path(instance, filename):
+        return f'users/{instance.email}/profile/{filename}'
+
     username = None
 
-    email = models.EmailField(_("email address"), unique=True, help_text=_("Your email address."))
+    email = models.EmailField(_("email address"), unique=True, help_text=_("Required. Your email address."))
 
-    birth_date = models.DateField(default=timezone.now)
+    birth_date = models.DateField(default=timezone.now, help_text=_("Required. Your birth date."))
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
-    gender = models.CharField(max_length=1, choices=CHOICES, default='M')
+    gender = models.CharField(max_length=1, choices=CHOICES, default='M', help_text=_("Required. Choose your gender."))
 
     phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number.'))
 
-    profile_img = models.ImageField(upload_to='img/profile/', null=True, blank=True,
+    profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
                                     help_text=_('Your profile picture.'))
 
-    is_contestant = models.BooleanField(default=False, help_text=_('Do you want to'
-                                                                   'participate in contests?'))
     objects = BaseUserManager()
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['birth_date', 'gender']
+
+    def __str__(self):
+        return self.first_name + self.last_name
 
     class Meta:
         db_table = 'user'
