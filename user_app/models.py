@@ -1,46 +1,72 @@
-from django.db import models
+"""Declare models for DjangoUseEmailAsUsername app."""
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Choices
+from django.contrib.auth.models import BaseUserManager as DjangoBaseUserManager
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
 from contest_app.models import Region
 
 
+class BaseUserManager(DjangoBaseUserManager):
+    """Define a model manager for User model with no username field."""
+
+    use_in_migrations = True
+
+    def _create_user(self, email, password, birth_date, gender, **extra_fields):
+        """Create and save a User with the given email and password."""
+        if not email:
+            raise ValueError("The given email must be set")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, birth_date, gender, password=None, **extra_fields):
+        """Create and save a regular User with the given email and password."""
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
+        return self._create_user(email, password, birth_date, gender, **extra_fields)
+
+    def create_superuser(self, email, password, birth_date, gender, **extra_fields):
+        """Create and save a SuperUser with the given email and password."""
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self._create_user(email, password, birth_date, gender, **extra_fields)
+
+
 class CustomUserModel(AbstractUser):
-    def user_directory_path(instance, filename):
-        return 'users/{0}/profile/{1}'.format(instance.username, filename)
+    """User model."""
 
-    first_name = models.CharField(blank=False, null=False, max_length=150)
+    username = None
 
-    last_name = models.CharField(blank=False, null=False, max_length=150)
+    email = models.EmailField(_("email address"), unique=True, help_text=_("Your email address."))
 
-    email = models.CharField(blank=False, null=False, unique=True, max_length=100,
-                             help_text='Field is unique. You can register with this email only once')
-    profile_img = models.ImageField(upload_to=user_directory_path,
-                                    blank=True, null=True,
-                                    help_text='Your profile picture.')
-
-    phone_number = models.CharField(max_length=13, blank=True, null=True, help_text='Enter phone number.')
-
-    birth_date = models.DateField(blank=False, null=False)
+    birth_date = models.DateField(default=timezone.now)
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
+    gender = models.CharField(max_length=1, choices=CHOICES, default='M')
 
-    gender = models.CharField(blank=False, null=False, max_length=1, choices=CHOICES, default='M')
+    phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number.'))
 
-    password = models.CharField(blank=False, null=False, max_length=100, help_text='Create your own password.')
+    profile_img = models.ImageField(upload_to='img/profile/', null=True, blank=True,
+                                    help_text=_('Your profile picture.'))
 
-    news_agreement = models.BooleanField(blank=False, null=False, default=False,
-                                         help_text='Are you agree to receive news from BeFirst?')
+    is_contestant = models.BooleanField(default=False, help_text=_('Do you want to'
+                                                                   'participate in contests?'))
+    objects = BaseUserManager()
 
-    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True,  related_name='users')
-
-    address = models.TextField(blank=True, null=True)
-
-    REQUIRED_FIELDS = ['birth_date', 'gender', 'news_agreement']
-
-    def __str__(self):
-        return self.first_name + self.last_name
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ['birth_date', 'gender']
 
     class Meta:
-        verbose_name = 'user'
-        verbose_name_plural = 'users'
-        db_table = 'users'
+        db_table = 'user'
+        verbose_name = "user"
+        verbose_name_plural = "users"
