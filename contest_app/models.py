@@ -22,14 +22,14 @@ class Region(models.Model):
 
 
 class ProfileModel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_("Choose the user."), related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_("Choose a user."), related_name='profile')
 
     region = models.ForeignKey(Region, on_delete=models.CASCADE,
-                               help_text=_("Choose the region you reside. e.g. 'Samarkand'"))
+                               help_text=_("Choose a region you reside. e.g. 'Samarkand'"))
     address = models.TextField(blank=True, null=True,
                                help_text=_("Enter your address here. e.g: 45/9 Sergeli 7, Tashkent Shahar"))
     news_agreement = models.BooleanField(default=True, help_text=_("Do you want to receive e-mails from us? "
-                                                                   "e.g: info about new contests"))
+                                                                   "e.g: information about new contests"))
 
     def __str__(self):
         return f'{self.user}'
@@ -41,7 +41,7 @@ class ProfileModel(models.Model):
 
 
 class ExpertModel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, help_text=_("Choose the expert."),
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, help_text=_("Choose an expert."),
                                 related_name='expert')
     detail = models.TextField(blank=True, null=True, help_text=_("Some details about the expert."))
 
@@ -59,10 +59,11 @@ class ContestModel(models.Model):
     def user_directory_path(instance, filename):
         return "contests/{0}/{1}".format(instance.slug, filename)
 
-    title = models.CharField(max_length=150, help_text=_("Enter the title of the contest."))
+    title = models.CharField(max_length=150, help_text=_("Enter a title of the contest."))
 
     slug = models.SlugField(null=True, blank=True, unique=True,
-                            help_text=_("Slug that appears in the url. If not provided, 'title' will be used instead"))
+                            help_text=_(
+                                "a slug that appears in the url. If not provided, 'title' will be used instead"))
 
     description = models.TextField(blank=True, null=True, help_text=_("Description of the contest."))
 
@@ -74,7 +75,7 @@ class ContestModel(models.Model):
 
     publish_date = models.DateField(help_text=_("The date when results will be published."))
 
-    experts = models.ManyToManyField(ExpertModel, help_text=_("Select the experts of the contest."),
+    experts = models.ManyToManyField(ExpertModel, help_text=_("Select experts for the contest."),
                                      related_name="contests")
 
     def __str__(self):
@@ -116,7 +117,7 @@ class WorkModel(models.Model):
 
     contest = models.ForeignKey(ContestModel, on_delete=models.SET_NULL, null=True, related_name='works')
 
-    title = models.CharField(max_length=100, help_text=_("Enter the title of the work."))
+    title = models.CharField(max_length=100, help_text=_("Enter the title of a work."))
 
     file = models.FileField(upload_to=user_directory_path, help_text=_("Upload the file."))
 

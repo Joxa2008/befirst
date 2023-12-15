@@ -57,7 +57,8 @@ class CustomUserModel(AbstractUser):
     CHOICES = (('M', 'Male'), ('F', 'Female'))
     gender = models.CharField(max_length=1, choices=CHOICES, default='M', help_text=_("Required. Choose your gender."))
 
-    phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number.'))
+    phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number'
+                                                                                      ' e.g: +998123456789'))
 
     profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
                                     help_text=_('Your profile picture.'))
@@ -68,7 +69,7 @@ class CustomUserModel(AbstractUser):
     REQUIRED_FIELDS = ['birth_date', 'gender']
 
     def __str__(self):
-        return self.first_name + self.last_name
+        return self.first_name + ' ' + self.last_name
 
     class Meta:
         db_table = 'user'
