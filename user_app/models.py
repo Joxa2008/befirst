@@ -45,9 +45,6 @@ class BaseUserManager(DjangoBaseUserManager):
 class CustomUserModel(AbstractUser):
     """User model."""
 
-    def user_directory_path(instance, filename):
-        return f'users/{instance.email}/profile/{filename}'
-
     username = None
 
     email = models.EmailField(_("email address"), unique=True, help_text=_("Required. Your email address."))
@@ -59,9 +56,6 @@ class CustomUserModel(AbstractUser):
 
     phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number'
                                                                                       ' e.g: +998123456789'))
-
-    profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
-                                    help_text=_('Your profile picture.'))
 
     objects = BaseUserManager()
 

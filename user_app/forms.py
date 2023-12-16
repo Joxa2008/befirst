@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+
 User = get_user_model()
 
 
@@ -13,7 +14,7 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name',
-                  'birth_date', 'gender', 'phone_number', 'profile_img', 'password']
+                  'birth_date', 'gender', 'phone_number', 'password']
 
         widgets = {
             'email': forms.EmailInput(attrs={'placeholder': 'example@mail.com', 'class': "form-control"}),
@@ -28,9 +29,6 @@ class RegisterForm(forms.ModelForm):
                 'class': "form-control"}),
 
             'phone_number': forms.TextInput(attrs={
-                'class': "form-control"}),
-
-            'profile_img': forms.FileInput(attrs={
                 'class': "form-control"}),
 
             'password': forms.PasswordInput(attrs={

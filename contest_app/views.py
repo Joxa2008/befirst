@@ -12,9 +12,7 @@ def profile_update(request):
     if request.method == 'POST':
         print('got posted!!!')
         obj = ProfileModel.objects.get(user=request.user)
-        print(type(obj))
-        form = ProfileUpdateForm(request.POST, instance=obj)
-        print(form.errors)
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
             print('got valid!!!')
             form.save()
@@ -26,4 +24,3 @@ def profile_update(request):
     print('did not get posted!!!')
     logout(request.user)
     return redirect('contest:main')
-
