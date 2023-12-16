@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from contest_app.forms import ProfileUpdateForm
@@ -34,3 +34,8 @@ def user_register(request):
                     'form': profile_form
                 })
         return render(request, template_name='user_register.html', context={'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('contest:main')
