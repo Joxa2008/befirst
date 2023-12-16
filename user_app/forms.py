@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -22,8 +23,13 @@ class RegisterForm(forms.ModelForm):
                 'placeholder': 'firstname',
                 'class': "form-control"}),
 
-            'birth_date': forms.SelectDateWidget(attrs={
-                'class': "form-control"}),
+            'birth_date': forms.DateTimeInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Select a date',
+                'type': 'date',
+                'min': f'{timezone.now().year - 18}-{timezone.now().month}-{timezone.now().day}',
+                'max': f'{timezone.now().year}-{timezone.now().month}-{timezone.now().day}'},
+                format=('%Y-%m-%d')),
 
             'gender': forms.Select(attrs={
                 'class': "form-control"}),

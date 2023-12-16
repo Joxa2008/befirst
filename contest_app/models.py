@@ -1,7 +1,9 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from django.utils.timezone import now
+from django.utils import timezone
+# from datetime import datetime
 from django.shortcuts import reverse
 from django.utils.text import slugify
 from django.db.models.signals import post_save
@@ -84,14 +86,16 @@ class ContestModel(models.Model):
 
     banner_image = models.ImageField(upload_to=user_directory_path)
 
-    start_date = models.DateField(help_text=_("The start date of the contest."))
+    start_date = models.DateTimeField(help_text=_("The start date of the contest."))
 
-    end_date = models.DateField(help_text=_("The end date of the contest."))
+    end_date = models.DateTimeField(help_text=_("The end date of the contest."))
 
-    publish_date = models.DateField(help_text=_("The date when results will be published."))
+    publish_date = models.DateTimeField(help_text=_("The date when results will be published."))
 
     experts = models.ManyToManyField(ExpertModel, help_text=_("Select experts for the contest."),
                                      related_name="contests")
+
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -117,6 +121,13 @@ class ContestModel(models.Model):
                     self.slug = slug
                     break
         return super().save(*args, **kwargs)
+
+    def clean(self, *args, **kwargs):
+        super().clean()
+        if self.start_date >= self.end_date:
+            raise ValidationError('End date must be greater than start date.')
+        elif self.publish_date < self.end_date:
+            raise ValidationError('Publish date must be greater than or equal to the End date.')
 
     class Meta:
         verbose_name = 'contest'
