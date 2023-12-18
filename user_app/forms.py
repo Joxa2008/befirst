@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-
 User = get_user_model()
+from django.utils.translation import gettext_lazy as _
 
 
 class RegisterForm(forms.ModelForm):
@@ -51,3 +51,18 @@ class RegisterForm(forms.ModelForm):
         if self.cleaned_data['password'] != self.cleaned_data['confirm_password']:
             raise ValidationError('Passwords do not match!')
         return self.cleaned_data
+
+
+class LoginForm(forms.Form):
+    email_or_phone = forms.CharField(label=_('Email or Mobile'),
+                                     widget=forms.TextInput(attrs={
+                                         'class': "form-control"
+                                     }),
+                                     help_text=_("Enter your email or phone number"), required=True)
+
+    password = forms.CharField(label=_('Password'),
+                               widget=forms.PasswordInput(attrs={
+                                   'placeholder': _('your password'),
+                                   'class': "form-control"
+                               }),
+                               help_text=_("Enter your password"), required=True)
