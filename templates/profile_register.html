@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-
+{% for message in messages %}
+	<h1>{{ message }}</h1>
+{% endfor %}
 <form action="{% url 'contest:profile_update' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

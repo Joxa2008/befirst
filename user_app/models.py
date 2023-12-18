@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager as DjangoBaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.password_validation import validate_password
+from .validators import validate_email, PhoneValidator
 
 
 class BaseUserManager(DjangoBaseUserManager):
@@ -16,7 +18,7 @@ class BaseUserManager(DjangoBaseUserManager):
     def _create_user(self, email, password, birth_date, gender, **extra_fields):
         """Create and save a User with the given email and password."""
         if not email:
-            raise ValueError("The given email must be set")
+            raise ValueError(_("The given email must be set"))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -35,9 +37,9 @@ class BaseUserManager(DjangoBaseUserManager):
         extra_fields.setdefault("is_superuser", True)
 
         if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
+            raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+            raise ValueError(_("Superuser must have is_superuser=True."))
 
         return self._create_user(email, password, birth_date, gender, **extra_fields)
 
@@ -47,16 +49,25 @@ class CustomUserModel(AbstractUser):
 
     username = None
 
-    email = models.EmailField(_("email address"), unique=True, help_text=_("Required. Your email address."))
+    email = models.EmailField(_("email address"), unique=True,
+                              help_text=_("Required. Your gmail address."),
+                              error_messages={"unique": _("A user with that email already exists")},
+                              validators=[validate_email])
 
     birth_date = models.DateField(default=timezone.now, help_text=_("Required. Your birth date."))
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
     gender = models.CharField(max_length=1, choices=CHOICES, default='M', help_text=_("Required. Choose your gender."))
 
-    phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number'
-                                                                                      ' e.g: +998123456789'))
+    phone_number = models.CharField(max_length=13, blank=True, null=True,
+                                    unique=True, help_text=_('Enter phone number'
+                                                             ' e.g: +998123456789'),
+                                    verbose_name='phone number',
+                                    error_messages={'unique': _('A user with that phone number already exists'),
+                                                    'invalid': _('Please enter a valid phone')},
+                                    validators=[PhoneValidator()])
 
+    password = models.CharField(max_length=100, validators=[validate_password])
     objects = BaseUserManager()
 
     USERNAME_FIELD = "email"

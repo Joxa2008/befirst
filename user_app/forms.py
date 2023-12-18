@@ -18,9 +18,13 @@ class RegisterForm(forms.ModelForm):
                   'birth_date', 'gender', 'phone_number', 'password']
 
         widgets = {
-            'email': forms.EmailInput(attrs={'placeholder': 'example@mail.com', 'class': "form-control"}),
+            'email': forms.EmailInput(attrs={'placeholder': 'example@gmail.com', 'class': "form-control"}),
             'first_name': forms.TextInput(attrs={
-                'placeholder': 'firstname',
+                'placeholder': 'first name',
+                'class': "form-control"}),
+
+            'last_name': forms.TextInput(attrs={
+                'placeholder': 'last name',
                 'class': "form-control"}),
 
             'birth_date': forms.DateTimeInput(attrs={
@@ -38,7 +42,8 @@ class RegisterForm(forms.ModelForm):
                 'class': "form-control"}),
 
             'password': forms.PasswordInput(attrs={
-                'class': "form-control"})
+                'class': "form-control",
+                'placeholder': 'password'})
 
         }
 

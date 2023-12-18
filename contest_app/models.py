@@ -84,15 +84,16 @@ class ContestModel(models.Model):
 
     description = models.TextField(blank=True, null=True, help_text=_("Description of the contest."))
 
-    banner_image = models.ImageField(upload_to=user_directory_path)
+    banner_image = models.ImageField(upload_to=user_directory_path,
+                                     help_text=_("Required. A banner image of the contest"))
 
-    start_date = models.DateTimeField(help_text=_("The start date of the contest."))
+    start_date = models.DateTimeField(help_text=_("Required. The start date of the contest."))
 
-    end_date = models.DateTimeField(help_text=_("The end date of the contest."))
+    end_date = models.DateTimeField(help_text=_("Required. The end date of the contest."))
 
-    publish_date = models.DateTimeField(help_text=_("The date when results will be published."))
+    publish_date = models.DateTimeField(help_text=_("Required. The date when results will be published."))
 
-    experts = models.ManyToManyField(ExpertModel, help_text=_("Select experts for the contest."),
+    experts = models.ManyToManyField(ExpertModel, help_text=_("Required. Select experts for the contest."),
                                      related_name="contests")
 
     created_at = models.DateTimeField(auto_now_add=True)

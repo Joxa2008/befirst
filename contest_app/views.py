@@ -2,6 +2,7 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from .forms import ProfileUpdateForm
 from .models import ProfileModel
+from django.contrib import messages
 
 
 def main(request):
@@ -17,9 +18,11 @@ def profile_update(request):
             print('got valid!!!')
             form.save()
             print('got saved!!!')
+            messages.success(request, 'You successfully completed your profile!')
             return redirect('contest:main')
         logout(request.user)
         print('did no get valid!!!')
+        messages.success(request, 'Form is invalid!')
         return redirect('contest:main')
     print('did not get posted!!!')
     logout(request.user)
