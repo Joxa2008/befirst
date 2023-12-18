@@ -65,6 +65,7 @@ def user_login_view(request):
                 user = authenticate(email=email_or_phone, password=form.cleaned_data['password'])
                 if user is not None:
                     login(request, user)
+                    messages.success(request, 'You have successfully logged In')
                     return redirect('contest:main')
                 else:
                     messages.error(request, 'Email or password was incorrect')
@@ -81,6 +82,7 @@ def user_login_view(request):
                     user = authenticate(email=obj.email, password=form.cleaned_data['password'])
                     if user is not None:
                         login(request, user)
+                        messages.success(request, 'You have successfully logged In')
                         return redirect('contest:main')
                     else:
                         messages.error(request, 'Password was incorrect')

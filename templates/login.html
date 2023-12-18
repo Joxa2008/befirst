@@ -6,7 +6,7 @@
 </head>
 <body>
 {% for message in messages %}
-    {{ message }}
+    <h1>{{ message }}</h1>
 {% endfor %}
 <form action="{% url 'user:login' %}" method="post">
     {% csrf_token %}
