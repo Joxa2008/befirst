@@ -31,8 +31,9 @@ class BaseUserAdmin(DjangoUserAdmin):
     )
     list_display = (
         "email", "first_name", "last_name", "birth_date", "gender", "phone_number", "is_staff",)
-    search_fields = ("email", "first_name", "last_name")
-    ordering = ("email",)
+    list_display_links = ('email', 'phone_number')
+    search_fields = ("email", "first_name", "last_name",)
+    ordering = ("-date_joined",)
 
 
 admin.site.register(CustomUserModel, BaseUserAdmin)
