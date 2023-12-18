@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+
+:root {
+    --yellow: #F5C24D;
+    --yellow-hover: #b28737;
+    --title-yellow: #F2D146;
+    --black: #000;
+    --red: #ED6059;
+    --green: #2DF57D;
+    --blue: #2A819E;
+    --grey: #737171;
+    --text-gray: #60606E;
+    --white: #fff;
+
+    --back-img: url(/img/back-img.svg);
+
+
+    --abel-font: 'Abel', sans-serif;
+    --exo-font: 'Exo', sans-serif;
+    --baloo-font: 'Baloo 2', sans-serif;
+    --acme-font: 'Acme', sans-serif;
+}
+
+#followCursor {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+      border-radius: 50%;
+}
+
+/* Contest Part */
+
+.home-page {
+    height: 100%;
+    width: 100%;
+    padding: 19px 0px;
+}
+
+.home-page > .container > .banner {
+    display: flex;
+    align-items: center;
+    padding: 0 98px;
+    height: 419px;
+    width: 100%;
+}
+
+.home-page > .container > .mobile {
+    display: none;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container {
+    width: 300px;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > h1 {
+    font-weight: 900;
+    font-size: 70px;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > button {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    background-color: var(--red);
+    color: white;
+}
+
+.home-page > .container > .row {
+    margin-top: 36px;
+}
+
+.home-page > .container > .row > .reveal {
+    position: relative;
+    transform: translateY(70px);
+    opacity: 0;
+    transition: all 1.5s ease ;
+}
+
+.home-page > .container > .row > .reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.home-page > .container > .row > .col > .card{
+    height: 450px;
+    border-radius: 14px;
+}
+
+.home-page > .container > .row > .col > .yellow {
+    background-color: var(--yellow);
+}
+
+.home-page > .container > .row > .col > .red {
+    background-color: var(--red);
+}
+
+.home-page > .container > .row > .col > .card > .top-it {
+    border-radius: 14px;
+    height: 245px;
+    width: 100%;
+}
+
+.home-page > .container > .row > .col > .card > div > .button {
+    border: none;
+    border-radius: 10px;
+    margin: 14px 15px;
+    padding: 8px 31px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    font-size: 14px;
+}
+
+.home-page > .container > .row > .col > .card > div > .button:hover {
+    box-shadow: none;
+    background-color: var(--yellow-hover);
+}
+
+.home-page > .container > .row > .col > .card > div > .yellow {
+    background-color: var(--yellow);
+}
+
+.home-page > .container > .row > .col > .card > div > .red {
+    background-color: var(--red);
+}
+
+.home-page > .container > .button-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: end;
+}
+
+.home-page > .container > .button-container > .button {
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+    padding: 18px 30px;
+    border-radius: 15px;
+}
+
+/* End of contest part */
+/* Beginning of ditail part */
+
+.ditail_page {}
+
+.ditail_page > .container {
+    background-color: rgba(0, 0, 0, 0.07);
+    backdrop-filter: blur(50px);
+}
+
+.ditail_page > .container > .align-items-center {
+    background-color: var(--yellow);
+    border-radius: 20px;
+}
+
+.ditail_page > .container > .align-items-center > .col-md-6 > .text > .icon > .img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .bio {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: aqua;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment {
+    display: flex;
+    list-style: none;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body {
+    width: 90%;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .space {
+    width: 20px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > h2 {
+    font-weight: 800;
+    font-size: 40px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > .icon > .position > span {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > p > a {
+    color: var(--red);
+    text-decoration: none;
+    margin-right: 3px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > p > a > span {
+    margin-right: 5px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > .icon > .position > h4 {
+    font-weight: 600;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment {
+    background-color: var(--red);
+    border-radius: 10px;
+    padding: 20px 20px 10px 20px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > h3 {
+    font-size: 20px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > .meta {
+    font-size: 14px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body >.comment-text {
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > p > .reply {
+    background-color: var(--yellow);
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .py-4 > p {
+    font-size: 18px;
+}
+
+
+/* End of ditail part */
+/* Map part */
+
+.home-page {
+    height: 100%;
+    width: 100%;
+    padding: 79px 0px;
+    margin-top: 19px;
+}
+
+.home-page > .container > .hr {
+    margin-top: 23px;
+    width: 80%;
+    height: 19px;
+    background-color: #F5C24D;
+}
+
+.home-page > .container > .hr {
+    margin-top: 50px;
+}
+
+.home-page > .container > .tables-container {
+    margin-top: 108px;
+    width: 100%;
+    overflow: auto;
+}
+
+.home-page > .container > .title {
+    font-size: 50px;
+    margin-top: 36px;
+}
+
+.home-page > .container > .map {
+    margin-top: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-page > .container > div > .head {
+    font-size: 50px;
+}
+
+/* Uzb Map */
+
+.home-page > .container > .map > .map-uzb {
+    cursor: pointer;
+}
+
+#UZB354:hover{
+  fill:red;
+}
+
+#Karakalpakstan:hover {
+    fill: #00942F;
+}
+
+#Khorezm:hover {
+    fill: #80378A;
+}
+
+#Navoi:hover {
+    fill: #0A72B5;
+}
+
+#Kashkadarya:hover {
+    fill: #F9B234;
+}
+
+#Surkhandarya:hover {
+    fill: #00942F;
+}
+
+#Samarkand:hover {
+    fill: #80378A;
+}
+
+#Jizzakh:hover {
+    fill: #E95E0E;
+}
+
+#Sirdaryo:hover{
+    fill: #00942F;
+}
+
+#Tashkent:hover {
+    fill: #F9B234;
+}
+
+#Namangan:hover {
+    fill: #0574B6;
+}
+
+#Ferghana:hover {
+    fill: #E9011D;
+}
+
+#Andijon:hover {
+    fill: #80378A;
+}
+
+/* End of Map part*/
+
+@media (max-width: 1400px) {
+
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+
+        /* Contest media */
+
+        .home-page > .container > .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 0 20px 0 20px;
+        height: 419px;
+        width: 100%;
+        color: #fff;
+        position: relative;
+        isolation: isolate;
+    }
+
+    .home-page > .container > .mobile::after {
+        content: '';
+        position: absolute;
+        background: black;
+        z-index: -1;
+        inset: 0;
+        opacity: .5;
+    }
+
+
+    .home-page > .container > .desktop {
+        display: none;
+    }
+
+    /* End of contest media */
+    /* Map part */
+
+    .home-page > .container > div > .head {
+        font-size: 40px;
+    }
+
+    .home-page {
+        padding: 19px 0px;
+    }
+
+    /* End of Map part */
+
+}
+
+@media (max-width: 768px) {
+    /*  Map part  */
+
+    .home-page > .container > div > .head {
+        font-size: 30px;
+    }
+
+    .home-page > .container > .map {
+        margin-top: 10px;
+    }
+
+    .home-page > .container > .title {
+        font-size: 50px;
+        margin-top: 16px;
+    }
+
+    .home-page > .container > .tables-container {
+        margin-top: 50px;
+        width: 100%;
+        overflow: auto;
+    }
+
+    .home-page > .container > .map > .map-uzb {
+        margin-top: 20px;
+        height: 40%;
+    }
+
+    /* End of Map part */
+}
+
+@media (max-width: 576px) {
+
+    /* Contest media */
+
+    .home-page > .container > .banner > .container-texts > .text-container > h1 {
+        width: 100%;
+        font-size: 38px;
+    }
+
+    .home-page > .container > .banner > .container-texts > .text-container {
+        font-size: 11px;
+    }
+
+    /* End of contest media */
+    /* Map part */
+
+    .home-page > .container > .title {
+        font-size: 30px;
+    }
+
+    /* End of Map part */
+}

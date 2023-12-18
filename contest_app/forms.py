@@ -1,5 +1,5 @@
 from django import forms
-from .models import ProfileModel
+from .models import ProfileModel, CommentModel
 
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -12,3 +12,9 @@ class ProfileUpdateForm(forms.ModelForm):
             'news_agreement': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'profile_img': forms.FileInput(attrs={'class': 'form-control'})
         }
+
+
+class PostComment(forms.ModelForm):
+    class Meta:
+        model = CommentModel
+        fields = ['comment_text']

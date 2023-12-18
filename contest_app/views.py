@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
-from .forms import ProfileUpdateForm
-from .models import ProfileModel
+from .forms import ProfileUpdateForm, PostComment
+from .models import ProfileModel, ContestModel, CommentModel, Region
 
 
 def main(request):
@@ -24,3 +24,45 @@ def profile_update(request):
     print('did not get posted!!!')
     logout(request.user)
     return redirect('contest:main')
+
+
+def contests(requests):
+    contest = ContestModel.objects.all()
+    return render(requests, 'contests.html', context={
+        'contests': contest
+    })
+
+
+def ditail(requests, slug):
+    contest = ContestModel.objects.get(slug=slug)
+    comments = CommentModel.objects.select_related().filter(comment_receiver=contest)[::-1]
+    comments = comments[:4]
+    form = PostComment()
+    if requests.method == 'POST':
+        form = PostComment(requests.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.comment_receiver = contest
+            data.comment_owner = ProfileModel.objects.get(user=requests.user)
+            data.save()
+
+    return render(requests, 'ditail.html', context={
+        'contest': contest,
+        'comments': comments,
+    })
+
+
+def statistic(requests):
+    regions = Region.objects.all()
+    data_list = []
+    for i in regions:
+        data = ProfileModel.objects.filter(region__name=i.name)
+        t = {
+            'region': i.name,
+            'users': len(data)
+        }
+        data_list.append(t)
+
+    return render(requests, 'map.html', context={
+        'data': data_list
+    })
