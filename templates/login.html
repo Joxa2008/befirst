@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for message in messages %}
+    <h1>{{ message }}</h1>
+{% endfor %}
+<form action="{% url 'user:login' %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Log IN</button>
+</form>
+</body>
+</html>

@@ -1,14 +1,16 @@
 from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
+from .models import CustomUserModel
 from contest_app.forms import ProfileUpdateForm
 from contest_app.views import ProfileModel
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import CustomUserModel
+import re
+import phonenumbers
 
 
-def user_register(request):
+def user_register_view(request):
     if request.user.is_authenticated:
         return redirect('contest:main')
     else:
@@ -35,6 +37,64 @@ def user_register(request):
                     'form': profile_form
                 })
         return render(request, template_name='user_register.html', context={'form': form})
+
+
+def user_login_view(request):
+    form = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+
+            email_or_phone = form.cleaned_data['email_or_phone']
+
+            def validate(value):
+                if len(value) != 13 or not value.startswith("+998"):
+                    return False
+                try:
+                    z = phonenumbers.parse(value)  # 998944009080
+                    if not phonenumbers.is_valid_number(z):
+                        return False
+                    return True
+                except:
+                    return False
+
+            print(validate(email_or_phone))
+
+            pattern = r"[\w-]{1,20}@gmail\.com"
+            if re.match(pattern, email_or_phone):
+                user = authenticate(email=email_or_phone, password=form.cleaned_data['password'])
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, 'You have successfully logged In')
+                    return redirect('contest:main')
+                else:
+                    messages.error(request, 'Email or password was incorrect')
+                    return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
+                                                                                'form': form})
+            elif validate(email_or_phone):
+                try:
+                    obj = CustomUserModel.objects.get(phone_number=email_or_phone)
+                except CustomUserModel.DoesNotExist:
+                    messages.error(request, 'No user for this phone number')
+                    return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
+                                                                                'form': form})
+                else:
+                    user = authenticate(email=obj.email, password=form.cleaned_data['password'])
+                    if user is not None:
+                        login(request, user)
+                        messages.success(request, 'You have successfully logged In')
+                        return redirect('contest:main')
+                    else:
+                        messages.error(request, 'Password was incorrect')
+                        return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
+                                                                                    'form': form})
+
+            else:
+                messages.error(request, 'Phone number or password was incorrect')
+                return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
+                                                                            'form': form})
+
+    return render(request, 'login.html', context={'form': form})
 
 
 def logout_view(request):
