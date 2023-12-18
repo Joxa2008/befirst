@@ -1,8 +1,11 @@
+{% load crispy_forms_filters %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 </head>
 <body>
 {% for message in messages %}
@@ -10,8 +13,13 @@
 {% endfor %}
 <form action="{% url 'user:login' %}" method="post">
     {% csrf_token %}
-    {{form}}
-    <button type="submit">Log IN</button>
+    <div class="row">
+        <div class="col-6 offset-3">
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success">Log IN</button>
+        </div>
+    </div>
+
 </form>
 </body>
 </html>
