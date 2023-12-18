@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager as DjangoBaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.password_validation import validate_password
+from .validators import validate_email, PhoneValidator
 
 
 class BaseUserManager(DjangoBaseUserManager):
@@ -47,16 +49,25 @@ class CustomUserModel(AbstractUser):
 
     username = None
 
-    email = models.EmailField(_("email address"), unique=True, help_text=_("Required. Your email address."))
+    email = models.EmailField(_("email address"), unique=True,
+                              help_text=_("Required. Your gmail address."),
+                              error_messages={"unique": _("A user with that email already exists")},
+                              validators=[validate_email])
 
     birth_date = models.DateField(default=timezone.now, help_text=_("Required. Your birth date."))
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
     gender = models.CharField(max_length=1, choices=CHOICES, default='M', help_text=_("Required. Choose your gender."))
 
-    phone_number = models.CharField(max_length=13, blank=True, null=True, help_text=_('Enter phone number'
-                                                                                      ' e.g: +998123456789'))
+    phone_number = models.CharField(max_length=13, blank=True, null=True,
+                                    unique=True, help_text=_('Enter phone number'
+                                                             ' e.g: +998123456789'),
+                                    verbose_name='phone number',
+                                    error_messages={'unique': _('A user with that phone number already exists'),
+                                                    'invalid': _('Please enter a valid phone')},
+                                    validators=[PhoneValidator()])
 
+    password = models.CharField(max_length=100, validators=[validate_password])
     objects = BaseUserManager()
 
     USERNAME_FIELD = "email"
