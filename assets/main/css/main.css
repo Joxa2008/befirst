@@ -29,8 +29,31 @@
     --register-body-font: 'Inter', sans-serif;
 }
 
-/*NAVBAR STYLE START*/
 
+@keyframes alert-fade-out {
+    0% {
+        opacity: 1;
+    }
+    90%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+.alert {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    animation: alert-fade-out 1s forwards;
+    animation-delay: 5s;
+}
+
+/*NAVBAR STYLE START*/
 
 /* Dropdown Button */
 .small-nav-bar .dropbtn {
@@ -152,9 +175,10 @@ nav #nav-search:not(:invalid) {
     color: #fff;
 }
 
-nav #nav-search:not(:placeholder-shown) ~ #search-button{
+nav #nav-search:not(:placeholder-shown) ~ #search-button {
     opacity: 0;
     visibility: hidden;
+    cursor: text;
 }
 
 
@@ -175,8 +199,12 @@ nav #search-submit {
     box-shadow: rgba(0, 0, 0, 0.16) 3px 1px 6px, rgba(0, 0, 0, 0.23) 3px 1px 6px;
     outline: none;
     border: none;
+    visibility: hidden;
+    width: 0;
 }
 
+
+/*END OF NAV BAR*/
 
 #followCursor {
     position: absolute;

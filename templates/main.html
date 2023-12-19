@@ -1,12 +1,16 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-    <div class="row">
-        <div class="col-6 offset-3">
+    <div class="row d-flex flex-column w-100">
+        <div class="">
+        
             {% for message in messages %}
-                <h1>{{ message }}</h1>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ message }} </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             {% endfor %}
 
-            <h1>{{ request.user }}</h1>
+            <h1 class="">{{ request.user }}</h1>
             {% if request.user.is_authenticated %}
                 <a href="{% url 'user:logout' %}">Log Out</a>
             {% else %}
