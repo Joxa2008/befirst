@@ -1,26 +1,57 @@
+{% extends 'layouts/base.html' %}
 {% load static %}
 {% load crispy_forms_filters %}
+{% block extra_css %}
+    <style>
+        .bg-img-wrapper {
+            background-image: url("{% static 'main/img/registration-page/registration-back.png' %}");
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    {% for message in messages %}
+        <h1>{{ message }}</h1>
+    {% endfor %}
 
-</head>
-<body>
-{% for message in messages %}
-    <h1>{{ message }}</h1>
-{% endfor %}
-<form action="{% url 'user:register' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-6 offset-3">
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-success">Save</button>
+
+
+
+    <div class="container registration-page mt-3">
+
+        <!-- banner of the page start -->
+        <div class="banner d-flex flex-column flex-lg-row justify-content-between pt-3 overflow-hidden h-auto">
+            <h1 class="ms-lg-5 mt-2 ps-lg-4 pb-5 pb-lg-0 text-center pt-4">РЕГИСТРАЦИЯ</h1>
+            <img class="position-relative d-none d-lg-block"
+                 src="{% static 'main/img/registration-page/registration-header.svg' %}" alt="">
         </div>
+        <!-- banner of the page end -->
+        
+        
+        <form action="{% url 'user:register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6 offset-3">
+                    {{ form|crispy }}
+                    <div class="row my-5 bg-transparent d-flex justify-content-center">
+                        <div class="col text-center">
+                            <button class="btn submit-button btn-success" type="submit">ГОТОВО</button>
+
+                        </div>
+                    </div>
+                </div>
+        </form>
+
+        <!-- registration form start -->
+
+
     </div>
-</form>
-</body>
-</html>
+
+    </div>
+
+
+{% endblock %}
+

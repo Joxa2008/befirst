@@ -1,25 +1,18 @@
+{% extends 'layouts/base.html' %}
 {% load crispy_forms_filters %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-</head>
-<body>
-{% for message in messages %}
-    <h1>{{ message }}</h1>
-{% endfor %}
-<form action="{% url 'user:login' %}" method="post">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-6 offset-3">
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-success">Log IN</button>
+{% block content %}
+    {% for message in messages %}
+        <h1>{{ message }}</h1>
+    {% endfor %}
+    <form action="{% url 'user:login' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6 offset-3">
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success">Log IN</button>
+            </div>
         </div>
-    </div>
 
-</form>
-</body>
-</html>
+    </form>
+{% endblock %}
+

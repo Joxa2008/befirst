@@ -90,7 +90,7 @@ def user_login_view(request):
                                                                                     'form': form})
 
             else:
-                messages.error(request, 'Phone number or password was incorrect')
+                messages.error(request, 'Phone | Email number or password was incorrect')
                 return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
                                                                             'form': form})
 
