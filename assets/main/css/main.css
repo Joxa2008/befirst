@@ -154,6 +154,7 @@ nav #nav-search:not(:invalid) {
 
 nav #nav-search:not(:placeholder-shown) ~ #search-button{
     opacity: 0;
+    visibility: hidden;
 }
 
 
