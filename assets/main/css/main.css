@@ -578,7 +578,7 @@ footer .last-footer-column p {
 
 /*START OF REGISTRATION PAGE*/
 
-/* regester banner start */
+/* register banner start */
 .registration-page .banner {
     background-color: rgba(242, 209, 70, 1);
 
@@ -771,15 +771,11 @@ footer .last-footer-column p {
     background-color: #29d36d !important;
 }
 
-
 .registration-page input[type='file']::file-selector-button {
     display: none;
 }
 
-
 /*REGISTRATION 2nd STAGE*/
-
-
 .registration-page .checkbox-input-wrapper.x {
     height: 100%;
 }
@@ -809,15 +805,14 @@ footer .last-footer-column p {
     display: none;
     top: -10px;
 }
+/*REGISTER 2nd STAGE END
+*/
 
 
-@media (max-width: 1400px) {
 
-}
+@media (max-width: 1400px) {  }
 
-@media (max-width: 1200px) {
-
-}
+@media (max-width: 1200px) {  }
 
 @media (max-width: 992px) {
 
@@ -859,6 +854,8 @@ footer .last-footer-column p {
     }
 
     /* End of Map part */
+
+
     /*REGISTRATION PAGE START*/
     .registration-page .checkbox-input-wrapper {
         height: 40px;
@@ -889,8 +886,9 @@ footer .last-footer-column p {
         display: none;
         top: -8px;
     }
-
     /* REGISTRATION PAGE END*/
+
+
     /*    FOOTER START*/
     footer .fisrt-footer-column,
     footer .fisrt-footer-column + .col {
@@ -901,10 +899,8 @@ footer .last-footer-column p {
     footer .fisrt-footer-column + .col {
         display: none;
     }
-
     /*    FOOTER END*/
 }
-
 
 @media (max-width: 768px) {
     /*  Map part  */

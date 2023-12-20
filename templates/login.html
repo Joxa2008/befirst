@@ -1,24 +1,23 @@
 {% extends 'layouts/base.html' %}
 {% load crispy_forms_filters %}
+
 {% block content %}
-    <h1>{{ messages }}</h1>
-    
     {% for message in messages %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{ message }} </strong>
             {#            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
         </div>
     {% endfor %}
-
-    <form action="{% url 'user:login' %}" method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-6 offset-3">
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-success">Log IN</button>
+    <div class="container bg-body-secondary">
+        <form action="{% url 'user:login' %}" method="post" class="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-8 offset-2">
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-success">Log IN</button>
+                </div>
             </div>
-        </div>
-
-    </form>
+        </form>
+    </div>
 {% endblock %}
 
