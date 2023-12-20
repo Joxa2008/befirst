@@ -24,13 +24,6 @@
     --acme-font: 'Acme', sans-serif;
 }
 
-#followCursor {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background-color: blue;
-      border-radius: 50%;
-}
 
 /* Contest Part */
 
@@ -77,7 +70,7 @@
     position: relative;
     transform: translateY(70px);
     opacity: 0;
-    transition: all 1.5s ease ;
+    transition: all 1.5s ease;
 }
 
 .home-page > .container > .row > .reveal.active {
@@ -85,7 +78,7 @@
     opacity: 1;
 }
 
-.home-page > .container > .row > .col > .card{
+.home-page > .container > .row > .col > .card {
     height: 450px;
     border-radius: 14px;
 }
@@ -143,7 +136,8 @@
 /* End of contest part */
 /* Beginning of ditail part */
 
-.ditail_page {}
+.ditail_page {
+}
 
 .ditail_page > .container {
     background-color: rgba(0, 0, 0, 0.07);
@@ -222,7 +216,7 @@
     font-size: 14px;
 }
 
-.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body >.comment-text {
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > .comment-text {
     margin-top: 15px;
     font-size: 17px;
 }
@@ -288,11 +282,42 @@
 /* Uzb Map */
 
 .home-page > .container > .map > .map-uzb {
-    cursor: pointer;
+    cursor: none;
 }
 
-#UZB354:hover{
-  fill:red;
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--yellow);
+}
+
+.cursor-dot,
+.cursor-outline,
+.cursor-data {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.cursor-data {
+    width: 100px;
+    height: 50px;
+    border-radius: 0%;
+    background-color: #0a53be;
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+
+#UZB354:hover {
+    fill: red;
 }
 
 #Karakalpakstan:hover {
@@ -323,7 +348,7 @@
     fill: #E95E0E;
 }
 
-#Sirdaryo:hover{
+#Sirdaryo:hover {
     fill: #00942F;
 }
 
@@ -343,7 +368,141 @@
     fill: #80378A;
 }
 
-/* End of Map part*/
+/* End of Map part */
+/* Resaults Data part */
+
+.results-page {
+    padding: 19px 0 97px 0;
+}
+
+.results-page > .container > .text-center {
+    margin-top: 47px;
+    font-size: 40px;
+    font-weight: 800;
+    font-family: var(--baloo-font);
+}
+
+.results-page > .container > .hr {
+    height: 16px;
+    background-color: var(--yellow);
+    width: 100%;
+    margin-top: 26px;
+}
+
+.results-page > .container > .card {
+    height: 430px;
+}
+
+.results-page > .container > .card > .d-flex > .h-100 > .card-body {
+    text-align: justify;
+    padding: 0 70px;
+}
+
+.results-page > .container > .card > .d-flex > .h-100 > .card-body > .card-title {
+    font-size: 70px;
+    font-weight: 800;
+}
+
+.results-page > .container > .card > .d-flex > .h-100 > .card-body > .card-text {
+    font-size: 20px;
+    color: var(--text-gray);
+    font-family: var(--abel-font);
+}
+
+.results-page > .container > .card {
+    background-color: var(--title-yellow);
+}
+
+.results-page > .container > .d-flex > .row {
+    margin-top: 90px;
+}
+
+.results-page > .container > .d-flex > .row > .col {
+    display: flex;
+    justify-content: center;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card {
+    background-color: rgba(255, 0, 0, 0);
+    width: 182px;
+    border: none;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .img-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    width: 180px;
+    height: 180px;
+    border-radius: 15px;
+    background-color: var(--yellow);
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .img-cont > img {
+    height: 120px;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .card-body {
+    padding-top: 40px;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .card-body > .card-title {
+    font-size: 47px;
+    color: var(--red);
+    font-family: var(--acme-font);
+    line-height: 26px;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .card-body > .card-text {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.results-page > .container > .card > .invis > .imgs > img {
+    height: 100%;
+    width: auto;
+}
+
+
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container{
+    display: flex;
+    border-radius: 8px;
+    width: 198px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container .circular-progress {
+    position: relative;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background: conic-gradient(#F5C24D 0deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container > .circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background-color: #e7e4e4;
+
+}
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container > .circular-progress > .progress-value {
+    position:  relative;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--yellow);
+}
+
+/* End of resaults data part */
 
 @media (max-width: 1400px) {
 
@@ -355,9 +514,8 @@
 
 @media (max-width: 992px) {
 
-        /* Contest media */
-
-        .home-page > .container > .mobile {
+    /* Contest media */
+    .home-page > .container > .mobile {
         display: flex;
         align-items: center;
         justify-content: start;
@@ -385,7 +543,6 @@
 
     /* End of contest media */
     /* Map part */
-
     .home-page > .container > div > .head {
         font-size: 40px;
     }
@@ -400,7 +557,6 @@
 
 @media (max-width: 768px) {
     /*  Map part  */
-
     .home-page > .container > div > .head {
         font-size: 30px;
     }
@@ -431,7 +587,6 @@
 @media (max-width: 576px) {
 
     /* Contest media */
-
     .home-page > .container > .banner > .container-texts > .text-container > h1 {
         width: 100%;
         font-size: 38px;
@@ -443,7 +598,6 @@
 
     /* End of contest media */
     /* Map part */
-
     .home-page > .container > .title {
         font-size: 30px;
     }

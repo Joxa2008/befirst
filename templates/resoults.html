@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/resoults.css">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css">
-</head>
-<body>
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
     <div class="results-page" style="background: url(/img/back-img.svg) no-repeat center/cover;">
         <div class="container">
               <div class="card mb-3">
@@ -134,6 +127,7 @@
                 </div>
               </div>
       </div>
+    </div>
 
       <script>
         function startCounting(id, targetCount) {
@@ -179,7 +173,7 @@
         var targetSection = document.getElementById('section1');
         observer.observe(targetSection);
 
-      </script>
+    </script>
 
 
 
@@ -220,4 +214,5 @@
           observer.observe(targetSection);
         }
       </script>
-</body>
+{% endblock content %}
+

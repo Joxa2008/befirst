@@ -54,15 +54,25 @@ def ditail(requests, slug):
 
 def statistic(requests):
     regions = Region.objects.all()
+    data = ProfileModel.objects.all()
     data_list = []
     for i in regions:
-        data = ProfileModel.objects.filter(region__name=i.name)
+        v = 0
+        for j in data:
+            if j.region == i:
+                v += 1
         t = {
             'region': i.name,
-            'users': len(data)
+            'users': v
         }
         data_list.append(t)
+
+    # Filter qilishim mumkun lekin queery kopayib ketadi
 
     return render(requests, 'map.html', context={
         'data': data_list
     })
+
+
+def results(requests):
+    return render(requests, 'resoults.html')
