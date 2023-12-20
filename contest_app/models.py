@@ -32,7 +32,7 @@ class ProfileModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_("Choose a user."), related_name='profile')
 
     profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
-                                    help_text=_('Your profile picture.'))
+                                    help_text=_('Your profile picture. .jpg, .jpeg, .png only!'))
 
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True,
                                help_text=_("Choose a region you reside. e.g. 'Samarkand'"))

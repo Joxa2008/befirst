@@ -42,8 +42,10 @@ function regCheckboxValidate() {
     let regSubmit = document.getElementById('reg-submit');
     if (checkboxCounter % 2) {
         regSubmit.classList.add('disabled');
+        regSubmit.setAttribute('type', 'button')
     } else {
         regSubmit.classList.remove('disabled');
+        regSubmit.setAttribute('type', 'submit')
 
     }
     checkboxCounter += 1;

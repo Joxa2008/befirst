@@ -18,11 +18,14 @@
             </div>
         </div>
         <div class="vr opacity-100 bg-white mx-2"></div>
+        {% if request.user.is_authenticated is False %}
+            <a href="{% url 'user:login' %}">ВХОД</a>
+            <div class="vr opacity-100 bg-white mx-2"></div>
 
-        <a href="{% url 'user:login' %}">ВХОД</a>
-        <div class="vr opacity-100 bg-white mx-2"></div>
-
-        <a class="me-3" href="{% url 'user:register' %}">РЕГИСТРАЦИЯ</a>
+            <a class="me-3" href="{% url 'user:register' %}">РЕГИСТРАЦИЯ</a>
+        {% else %}
+            <a href="{% url 'user:logout' %}">ВЫХОД</a>
+        {% endif %}
     </div>
 </div>
 <nav>
@@ -56,7 +59,7 @@
             {#            <li class="d-none d-xxl-block"><a href="">Правило</a></li>#}
             <li class="d-none d-xxl-block"><a href="">Результаты </a></li>
             <li class="d-none d-md-block"><a href="">Конкурс</a></li>
-{#            <li class="d-none d-xxl-block"><a href="">Эксперты </a></li>#}
+            {#            <li class="d-none d-xxl-block"><a href="">Эксперты </a></li>#}
             <li class="d-none d-md-block"><a href="">О нас</a></li>
             <li class="d-none d-xxl-block"><a href="">Личный кабинет</a></li>
             <li class="">
