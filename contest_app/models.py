@@ -6,8 +6,7 @@ from django.utils import timezone
 # from datetime import datetime
 from django.shortcuts import reverse
 from django.utils.text import slugify
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 
 User = get_user_model()
 
@@ -32,7 +31,7 @@ class ProfileModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_("Choose a user."), related_name='profile')
 
     profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
-                                    help_text=_('Your profile picture.'))
+                                    help_text=_('Your profile picture. .jpg, .jpeg, .png only!'))
 
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True,
                                help_text=_("Choose a region you reside. e.g. 'Samarkand'"))
@@ -50,11 +49,6 @@ class ProfileModel(models.Model):
         db_table = 'profile'
 
 
-@receiver(post_save, sender=User)
-def user_post_save(sender, instance, created, **kwargs):
-    if created:
-        obj = ProfileModel.objects.create(user=instance)
-        obj.save()
 
 
 class ExpertModel(models.Model):
