@@ -36,6 +36,16 @@ searchInput.addEventListener('input', function () {
 
 });
 
+let checkboxCounter = 0;
+function regCheckboxValidate() {
+    let checkBoxInput = document.getElementsByClassName('reg-checkbox');
+    let regSubmit = document.getElementById('reg-submit');
+    if (checkboxCounter % 2) {
+        regSubmit.classList.add('disabled');
+    } else {
+        regSubmit.classList.remove('disabled');
 
-
+    }
+    checkboxCounter += 1;
+}
 

@@ -30,15 +30,33 @@
 }
 
 
-@keyframes alert-fade-out {
+@keyframes alert-fade-in {
     0% {
-        opacity: 1;
-    }
-    90%{
+        transform: translateX(100px);
         opacity: 0;
     }
 
-    100%{
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes alert-fade-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+
+    90% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(100px);
         opacity: 0;
         display: none;
     }
@@ -47,10 +65,9 @@
 
 .alert {
     position: absolute;
-    bottom: 30px;
+    top: 20%;
     right: 30px;
-    animation: alert-fade-out 1s forwards;
-    animation-delay: 5s;
+    animation: alert-fade-in 1.5s forwards, alert-fade-out 1.5s forwards 4s;
 }
 
 /*NAVBAR STYLE START*/
@@ -205,6 +222,34 @@ nav #search-submit {
 
 
 /*END OF NAV BAR*/
+
+
+/* FOOTER STYLE START*/
+footer {
+    background-color: #F5C24D;;
+}
+
+footer .fisrt-footer-column,
+footer .fisrt-footer-column + .col {
+    display: none;
+}
+
+footer .fisrt-footer-column p,
+footer .last-footer-column p {
+    color: #FFF;
+    --bs-text-opacity: 1;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media screen and (max-width: 991px) {
+
+
+}
+
 
 #followCursor {
     position: absolute;
@@ -575,44 +620,50 @@ nav #search-submit {
 
 }
 
-.registration-page .registration-form .text-input-wrapper > input {
-    height: 65px;
+.registration-page .form-control,
+.registration-page .form-select {
+    height: min(12vw, 65px);
     color: #494949 !important;
     font-family: var(--register-body-font) !important;
+    font-size: min(4.5vw, 20px);
     font-style: normal;
     font-weight: 400;
-}
-
-.registration-page .text-input-wrapper > input {
     outline: none;
     border: #F5C24D 1px solid;
+    border-radius: 0px;
+    padding: 0px 10px;
     background-color: rgba(211, 211, 211, 1);
 }
 
-.registration-page .text-input-wrapper > input[type='file']::file-selector-button {
-    display: none;
+.registration-page .form-label {
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
+.registration-page span.asteriskField{
+    margin-left: 3px;
+    color: var(--blue);
+    font-size: 20px;
 
-.registration-page .text-input-wrapper > input:valid {
-    outline: none;
-    border: var(--green) 1px solid;
 }
 
-
-.registration-page .text-input-wrapper > input[type='text']:focus ~ label.text-input-label,
-.registration-page .text-input-wrapper > input[type='text']:valid ~ label.text-input-label,
-.registration-page .text-input-wrapper > input[type='email']:focus ~ label.text-input-label,
-.registration-page .text-input-wrapper > input[type='email']:valid ~ label.text-input-label,
-.registration-page .text-input-wrapper > input[type='tel']:focus ~ label.text-input-label,
-.registration-page .text-input-wrapper > input[type='tel']:valid ~ label.text-input-label {
-    transform: translateY(-25px);
-    padding: 0 3px;
-    color: var(--black) !important;
-    font-weight: 500;
+.registration-page .invalid-feedback {
+    color: var(--red);
+    font-family: var(--register-body-font) !important;
 }
 
-.registration-page .registration-form .input-help-text {
+.registration-page .was-validated .form-control:invalid,
+.registration-page .form-control.is-invalid {
+    background-image: none !important;
+}
+
+.registration-page .form-control.is-invalid {
+    border: var(--red) 1px solid;
+}
+
+.registration-page .form-text {
     color: #939393;
     font-family: var(--register-body-font);
     font-size: 14px;
@@ -621,30 +672,19 @@ nav #search-submit {
     line-height: normal;
 }
 
-.registration-page .reg-form-select select {
-    height: 65px;
-    color: #494949 !important;
-    font-family: var(--register-body-font) !important;
-    font-size: min(4.5vw, 20px);
-    font-style: normal;
-    font-weight: 400;
-    outline: none;
-    border: #F5C24D 1px solid;
-    background-color: rgba(211, 211, 211, 1);
-}
-
 
 .registration-page .form-agreement {
+    box-sizing: border-box !important;
     color: #494949;
     font-family: var(--register-body-font);
     font-size: min(4.5vw, 20px);
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
 }
 
 .registration-page .form-agreement .agreement-section {
     min-height: 65px;
+    box-sizing: border-box !important;
     border: #F5C24D 5px solid;
     background-color: transparent;
 }
@@ -737,112 +777,91 @@ nav #search-submit {
 
 @media (max-width: 992px) {
 
+    /* Contest media */
+    .home-page > .container > .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 0 20px 0 20px;
+        height: 419px;
+        width: 100%;
+        color: #fff;
+        position: relative;
+        isolation: isolate;
+    }
 
-    @media (max-width: 768px) {
+    .home-page > .container > .mobile::after {
+        content: '';
+        position: absolute;
+        background: black;
+        z-index: -1;
+        inset: 0;
+        opacity: .5;
+    }
+
+
+    .home-page > .container > .desktop {
+        display: none;
+    }
+
+    /* End of contest media */
+    /* Map part */
+    .home-page > .container > div > .head {
+        font-size: 40px;
+    }
+
+    .home-page {
+        padding: 19px 0px;
+    }
+
+    /* End of Map part */
+    /*REGISTRATION PAGE START*/
+    .registration-page .checkbox-input-wrapper {
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper .input-w {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .registration-page .checkbox-input-wrapper .checkbox-rounded {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px !important;
 
     }
 
-    @media (max-width: 576px) {
-
+    .registration-page .checkbox-input-wrapper input[type='checkbox'] {
+        width: 40px;
+        height: 40px;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @media (max-width: 1400px) {
-
+    .registration-page .checkbox-input-wrapper .tick {
+        left: 6px;
+        height: 50px;
+        width: 50px;
+        display: none;
+        top: -8px;
     }
-
-    @media (max-width: 1200px) {
-
-    }
-
-    @media (max-width: 992px) {
-
-        /* Contest media */
-        .home-page > .container > .mobile {
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            padding: 0 20px 0 20px;
-            height: 419px;
-            width: 100%;
-            color: #fff;
-            position: relative;
-            isolation: isolate;
-        }
-
-        .home-page > .container > .mobile::after {
-            content: '';
-            position: absolute;
-            background: black;
-            z-index: -1;
-            inset: 0;
-            opacity: .5;
-        }
-
-
-        .home-page > .container > .desktop {
-            display: none;
-        }
-
-        /* End of contest media */
-        /* Map part */
-        .home-page > .container > div > .head {
-            font-size: 40px;
-        }
-
-        .home-page {
-            padding: 19px 0px;
-        }
-
-        /* End of Map part */
-        /*REGISTRATION PAGE START*/
-        .registration-page .checkbox-input-wrapper {
-            height: 40px;
-        }
-
-        .registration-page .checkbox-input-wrapper .input-w {
-            width: 40px;
-            height: 40px;
-        }
-
-
-        .registration-page .checkbox-input-wrapper .checkbox-rounded {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px !important;
-
-        }
-
-        .registration-page .checkbox-input-wrapper input[type='checkbox'] {
-            width: 40px;
-            height: 40px;
-        }
-
-        .registration-page .checkbox-input-wrapper .tick {
-            left: 6px;
-            height: 50px;
-            width: 50px;
-            display: none;
-            top: -8px;
-        }
-    }
-    /* REGISTRATION PAGE END*/
-
 }
+
+/* REGISTRATION PAGE END*/
+/*    FOOTER START*/
+footer .fisrt-footer-column,
+footer .fisrt-footer-column + .col {
+    display: block;
+}
+
+footer .last-footer-column,
+footer .fisrt-footer-column + .col {
+    display: none;
+}
+
+/*    FOOTER END*/
+
+
 
 @media (max-width: 768px) {
     /*  Map part  */

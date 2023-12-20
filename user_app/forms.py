@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+
 User = get_user_model()
 from django.utils.translation import gettext_lazy as _
 
@@ -36,10 +37,11 @@ class RegisterForm(forms.ModelForm):
                 format=('%Y-%m-%d')),
 
             'gender': forms.Select(attrs={
-                'class': "form-control"}),
+                'class': "form-select"}),
 
             'phone_number': forms.TextInput(attrs={
-                'class': "form-control"}),
+                'class': "form-control",
+                'placeholder': '+998 XX XXX XX XX'}),
 
             'password': forms.PasswordInput(attrs={
                 'class': "form-control",

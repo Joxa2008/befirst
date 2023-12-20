@@ -58,39 +58,41 @@ def user_login_view(request):
                 except:
                     return False
 
-            print(validate(email_or_phone))
-
             pattern = r"[\w-]{1,20}@gmail\.com"
             if re.match(pattern, email_or_phone):
                 user = authenticate(email=email_or_phone, password=form.cleaned_data['password'])
                 if user is not None:
                     login(request, user)
-                    messages.success(request, 'You have successfully logged In')
+                    messages.success(request, 'You have successfully logged In!')
                     return redirect('contest:main')
                 else:
-                    messages.error(request, 'Email or password was incorrect')
+                    form.add_error('password', "Email or password was incorrect")
+                    # messages.error(request, 'Email or password was incorrect')
                     return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
                                                                                 'form': form})
             elif validate(email_or_phone):
                 try:
                     obj = CustomUserModel.objects.get(phone_number=email_or_phone)
                 except CustomUserModel.DoesNotExist:
-                    messages.error(request, 'No user for this phone number')
+                    form.add_error('password', "No user for this phone number")
+                    # messages.error(request, 'No user for this phone number')
                     return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
                                                                                 'form': form})
                 else:
                     user = authenticate(email=obj.email, password=form.cleaned_data['password'])
                     if user is not None:
                         login(request, user)
-                        messages.success(request, 'You have successfully logged In')
+                        messages.success(request, 'You have successfully logged In!')
                         return redirect('contest:main')
                     else:
-                        messages.error(request, 'Password was incorrect')
+                        form.add_error('password', "Password was incorrect")
+                        # messages.error(request, 'Password was incorrect')
                         return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
                                                                                     'form': form})
 
             else:
-                messages.error(request, 'Phone | Email number or password was incorrect')
+                form.add_error('password', "Invalid email or phone number")
+                # messages.error(request, 'Phone | Email number or password was incorrect')
                 return render(request, template_name='login.html', context={'email_or_phone': email_or_phone,
                                                                             'form': form})
 
@@ -99,5 +101,5 @@ def user_login_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, 'You are logged out!')
+    messages.success(request, 'You logged out!')
     return redirect('contest:main')
