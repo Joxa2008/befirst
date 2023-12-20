@@ -5,6 +5,8 @@
 /* registration page fonts */
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600&family=Inter:wght@400;700&display=swap');
 
+/*login font*/
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
 
 :root {
     --yellow: #F5C24D;
@@ -27,6 +29,8 @@
     --acme-font: 'Acme', sans-serif;
     --register-head-font: 'Advent Pro', sans-serif;
     --register-body-font: 'Inter', sans-serif;
+    --login-label-font: 'Alegreya Sans', sans-serif;
+'
 }
 
 
@@ -647,24 +651,29 @@ footer .last-footer-column p {
     font-weight: 600;
 }
 
-.registration-page span.asteriskField {
+.registration-page span.asteriskField,
+.login-page span.asteriskField {
     margin-left: 3px;
     color: var(--blue);
     font-size: 20px;
 
 }
 
-.registration-page .invalid-feedback {
+.registration-page .invalid-feedback,
+.login-page .invalid-feedback {
     color: var(--red);
     font-family: var(--register-body-font) !important;
 }
 
 .registration-page .was-validated .form-control:invalid,
-.registration-page .form-control.is-invalid {
+.registration-page .form-control.is-invalid,
+.login-page .was-validated .form-control:invalid,
+.login-page .form-control {
     background-image: none !important;
 }
 
-.registration-page .form-control.is-invalid {
+.registration-page .form-control.is-invalid,
+.login-page .form-control.is-invalid {
     border: var(--red) 1px solid;
 }
 
@@ -750,7 +759,8 @@ footer .last-footer-column p {
     border: solid 1px rgba(242, 209, 70, 1);
 }
 
-.registration-page .submit-button {
+.registration-page .submit-button,
+.login-page .submit-button {
     width: min(60vw, 359px);
     height: min(12vw, 65px);
     color: #000;
@@ -767,7 +777,13 @@ footer .last-footer-column p {
     transition: 250ms all;
 }
 
-.registration-page button.submit-button:hover {
+.login-page .submit-button {
+    width: min(50vw, 260px);
+    font-size: min(5vw, 25px);
+}
+
+.registration-page button.submit-button:hover,
+.login-page button.submit-button:hover {
     background-color: #29d36d !important;
 }
 
@@ -805,14 +821,71 @@ footer .last-footer-column p {
     display: none;
     top: -10px;
 }
+
 /*REGISTER 2nd STAGE END
 */
 
 
+/*LOGIN PAGE START*/
 
-@media (max-width: 1400px) {  }
+.login-page .banner {
+    color: #000;
+    font-family: var(--baloo-font);
+    font-size: min(13vw, 70px);
+    font-style: normal;
+    font-weight: 800 !important;
+    line-height: normal;
+    text-transform: uppercase;
+}
 
-@media (max-width: 1200px) {  }
+.login-page .form-wrapper {
+    background-color: var(--yellow);
+}
+
+.login-page .form-control {
+    font-size: min(4vw, 20px);
+    padding-left: 25px !important;
+    height: min(12vw, 62px);
+    outline: none;
+    border: none;
+    border-radius: 35px;
+    background: #F2F2F2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;;
+}
+
+.login-page .form-control::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+.login-page .form-label {
+    color: #000;
+    font-family: var(--login-label-font);
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.login-page .form-text {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: var(--register-body-font);
+    font-size: min(4vw, 20px);
+}
+
+.login-page .invalid-feedback {
+    color: var(--red);
+    font-family: var(--register-body-font);
+    font-size: min(4vw, 20px);
+}
+
+
+@media (max-width: 1400px) {
+}
+
+@media (max-width: 1200px) {
+}
 
 @media (max-width: 992px) {
 
@@ -854,8 +927,6 @@ footer .last-footer-column p {
     }
 
     /* End of Map part */
-
-
     /*REGISTRATION PAGE START*/
     .registration-page .checkbox-input-wrapper {
         height: 40px;
@@ -886,9 +957,38 @@ footer .last-footer-column p {
         display: none;
         top: -8px;
     }
+
+    .registration-page .checkbox-input-wrapper.x {
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper.x .input-w.x {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .registration-page .checkbox-input-wrapper.x .checkbox-rounded.x {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px !important;
+
+    }
+
+    .registration-page .checkbox-input-wrapper.x input[type='checkbox'] {
+        width: 40px;
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper.x .tick.x {
+        left: 6px;
+        height: 50px;
+        width: 50px;
+        display: none;
+        top: -8px;
+    }
+
     /* REGISTRATION PAGE END*/
-
-
     /*    FOOTER START*/
     footer .fisrt-footer-column,
     footer .fisrt-footer-column + .col {
@@ -899,8 +999,11 @@ footer .last-footer-column p {
     footer .fisrt-footer-column + .col {
         display: none;
     }
+
     /*    FOOTER END*/
+    /*    LOGIN PAGE START*/
 }
+
 
 @media (max-width: 768px) {
     /*  Map part  */
@@ -929,6 +1032,10 @@ footer .last-footer-column p {
     }
 
     /* End of Map part */
+    .login-page .banner {
+        text-align: center;
+        height: 200px !important;
+    }
 }
 
 @media (max-width: 576px) {

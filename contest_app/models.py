@@ -6,8 +6,7 @@ from django.utils import timezone
 # from datetime import datetime
 from django.shortcuts import reverse
 from django.utils.text import slugify
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 
 User = get_user_model()
 
@@ -50,11 +49,6 @@ class ProfileModel(models.Model):
         db_table = 'profile'
 
 
-@receiver(post_save, sender=User)
-def user_post_save(sender, instance, created, **kwargs):
-    if created:
-        obj = ProfileModel.objects.create(user=instance)
-        obj.save()
 
 
 class ExpertModel(models.Model):

@@ -23,7 +23,7 @@
 
 
 
-    <div class="container registration-page my-4">
+    <div class="container registration-page my-4 px-3 px-md">
 
         <!-- banner of the page start -->
         <div class="banner d-flex flex-column flex-lg-row justify-content-between pt-3 overflow-hidden h-auto">
@@ -54,7 +54,7 @@
                 <div class="col-12 col-md">
                     {{ form.email|as_crispy_field }}
                 </div>
-                <div class="col-12 col-md">
+                <div class="col-12 col-md" style="margin-top: 5px">
                     {{ form.phone_number|as_crispy_field }}
                 </div>
             </div>
@@ -88,7 +88,8 @@
                     <div class="">
                         <div class="position-relative input-w">
                             <div class="checkbox-rounded position-absolute"></div>
-                            <input type="checkbox" onclick="regCheckboxValidate()" class="reg-checkbox position-absolute z-2" name="" id="">
+                            <input type="checkbox" onclick="regCheckboxValidate()"
+                                   class="reg-checkbox position-absolute z-2" name="" id="">
                             <img src="{% static 'main/img/registration-page/registration-check-tick.svg' %}"
                                  class="tick position-absolute" alt="">
                         </div>
@@ -116,7 +117,8 @@
             </div>
 
             <div class="row d-flex mt-lg-3 mt-5">
-            <button id="reg-submit" type="button" class="btn mx-auto submit-button btn-success disabled">ГОТОВО</button>
+                <button id="reg-submit" type="button" class="btn mx-auto submit-button btn-success disabled">ГОТОВО
+                </button>
 
             </div>
 

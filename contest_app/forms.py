@@ -9,14 +9,14 @@ class ProfileUpdateForm(forms.ModelForm):
         widgets = {
             'region': forms.Select(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={
-                'class': 'form-control',
-                'style': 'resize: none; margin-top: 5px; height: 65px;',
+                'class': 'form-control pt-2 pt-sm-3',
+                'style': 'resize: none; margin-top: 5px; height: min(12vw, 65px);',
             }),
             'news_agreement': forms.CheckboxInput(attrs={
                 'class': 'reg-checkbox news-agree-check position-absolute z-2',
                 'onclick': "regCheckboxValidate()"
             }),
             'profile_img': forms.FileInput(attrs={
-                'class': 'form-control',
+                'class': 'form-control pt-2 pt-sm-3',
                 'accept': ".jpg, .jpeg, .png"})
         }

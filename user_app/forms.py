@@ -58,7 +58,8 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email_or_phone = forms.CharField(label=_('Email or Mobile'),
                                      widget=forms.TextInput(attrs={
-                                         'class': "form-control"
+                                         'class': "form-control",
+                                         'placeholder': '+998... or example@gmail.com'
                                      }),
                                      help_text=_("Enter your email or phone number"), required=True)
 
