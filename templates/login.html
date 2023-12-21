@@ -1,0 +1,63 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}
+	Login
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .bg-img-wrapper {
+            background-image: url("{% static 'main/img/login-page/login-bg.png' %}");
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .login-page .banner {
+            height: 500px;
+            background-image: url("{% static 'main/img/login-page/login-banner.svg' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+            {#            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+        </div>
+    {% endfor %}
+    <div class="container login-page mt-4 mb-5 px-3 px-md">
+        <div class="banner mb-5">
+            <p class="ms-md-5 mt-5 ps-md-5 pb-5 pb-lg-0 pt-5">
+                LOG IN
+            </p>
+        </div>
+        <div class="form-wrapper px-3 px-md">
+            <form action="{% url 'user:login' %}" method="post" class="py-5">
+                {% csrf_token %}
+                <div class="row row-gap-4">
+                    <div class="col-12 col-md-8 offset-md-2">
+                        {{ form.email_or_phone|as_crispy_field }}
+                    </div>
+
+                    <div class="col-12 col-md-8 offset-md-2">
+                        {{ form.password|as_crispy_field }}
+                    </div>
+
+                </div>
+                <div class="row d-flex mt-lg-3 mt-5">
+                    <button type="submit" class="btn mx-auto submit-button btn-success">ГОТОВО
+                    </button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
+

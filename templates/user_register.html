@@ -1,0 +1,141 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}
+	Register
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .bg-img-wrapper {
+            background-image: url("{% static 'main/img/registration-page/registration-back.png' %}");
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+            {#            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+        </div>
+    {% endfor %}
+
+
+
+
+    <div class="container registration-page my-4 px-3 px-md">
+
+        <!-- banner of the page start -->
+        <div class="banner d-flex flex-column flex-lg-row justify-content-between pt-3 overflow-hidden h-auto">
+            <h1 class="ms-lg-5 mt-2 ps-lg-4 pb-5 pb-lg-0 text-center pt-4">РЕГИСТРАЦИЯ</h1>
+            <img class="position-relative d-none d-lg-block"
+                 src="{% static 'main/img/registration-page/registration-header.svg' %}" alt="">
+        </div>
+        <!-- banner of the page end -->
+
+
+        <form action="{% url 'user:register' %}" method="post" class="bg-secondary-subtle py-5"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row px-3 px-xl-5">
+                <div class="col-12 col-md">
+                    {{ form.first_name|as_crispy_field }}
+
+                </div>
+                <div class="col-12 col-md">
+                    {{ form.last_name|as_crispy_field }}
+                    {{ form.last_name|as_crispy_errors }}
+
+
+                </div>
+            </div>
+
+            <div class="row px-3 px-xl-5">
+                <div class="col-12 col-md">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md" style="margin-top: 5px">
+                    {{ form.phone_number|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row px-3 px-xl-5">
+                <div class="col-12 col-md">
+                    {{ form.birth_date|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md">
+                    {{ form.gender|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row px-3 px-xl-5">
+                <div class="col-12 col-md">
+                    {{ form.password|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md">
+                    {{ form.confirm_password|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row px-3 px-xl-5 my-1 py-lg-4 row-gap-1 row-gap-lg-4">
+                <div class="form-agreement">
+                    <div class="col-12 my-4 px-0 my-lg-0 agreement-section d-flex ">
+                        <h5 class="m-auto text-uppercase ">Согласие</h5>
+                    </div>
+                </div>
+
+                <div class="checkbox-input-wrapper mt-3 my-lg-0 col-12 d-flex column-gap-4 align-items-center">
+                    <div class="">
+                        <div class="position-relative input-w">
+                            <div class="checkbox-rounded position-absolute"></div>
+                            <input type="checkbox" onclick="regCheckboxValidate()"
+                                   class="reg-checkbox position-absolute z-2" name="" id="">
+                            <img src="{% static 'main/img/registration-page/registration-check-tick.svg' %}"
+                                 class="tick position-absolute" alt="">
+                        </div>
+                    </div>
+                    <button class="text-capitalize btn btn-primary d-block d-lg-none" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false"
+                            aria-controls="collapseExample">
+                        <i class="bi bi-eye-fill me-2 text-white"></i>условия соглашения
+                    </button>
+                    <label class=" d-none d-lg-block" for="">Даю согласие образовательному порталу "НИКА" на
+                        обработку моих персональных данных *
+                        Нажимая кнопку «РЕГИСТРАЦИЯ», я принимаю условия Пользовательского соглашения и даю своё
+                        согласие Образовательному порталу «BEFIRST» (сайт https://оценика.уз) на обработку моих
+                        персональных данных, в соответствии с ...</label>
+                </div>
+                <div class="col-12 collapse mt-3" id="collapseExample4">
+                    <div class="conditions d-block d-lg-none p-3">
+                        Даю согласие образовательному порталу "НИКА" на обработку моих персональных данных *
+                        Нажимая кнопку «РЕГИСТРАЦИЯ», я принимаю условия Пользовательского соглашения и даю своё
+                        согласие Образовательному порталу «BEFIRST» (сайт https://оценика.уз) на обработку моих
+                        персональных данных, в соответствии с ...
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row d-flex mt-lg-3 mt-5">
+                <button id="reg-submit" type="button" class="btn mx-auto submit-button btn-success disabled">ГОТОВО
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- registration form start -->
+
+
+    </div>
+
+
+{% endblock %}
+
+
