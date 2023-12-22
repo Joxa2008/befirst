@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from .forms import ProfileUpdateForm, GiveScoreForm
-from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel
+from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel
 from django.contrib import messages
 from django.views.generic import View
 
@@ -32,8 +32,10 @@ def profile_update(request):
 @login_required
 def experts_score(request):
     try:
-        obj = ExpertModel.objects.prefetch_related('contests__works__scores__expert__user').get(id=request.user.expert.id)
-        return render(request, 'experts_score.html', {'expert': obj})
+        expert = ExpertModel.objects.prefetch_related('contests__works__scores__expert__user')\
+            .get(id=request.user.expert.id)
+        # contests = ContestModel.objects.filter(experts__)
+        return render(request, 'experts_score.html', {'expert': expert})
     except ExpertModel.DoesNotExist:
         return redirect('contest:main')
 

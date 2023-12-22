@@ -880,6 +880,21 @@ footer .last-footer-column p {
     font-size: min(4vw, 20px);
 }
 
+.experts-score-page {
+    font-family: var(--register-body-font);
+}
+
+.experts-score-page .card {
+    width: 300px;
+    height: 300px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.70);;
+}
+
+.experts-score-page h1{
+    font-family: var(--register-head-font);
+    font-weight: 600;
+}
+
 
 @media (max-width: 1400px) {
 }
