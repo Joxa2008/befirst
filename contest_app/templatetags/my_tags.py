@@ -40,3 +40,22 @@ def contest_order_deadline(query_set):
 
 register.filter('order_by_deadline', contest_order_deadline)
 
+
+def is_contest_completed_by_expert(query_set, expert):
+    my_list = []
+    counter = 0
+
+    for work in query_set.works.all():
+        counter += 1
+        my_list_1 = []
+        for i in work.scores.all():
+            my_list_1.append(i.expert)
+        if expert in my_list_1:
+            my_list.append(1)
+
+    if counter == len(my_list):
+        return True
+    return False
+
+
+register.filter('is_all_checked', is_contest_completed_by_expert)

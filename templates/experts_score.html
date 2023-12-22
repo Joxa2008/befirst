@@ -20,45 +20,47 @@
 {% block content %}
 
     <div class="container experts-score-page">
-        {% for contest in expert.contests.all%}
-            <div class="row my-3">
-                <h1>*{{ contest.title }}</h1>
-                <p class="deadline-text fw-bold text-{{ contest.publish_date|deadline_status }} ">
-                    {% if contest.publish_date|deadline_status == 'success' %}
+        {% for contest in expert.contests.all %}
+            {% if contest|is_all_checked:expert is False %}
 
-                        {{ contest.publish_date|timeuntil }} left to finish.
+                <div class="row my-4 ">
+                    <h1>*{{ contest.title }}</h1>
+                    <p class="deadline-text fw-bold text-{{ contest.publish_date|deadline_status }} ">
+                        {% if contest.publish_date|deadline_status == 'success' %}
 
-                    {% elif contest.publish_date|deadline_status == 'warning' %}
+                            {{ contest.publish_date|timeuntil }} left to finish.
 
-                        Warning! {{ contest.publish_date|timeuntil }} left to finish.
+                        {% elif contest.publish_date|deadline_status == 'warning' %}
 
-                    {% else %}
-                        Deadline has passed!
-                    {% endif %}
-                </p>
-                {% for work in contest.works.all %}
-                    {% if work.scores.all|is_expert_checked:expert  is False %}
-                        <div class="col-3 ">
-                            <div class="card border-0" style="
+                            Warning! {{ contest.publish_date|timeuntil }} left to finish.
+
+                        {% else %}
+                            Deadline has passed!
+                        {% endif %}
+                    </p>
+                    {% for work in contest.works.all %}
+                        {% if work.scores.all|is_expert_checked:expert  is False %}
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                                <div class="card border-0" style="
                             background-color: {% cycle 'rgba(237, 96, 89, 1)' 'rgba(245, 194, 77, 1)' %}">
-                                <div class="top-it h-75 bg-secondary-subtle rounded-top-2"
-                                     style="background: url({{ work.file.url }}) no-repeat center/cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ work.title|truncatechars:'30' }}</h5>
-                                    <a href="{{ work.get_absolute_url }}"
-                                       class="btn btn-primary ms-auto m3-5 border-0 text-black"
-                                       style="background-color: {% cycle 'rgba(245, 194, 77, 1)' 'rgba(237, 96, 89, 1)' %}">Assess</a>
+                                    <div class="top-it h-75 bg-secondary-subtle rounded-top-2"
+                                         style="background: url({{ work.file.url }}) no-repeat center/cover;">
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ work.title|truncatechars:'30' }}</h5>
+                                        <a href="{{ work.get_absolute_url }}"
+                                           class="btn btn-primary ms-auto m3-5 border-0 text-black"
+                                           style="background-color: {% cycle 'rgba(245, 194, 77, 1)' 'rgba(237, 96, 89, 1)' %}">Assess</a>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
 
-                {% endfor %}
+                    {% endfor %}
 
-            </div>
-
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}

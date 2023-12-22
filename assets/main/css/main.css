@@ -651,12 +651,15 @@ footer .last-footer-column p {
     font-weight: 600;
 }
 
-.registration-page span.asteriskField,
-.login-page span.asteriskField {
+.registration-page span.asteriskField {
     margin-left: 3px;
     color: var(--blue);
     font-size: 20px;
 
+}
+
+.login-page span.asteriskField {
+    font-size: min(10vw, 50px);
 }
 
 .registration-page .invalid-feedback,
@@ -668,7 +671,8 @@ footer .last-footer-column p {
 .registration-page .was-validated .form-control:invalid,
 .registration-page .form-control.is-invalid,
 .login-page .was-validated .form-control:invalid,
-.login-page .form-control {
+.login-page .form-control,
+.work_assess_detail .form-control {
     background-image: none !important;
 }
 
@@ -885,16 +889,84 @@ footer .last-footer-column p {
 }
 
 .experts-score-page .card {
-    width: 300px;
     height: 300px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.70);;
 }
 
-.experts-score-page h1{
+.experts-score-page h1 {
     font-family: var(--register-head-font);
     font-weight: 600;
 }
 
+.work_assess_detail {
+    font-family: var(--register-body-font) !important;
+}
+
+.work_assess_detail .modal-header,
+.work_assess_detail .modal-body,
+.work_assess_detail .modal-footer {
+    border: none;
+    background-color: #f0f0f0;
+
+}
+
+.work_assess_detail .modal-header {
+    border-bottom: 1px #000 solid;
+}
+
+.work_assess_detail select {
+    margin-inline: auto;
+    margin-bottom: 20px;
+    width: 100px;
+    padding: 5px 20px;
+    text-align: center;
+    height: min(20vw, 65px);
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    outline: none;
+    border: #F5C24D 1px solid;
+    border-radius: 0px;
+    background-color: #d3d3d3
+}
+
+.work_assess_detail .form-label {
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.work_assess_detail span.asteriskField {
+    font-size: 25px;
+    color: var(--blue);
+}
+
+.work_assess_detail .form-text {
+    color: #939393;
+    font-family: var(--register-body-font);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.work_assess_detail button[type='submit'] {
+    background-color: var(--green);
+    border: none;
+}
+
+.work_assess_detail .modal-footer button.btn.btn-secondary {
+    background-color: var(--grey) !important;
+    border: none;
+}
+
+.work_assess_detail h1 {
+    font-family: var(--register-head-font);
+    font-weight: 600;
+}
 
 @media (max-width: 1400px) {
 }

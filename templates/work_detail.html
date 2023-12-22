@@ -1,11 +1,81 @@
 {% extends 'layouts/base.html' %}
-{% block content %}
-    <div class="container">
-        <form action="{% url 'contest:work_detail' uuid=work.uuid %}" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Save</button>
-        </form>
+{% load static %}
+{% load crispy_forms_filters %}
 
+{% block page_title %}
+	Work Detail
+{% endblock %}
+
+
+{% block extra_css %}
+    <style>
+        .bg-img-wrapper {
+            background-image: url("{% static 'main/img/registration-page/registration-back.png' %}");
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+        </div>
+    {% endfor %}
+
+    <div class="container work_assess_detail d-flex flex-column my-5">
+        <div class="">
+            <h1 class="text-center my-3 w-100">{{ work.title|truncatechars:'35' }}</h1>
+
+        </div>
+
+        <a href="{{ work.file.url }}" class="border-2 border-black">
+            <img src="{{ work.file.url }}" alt="" width="100%">
+        </a>
+
+        <!-- Button trigger modal -->
+        <button id="detail_modal_button" type="button" class="btn btn-primary mx-auto my-3" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+            Assess
+        </button>
+
+
+        <div class="modal fade" style="top: 15%" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+             tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form action="{% url 'contest:work_detail' uuid=work.uuid %}" method="post">
+
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            {{ form.scale|as_crispy_field }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Understood</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+    </script>
 {% endblock %}
