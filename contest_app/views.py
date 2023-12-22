@@ -2,6 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views import View
 
 from .forms import ProfileUpdateForm, GiveScoreForm
@@ -62,6 +63,8 @@ def work_detail(request, uuid):
             'form': form})
 
     if request.method == 'GET':
+        if work.contest.publish_date <= timezone.now():
+            return redirect('contest:experts_score')
         form = GiveScoreForm()
         return render(request, 'work_detail.html', context={
             'form': form,

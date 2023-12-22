@@ -898,6 +898,17 @@ footer .last-footer-column p {
     font-weight: 600;
 }
 
+.experts-score-page .card-body .btn.btn-primary{
+    transition: 250ms ease;
+}
+
+.experts-score-page .card-body .btn.btn-primary:hover{
+    filter: brightness(0.85);
+}
+
+
+
+
 .work_assess_detail {
     font-family: var(--register-body-font) !important;
 }

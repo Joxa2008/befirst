@@ -21,8 +21,6 @@ register.filter('is_expert_checked', is_expert_checked)
 
 
 def deadline_status(deadline):
-    print(deadline)
-    print(deadline - timedelta(hours=1))
     if deadline - timedelta(hours=1) < now() and (deadline > now()):
         return 'warning'
     elif deadline - timedelta(hours=1) > now():

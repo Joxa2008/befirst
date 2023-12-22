@@ -126,7 +126,7 @@ class ContestModel(models.Model):
         verbose_name = 'contest'
         verbose_name_plural = 'contests'
         db_table = 'contest'
-        ordering = ('-publish_date',)
+        ordering = ('publish_date',)
 
 
 class WorkModel(models.Model):
