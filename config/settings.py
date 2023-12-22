@@ -116,6 +116,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+LOGIN_URL = '/user/login/'
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load my_tags %}
+{% block page_title %}
+    Works To Check
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for contest in expert.contests.all %}
+            {% for work in contest.works.all %}
+                {% if work.scores.all|is_expert_checked:expert  is False %}
+                    <div class="">
+                        <a href="{{ work.get_absolute_url }}">{{ work.title }}</a>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import ProfileModel
+from .models import ProfileModel, ScoreModel
 
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -19,4 +19,14 @@ class ProfileUpdateForm(forms.ModelForm):
             'profile_img': forms.FileInput(attrs={
                 'class': 'form-control pt-2 pt-sm-3',
                 'accept': ".jpg, .jpeg, .png"})
+        }
+
+
+class GiveScoreForm(forms.ModelForm):
+    class Meta:
+        model = ScoreModel
+        fields = ['scale']
+
+        widgets = {
+            'scale': forms.Select(attrs={'class': 'form-control'})
         }

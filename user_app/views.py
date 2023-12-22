@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm
 from .models import CustomUserModel
 from contest_app.forms import ProfileUpdateForm
@@ -99,6 +100,7 @@ def user_login_view(request):
     return render(request, 'login.html', context={'form': form})
 
 
+@login_required
 def logout_view(request):
     logout(request)
     messages.success(request, 'You logged out!')
