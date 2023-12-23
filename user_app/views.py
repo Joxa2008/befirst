@@ -1,11 +1,10 @@
-from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm
 from .models import CustomUserModel
-from contest_app.forms import ProfileUpdateForm
+from contest_app.forms import RegistrationCompleteForm
 from contest_app.views import ProfileModel
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 import re
 import phonenumbers
@@ -27,7 +26,7 @@ def user_register_view(request):
                 user.set_password(form.cleaned_data['password'])
                 form.save()
 
-                profile_form = ProfileUpdateForm(instance=ProfileModel.objects.get(user=user))
+                profile_form = RegistrationCompleteForm(instance=ProfileModel.objects.get(user=user))
 
                 auth_user = authenticate(email=form.cleaned_data['email'],
                                          password=form.cleaned_data['password'])

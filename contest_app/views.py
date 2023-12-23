@@ -1,25 +1,24 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from django.views import View
-
-from .forms import ProfileUpdateForm, GiveScoreForm
+from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm
 from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel
 from django.contrib import messages
-from django.views.generic import View
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
-def main(request):
+def main_view(request):
     return render(request, 'main.html')
 
 
 @login_required
-def profile_update(request):
+def register_complete_view(request):
     if request.method == 'POST':
         obj = ProfileModel.objects.get(user=request.user)
-        form = ProfileUpdateForm(request.POST, request.FILES, instance=obj)
+        form = RegistrationCompleteForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
             form.save()
             messages.success(request, 'You successfully completed your profile!')
@@ -31,16 +30,17 @@ def profile_update(request):
 
 
 @login_required
-def experts_score(request):
+def experts_score_view(request):
     try:
-        expert = ExpertModel.objects.prefetch_related('contests__works__scores__expert__user')\
+        expert = ExpertModel.objects.prefetch_related('contests__works__scores__expert__user') \
             .get(id=request.user.expert.id)
         return render(request, 'experts_score.html', {'expert': expert})
     except ExpertModel.DoesNotExist:
         return redirect('contest:main')
 
 
-def work_detail(request, uuid):
+@login_required
+def work_detail_view(request, uuid):
     expert = request.user.expert
     work = WorkModel.objects.get(uuid=uuid)
     if request.method == 'POST':
@@ -70,3 +70,34 @@ def work_detail(request, uuid):
             'form': form,
             'work': work,
         })
+
+
+@login_required
+def user_update_view(request):
+    user_instance = User.objects.get(id=request.user.id)
+    print(user_instance.profile.region)
+    initial_data = {
+        'region': user_instance.profile.region,
+        'address': user_instance.profile.address,
+        'news_agreement': user_instance.profile.news_agreement,
+        'profile_img': user_instance.profile.profile_img,
+    }
+
+    user_form = UserProfileUpdateForm(instance=user_instance, initial=initial_data)
+
+    if request.method == 'POST':
+        form1 = UserProfileUpdateForm(request.POST, request.FILES, instance=user_instance)
+        if form1.is_valid():
+            print('valid')
+            print(form1.cleaned_data)
+            form1.save()
+            messages.success(request, 'Successfully updated')
+            return redirect('contest:user_update')
+        # form1.add_error('first_name', 'A user with that email address already exists.')
+        return render(request, 'profile_user_update.html', context={
+            'form': form1,
+        })
+    return render(request, 'profile_user_update.html', context={
+        'form': user_form,
+    })
+

@@ -37,6 +37,7 @@ searchInput.addEventListener('input', function () {
 });
 
 let checkboxCounter = 0;
+
 function regCheckboxValidate() {
     let checkBoxInput = document.getElementsByClassName('reg-checkbox');
     let regSubmit = document.getElementById('reg-submit');
@@ -51,3 +52,20 @@ function regCheckboxValidate() {
     checkboxCounter += 1;
 }
 
+// let profileUpdateCounter = 0;
+//
+// function userProfileUpdate() {
+//     let profileBtn = document.getElementById('profile_update_btn');
+//     let userBtn = document.getElementById('user_update_btn');
+//
+//     if (profileUpdateCounter % 2) {
+//         userBtn.setAttribute('type', 'button')
+//         profileBtn.setAttribute('type', 'submit')
+//
+//     } else {
+//         userBtn.setAttribute('type', 'submit')
+//         profileBtn.setAttribute('type', 'button')
+//     }
+//     profileUpdateCounter += 1
+//     console.log(profileUpdateCounter);
+// }

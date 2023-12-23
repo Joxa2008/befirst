@@ -1,0 +1,52 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+            {#                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+        </div>
+    {% endfor %}
+
+
+    <div class="container profile-user-update">
+        <div class="col-6 offset-3 bg-warning-subtle">
+            <form action="{% url 'contest:user_update' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if form.initial.profile_img %}
+                    <img src="{{ form.initial.profile_img.url }}" width="300px" height="200px" alt="">
+                {% endif %}
+                <button type="submit" id="profile_update_btn" class="btn btn-dark">
+                    Save
+                </button>
+
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Display the current file name in the file input label
+            var currentFileName = $('#current-file-name').text();
+            if (currentFileName) {
+                $('#id_document').after('<label id="document-label" for="id_document">Current File: ' + currentFileName + '</label>');
+                $('#id_document').hide();
+            }
+
+            // Update the label when a new file is selected
+            $('#id_document').change(function () {
+                var fileName = $(this).val().split('\\').pop();
+                $('#document-label').text('Selected File: ' + fileName);
+            });
+        });
+    </script>
+{% endblock %}
