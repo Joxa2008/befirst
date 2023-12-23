@@ -1,6 +1,35 @@
 {% extends 'layouts/base.html' %}
 {% load crispy_forms_filters %}
 
+
+{% block extra_css %}
+    <style>
+        #imageContainer img {
+            left: 0;
+            position: absolute;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 250ms ease;
+        }
+
+        #imageContainer input:hover ~ img {
+            filter: brightness(0.7);
+        }
+
+        #imageContainer input {
+            width: 100%;
+            height: 100%;
+            position: absolute !important;
+            z-index: 100 !important;
+            opacity: 0;
+        }
+
+    </style>
+{% endblock %}
+
+
 {% block content %}
 
     {% for message in messages %}
@@ -12,41 +41,88 @@
 
 
     <div class="container profile-user-update">
-        <div class="col-6 offset-3 bg-warning-subtle">
-            <form action="{% url 'contest:user_update' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form|crispy }}
-                {% if form.initial.profile_img %}
-                    <img src="{{ form.initial.profile_img.url }}" width="300px" height="200px" alt="">
-                {% endif %}
-                <button type="submit" id="profile_update_btn" class="btn btn-dark">
-                    Save
-                </button>
+        <form action="{% url 'contest:user_update' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-3 bg-warning-subtle position-relative" id="imageContainer">
+                    {{ form.profile_img }}
+                </div>
 
+                <div class="col">
+                    <div class="row">
 
-            </form>
-        </div>
+                        <div class="col">
+                            {{ form.first_name|as_crispy_field }}
+                        </div>
+
+                        <div class="col">
+                            {{ form.last_name|as_crispy_field }}
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">{{ form.email|as_crispy_field }}</div>
+                        <div class="col">{{ form.birth_date|as_crispy_field }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">{{ form.gender|as_crispy_field }}</div>
+                        <div class="col">{{ form.region|as_crispy_field }}</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">{{ form.address|as_crispy_field }}</div>
+            </div>
+            <div class="row">
+                <div class="col">{{ form.news_agreement|as_crispy_field }}</div>
+                <div class="col">{{ form.profile_img|as_crispy_field }}</div>
+            </div>
+
+            <button type="submit" id="profile_update_btn" class="btn btn-dark">
+                Save
+            </button>
+            {% if form.initial.profile_img %}
+                <div id="imageContainer" style="width: 300px; height: 200px;">
+                </div>
+            {% endif %}
+
+        </form>
     </div>
 {% endblock %}
 
+
+
 {% block extra_js %}
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <script>
-        $(document).ready(function () {
-            // Display the current file name in the file input label
-            var currentFileName = $('#current-file-name').text();
-            if (currentFileName) {
-                $('#id_document').after('<label id="document-label" for="id_document">Current File: ' + currentFileName + '</label>');
-                $('#id_document').hide();
-            }
+        var image = document.createElement('img');
+        var input = document.getElementById('imageInput');
+        var container = document.getElementById('imageContainer');
+        {% if form.initial.profile_img %}
+            image.src = '{{form.initial.profile_img.url}}';
+        {% else %}
+            image.src = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+        {% endif %}
+        container.appendChild(image);
 
-            // Update the label when a new file is selected
-            $('#id_document').change(function () {
-                var fileName = $(this).val().split('\\').pop();
-                $('#document-label').text('Selected File: ' + fileName);
-            });
-        });
+        function displayImage() {
+            var input = document.getElementById('imageInput');
+            var container = document.getElementById('imageContainer');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var image = document.createElement('img');
+                    image.src = e.target.result;
+                    container.appendChild(image);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 {% endblock %}

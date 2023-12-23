@@ -42,10 +42,12 @@ class GiveScoreForm(forms.ModelForm):
 
 class UserProfileUpdateForm(forms.ModelForm):
     region = forms.ChoiceField(choices=[])
-    address = forms.CharField(max_length=255)
+    address = forms.CharField(max_length=255, required=False)
     news_agreement = forms.BooleanField(required=False)
     profile_img = forms.FileField(required=False,
-                                  widget=forms.FileInput(attrs={'accept': '.jpg, .jpeg, .png'}))
+                                  widget=forms.FileInput(attrs={'accept': '.jpg, .jpeg, .png',
+                                                                'id': 'imageInput', 'onchange': 'displayImage()',
+                                                                'title': 'Change Profile Image'}))
 
     class Meta:
         model = User
@@ -55,9 +57,6 @@ class UserProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserProfileUpdateForm, self).__init__(*args, **kwargs)
         self.fields['region'].choices = [(region.name, region.name) for region in Region.objects.all()]
-
-        self.fields['profile_img'].widget.attrs['accept'] = '.jpg, .jpeg, .png'
-        self.fields['profile_img'].widget.attrs['accept'] = '.jpg, .jpeg, .png'
 
     def save(self, commit=True):
         user_instance = super(UserProfileUpdateForm, self).save(commit=False)

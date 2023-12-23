@@ -75,7 +75,6 @@ def work_detail_view(request, uuid):
 @login_required
 def user_update_view(request):
     user_instance = User.objects.get(id=request.user.id)
-    print(user_instance.profile.region)
     initial_data = {
         'region': user_instance.profile.region,
         'address': user_instance.profile.address,
@@ -88,12 +87,12 @@ def user_update_view(request):
     if request.method == 'POST':
         form1 = UserProfileUpdateForm(request.POST, request.FILES, instance=user_instance)
         if form1.is_valid():
-            print('valid')
-            print(form1.cleaned_data)
+            if not form1.cleaned_data['profile_img']:
+                form1.cleaned_data['profile_img'] = initial_data['profile_img']
+                form1.save()
             form1.save()
             messages.success(request, 'Successfully updated')
             return redirect('contest:user_update')
-        # form1.add_error('first_name', 'A user with that email address already exists.')
         return render(request, 'profile_user_update.html', context={
             'form': form1,
         })
