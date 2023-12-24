@@ -672,7 +672,7 @@ footer .last-footer-column p {
 .registration-page .form-control.is-invalid,
 .login-page .was-validated .form-control:invalid,
 .login-page .form-control,
-.work_assess_detail .form-control {
+.work_assess_detail-page .form-control {
     background-image: none !important;
 }
 
@@ -898,34 +898,32 @@ footer .last-footer-column p {
     font-weight: 600;
 }
 
-.experts-score-page .card-body .btn.btn-primary{
+.experts-score-page .card-body .btn.btn-primary {
     transition: 250ms ease;
 }
 
-.experts-score-page .card-body .btn.btn-primary:hover{
+.experts-score-page .card-body .btn.btn-primary:hover {
     filter: brightness(0.85);
 }
 
 
-
-
-.work_assess_detail {
+.work_assess_detail-page {
     font-family: var(--register-body-font) !important;
 }
 
-.work_assess_detail .modal-header,
-.work_assess_detail .modal-body,
-.work_assess_detail .modal-footer {
+.work_assess_detail-page .modal-header,
+.work_assess_detail-page .modal-body,
+.work_assess_detail-page .modal-footer {
     border: none;
     background-color: #f0f0f0;
 
 }
 
-.work_assess_detail .modal-header {
+.work_assess_detail-page .modal-header {
     border-bottom: 1px #000 solid;
 }
 
-.work_assess_detail select {
+.work_assess_detail-page select {
     margin-inline: auto;
     margin-bottom: 20px;
     width: 100px;
@@ -943,19 +941,19 @@ footer .last-footer-column p {
     background-color: #d3d3d3
 }
 
-.work_assess_detail .form-label {
+.work_assess_detail-page .form-label {
     color: #494949 !important;
     font-family: var(--register-body-font) !important;
     text-transform: uppercase;
     font-weight: 600;
 }
 
-.work_assess_detail span.asteriskField {
+.work_assess_detail-page span.asteriskField {
     font-size: 25px;
     color: var(--blue);
 }
 
-.work_assess_detail .form-text {
+.work_assess_detail-page .form-text {
     color: #939393;
     font-family: var(--register-body-font);
     font-size: 14px;
@@ -964,20 +962,90 @@ footer .last-footer-column p {
     line-height: normal;
 }
 
-.work_assess_detail button[type='submit'] {
+.work_assess_detail-page button[type='submit'] {
     background-color: var(--green);
     border: none;
 }
 
-.work_assess_detail .modal-footer button.btn.btn-secondary {
+.work_assess_detail-page .modal-footer button.btn.btn-secondary {
     background-color: var(--grey) !important;
     border: none;
 }
 
-.work_assess_detail h1 {
+.work_assess_detail-page h1 {
     font-family: var(--register-head-font);
     font-weight: 600;
 }
+
+.profile-user-update-page .banner {
+    color: #000;
+    font-family: var(--baloo-font);
+    font-size: min(13vw, 70px);
+    font-style: normal;
+    font-weight: 800 !important;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.profile-user-update-page input:not([type='checkbox']),
+.profile-user-update-page textarea,
+.profile-user-update-page select {
+    border-radius: 0px;
+    font-family: var(--register-body-font);
+    height: 80px;
+}
+
+
+.profile-user-update-page #imageContainer {
+    border-radius: 5px;
+}
+
+
+.profile-user-update-page #imageContainer img {
+    border-radius: 5px;
+    left: 0;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 250ms ease;
+}
+
+.profile-user-update-page #imageContainer input:hover ~ img {
+    filter: brightness(0.7);
+}
+
+.profile-user-update-page #imageContainer input {
+    width: 100%;
+    height: 100%;
+    position: absolute !important;
+    z-index: 100 !important;
+    opacity: 0;
+}
+
+.profile-user-update-page .row:nth-child(2) {
+    background-color: var(--yellow);
+}
+
+.profile-user-update-page button {
+    color: #000;
+    text-align: center;
+    background-color: var(--green);
+    border: none;
+    font-family: var(--login-label-font);
+    font-size: min(5.5vw, 35px);
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: 250ms ease;
+}
+
+.profile-user-update-page button:hover{
+    color: #000;
+    background-color: #22b35c;
+}
+
 
 @media (max-width: 1400px) {
 }
@@ -1134,6 +1202,17 @@ footer .last-footer-column p {
         text-align: center;
         height: 200px !important;
     }
+
+    .profile-user-update-page .banner {
+        text-align: center;
+        height: 200px !important;
+    }
+
+    /*    profile update page*/
+    .profile-user-update-page #imageContainer {
+        height: 300px;
+        width: 300px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1155,4 +1234,10 @@ footer .last-footer-column p {
     }
 
     /* End of Map part */
+    /*    profile update page*/
+    .profile-user-update-page #imageContainer {
+        width: 250px;
+        height: 250px;
+    }
+
 }

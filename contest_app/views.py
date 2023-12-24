@@ -93,6 +93,10 @@ def user_update_view(request):
             form1.save()
             messages.success(request, 'Successfully updated')
             return redirect('contest:user_update')
+
+        if not form1.cleaned_data['profile_img']:
+            form1.cleaned_data['profile_img'] = initial_data['profile_img']
+        print(form1.cleaned_data)
         return render(request, 'profile_user_update.html', context={
             'form': form1,
         })

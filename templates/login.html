@@ -32,7 +32,7 @@
         </div>
     {% endfor %}
     <div class="container login-page mt-4 mb-5 px-3 px-md">
-        <div class="banner mb-5">
+        <div class="banner mb-0 mb-md-5">
             <p class="ms-md-5 mt-5 ps-md-5 pb-5 pb-lg-0 pt-5">
                 LOG IN
             </p>
@@ -40,7 +40,7 @@
         <div class="form-wrapper px-3 px-md">
             <form action="{% url 'user:login' %}" method="post" class="py-5">
                 {% csrf_token %}
-                <div class="row row-gap-4">
+                <div class="row row-gap-2 row-gap-md-4">
                     <div class="col-12 col-md-8 offset-md-2">
                         {{ form.email_or_phone|as_crispy_field }}
                     </div>
@@ -50,7 +50,7 @@
                     </div>
 
                 </div>
-                <div class="row d-flex mt-lg-3 mt-5">
+                <div class="row d-flex mt-lg-3 mt-3">
                     <button type="submit" class="btn mx-auto submit-button btn-success">ГОТОВО
                     </button>
 

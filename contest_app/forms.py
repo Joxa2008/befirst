@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django import forms
 from .models import ProfileModel, ScoreModel, Region
 from django.contrib.auth import get_user_model
@@ -51,7 +53,33 @@ class UserProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'birth_date', 'gender')
+        fields = ('first_name', 'last_name', 'email', 'birth_date', 'gender', 'phone_number')
+        widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'example@gmail.com', 'class': "form-control"}),
+            'first_name': forms.TextInput(attrs={
+                'placeholder': 'first name',
+                'class': "form-control"}),
+
+            'last_name': forms.TextInput(attrs={
+                'placeholder': 'last name',
+                'class': "form-control"}),
+
+            'birth_date': forms.DateTimeInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Select a date',
+                'type': 'date',
+                'min': f'{timezone.now().year - 18}-{timezone.now().month}-{timezone.now().day}',
+                'max': f'{timezone.now().year}-{timezone.now().month}-{timezone.now().day}'},
+                format='%Y-%m-%d'),
+
+            'gender': forms.Select(attrs={
+                'class': "form-select"}),
+
+            'phone_number': forms.TextInput(attrs={
+                'class': "form-control",
+                'placeholder': '+998 XX XXX XX XX'}),
+
+        }
 
     # setting initial value for field
     def __init__(self, *args, **kwargs):
