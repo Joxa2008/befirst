@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 User = get_user_model()
-from django.utils.translation import gettext_lazy as _
 
 
 class RegisterForm(forms.ModelForm):
@@ -34,7 +34,7 @@ class RegisterForm(forms.ModelForm):
                 'type': 'date',
                 'min': f'{timezone.now().year - 18}-{timezone.now().month}-{timezone.now().day}',
                 'max': f'{timezone.now().year}-{timezone.now().month}-{timezone.now().day}'},
-                format=('%Y-%m-%d')),
+                format='%Y-%m-%d'),
 
             'gender': forms.Select(attrs={
                 'class': "form-select"}),
@@ -69,3 +69,6 @@ class LoginForm(forms.Form):
                                    'class': "form-control"
                                }),
                                help_text=_("Enter your password"), required=True)
+
+
+

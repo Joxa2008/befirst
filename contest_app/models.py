@@ -6,7 +6,7 @@ from django.utils import timezone
 # from datetime import datetime
 from django.shortcuts import reverse
 from django.utils.text import slugify
-
+from uuid import uuid4
 
 User = get_user_model()
 
@@ -47,8 +47,6 @@ class ProfileModel(models.Model):
         verbose_name = 'profile'
         verbose_name_plural = 'profiles'
         db_table = 'profile'
-
-
 
 
 class ExpertModel(models.Model):
@@ -128,6 +126,7 @@ class ContestModel(models.Model):
         verbose_name = 'contest'
         verbose_name_plural = 'contests'
         db_table = 'contest'
+        ordering = ('publish_date',)
 
 
 class WorkModel(models.Model):
@@ -144,6 +143,8 @@ class WorkModel(models.Model):
 
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
+    uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
+
     def __str__(self):
         return self.title
 
@@ -151,6 +152,9 @@ class WorkModel(models.Model):
         verbose_name = 'work'
         verbose_name_plural = 'works'
         db_table = 'work'
+
+    def get_absolute_url(self):
+        return reverse('contest:work_detail', kwargs={'uuid': self.uuid})
 
 
 class ScoreModel(models.Model):
@@ -174,3 +178,5 @@ class ScoreModel(models.Model):
         verbose_name = 'score'
         verbose_name_plural = 'scores'
         db_table = 'score'
+        unique_together = ('expert', 'work')
+

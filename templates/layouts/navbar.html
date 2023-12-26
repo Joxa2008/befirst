@@ -28,7 +28,7 @@
         {% endif %}
     </div>
 </div>
-<nav>
+<nav> 
     <div class="container px-3 px-sm py-2 d-flex align-items-center">
         <a href="{% url 'contest:main' %}" class="me-3 me-md-5 h-100">
             <img src="{% static 'main/img/navbar/site-log.svg' %}" class="object-fit-cover" alt="">
@@ -56,12 +56,15 @@
         <ul class="d-flex gap-3 gap-lg-4 gap-xxl-5 align-items-center">
             <li class="d-none d-md-block"><a href="">Главная </a></li>
             <li class="d-none d-xxl-block"><a href="">Работы </a></li>
-            {#            <li class="d-none d-xxl-block"><a href="">Правило</a></li>#}
             <li class="d-none d-xxl-block"><a href="">Результаты </a></li>
             <li class="d-none d-md-block"><a href="">Конкурс</a></li>
-            {#            <li class="d-none d-xxl-block"><a href="">Эксперты </a></li>#}
-            <li class="d-none d-md-block"><a href="">О нас</a></li>
-            <li class="d-none d-xxl-block"><a href="">Личный кабинет</a></li>
+            {% if not request.user.expert %}
+                <li class="d-none d-md-block"><a href="">О нас</a></li>
+                <li class="d-none d-xxl-block"><a href="">Личный кабинет</a></li>
+            {% else %}
+                <li class="d-none d-md-block"><a href="{% url 'contest:experts_score' %}">Оценить работы</a></li>
+            {% endif %}
+
             <li class="">
                 <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                         aria-controls="offcanvasExample"><i class="fs-4 bi bi-three-dots-vertical"></i></button>
@@ -76,6 +79,7 @@
     <button type="button" class="btn-close ms-auto my-4 me-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     <ul class="d-flex flex-column row-gap-3 fs-4">
         <li class="d-block"><a href="">Главная </a></li>
+        <li class="d-block d-lg-none"><a href="{% url 'contest:experts_score' %}">Оценить работы</a></li>
         <li class="d-block d-xxl-none"><a href="">Работы </a></li>
         <li class="d-block d-xxl-block"><a href="">Правило</a></li>
         <li class="d-block d-xxl-none"><a href="">Результаты </a></li>
