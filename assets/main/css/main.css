@@ -503,13 +503,85 @@
 }
 
 /* End of resaults data part */
+/* Forget password part */
+
+/* Starting log in */
+
+.login > .kabinet {
+    padding: 80px 87px 300px 87px;
+}
+
+.login > .login_k {
+    background-color: var(--yellow);
+    padding: 20px 170px 65px 170px;
+}
+.login > .kabinet > .main_t > h1 {
+    font-size: 72px;
+}
+.login > .login_k > .lk_button > button {
+    background-color: var(--green);
+    padding: 15px 85px 15px 85px;
+    font-family: var(--abel-font);
+}
+
+.login > .login_k > .lk_button > button:hover {
+    background-color: #3de07e;
+}
+
+.login > .login_k > .l_parol > .lchp >label {
+    font-family: var(--abel-font);
+    font-weight: 300;
+}
+
+.login > .login_k > .l_parol > .lch_p > h2 {
+    font-family: var(--abel-font);
+    font-weight: 300;
+}
+
+.login > .login_k > .lk_sen > h2 {
+    border-bottom: 3px solid white;
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.password input {
+  width: 30px;
+  height: 40px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 2px rgb(20, 181, 230);
+  font-size: 20px;
+  color: white;
+  outline: none;
+}
+
+
+/* Finishing log in */
+
+/* End Of Forget password */
 
 @media (max-width: 1400px) {
-
+    /* Finishing log in media */
+    .login > .kabinet > .main_t > h1 {
+        font-size: 60px;
+    }
+    /* End Of Forget password media */
 }
 
 @media (max-width: 1200px) {
-
+    /* Finishing log in media */
+    .login > .kabinet {
+        padding: 80px 60px 280px 60px;
+    }
+    .login > .kabinet > .main_t > h1 {
+        font-size: 50px;
+    }
+    /* End Of Forget password media */
 }
 
 @media (max-width: 992px) {
@@ -552,6 +624,14 @@
     }
 
     /* End of Map part */
+    /* Finishing log in media */
+    .login > .kabinet > .main_t > h1 {
+        font-size: 40px;
+    }
+    .login > .kabinet {
+        padding: 80px 60px 150px 60px;
+    }
+    /* End Of Forget password media */
 
 }
 
@@ -601,6 +681,17 @@
     .home-page > .container > .title {
         font-size: 30px;
     }
-
     /* End of Map part */
+
+    /* Finishing log in media */
+    .login > .kabinet {
+        padding: 80px 60px 150px 60px;
+    }
+    .login > .kabinet > .main_t {
+        text-align: center;
+    }
+    .login > .kabinet > .main_t > h1 {
+        font-size: 35px;
+    }
+    /* End Of Forget password media */
 }

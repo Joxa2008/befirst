@@ -8,5 +8,5 @@ urlpatterns = [
     path('contests/', contests, name='contests'),
     path('ditail/<str:slug>/', ditail, name='contest-ditail'),
     path('statistic/', statistic, name='static'),
-    path('results_data/', results, name='results')
+    path('results_data/', results, name='results'),
 ]

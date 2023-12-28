@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager as DjangoBaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+import uuid
 
 
 class BaseUserManager(DjangoBaseUserManager):
@@ -49,6 +50,8 @@ class CustomUserModel(AbstractUser):
 
     email = models.EmailField(_("email address"), unique=True, help_text=_("Required. Your email address."))
 
+    uuid = models.UUIDField(default=uuid.uuid4)
+
     birth_date = models.DateField(default=timezone.now, help_text=_("Required. Your birth date."))
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
@@ -69,3 +72,9 @@ class CustomUserModel(AbstractUser):
         db_table = 'user'
         verbose_name = "user"
         verbose_name_plural = "users"
+
+
+class CodeCheck(models.Model):
+    email = models.EmailField()
+    code = models.CharField(max_length=6)
+
