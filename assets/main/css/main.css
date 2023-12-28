@@ -364,7 +364,7 @@ footer .last-footer-column p {
     justify-content: end;
 }
 
-.home-page > .container > .button-container > .button {
+.home-page > .container > .button-container > a > .button {
     border: none;
     background-color: var(--red);
     color: var(--white);
@@ -1075,7 +1075,7 @@ footer .last-footer-column p {
     font-size: 70px;
 }
 
-.home-page > .container > .banner > .container-texts > .text-container > button {
+.home-page > .container > .banner > .container-texts > .text-container > a > button {
     border: none;
     padding: 10px 25px;
     border-radius: 20px;

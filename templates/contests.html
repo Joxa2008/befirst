@@ -3,7 +3,8 @@
 
 {% block content %}
 
-    <div class="home-page" style="background: url({% static 'main/img/contests/home-back.svg' %}) no-repeat center/cover;">
+    <div class="home-page"
+         style="background: url({% static 'main/img/contests/home-back.svg' %}) no-repeat center/cover;">
         <div class="container">
             <div class="banner desktop"
                  style="background: url({% static 'main/img/contests/home-page-girl.svg' %}) no-repeat center/cover;">
@@ -17,7 +18,13 @@
                             sed do eiusmod tempor incididunt ut labore et dolore
                             magna aliqua. </p>
 
-                        <button>Oтправить Заявку На Участие</button>
+                        <a href="{% if request.user.is_authenticated %}
+                {% url 'contest:anketa' %}
+                {% else %}
+                {% url 'user:login' %}
+                {% endif %}" class="text-decoration-none text-white">
+                            <button>Oтправить Заявку На Участие</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -33,7 +40,13 @@
                             sed do eiusmod tempor incididunt ut labore et dolore
                             magna aliqua. </p>
 
-                        <button>Oтправить Заявку На Участие</button>
+                        <a href="{% if request.user.is_authenticated %}
+                {% url 'contest:anketa' %}
+                {% else %}
+                {% url 'user:login' %}
+                {% endif %}" class="text-decoration-none text-white">
+                            <button>Oтправить Заявку На Участие</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -51,7 +64,9 @@
                                         <p class="card-text">{{ i.description|truncatechars:92 }}</p>
                                     </div>
                                     <div>
-                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'" class="button red">Читать дальше</button>
+                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                class="button red">Читать дальше
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +81,9 @@
                                         <p class="card-text">{{ i.description|truncatechars:92 }}</p>
                                     </div>
                                     <div>
-                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'" class="button red">Читать дальше</button>
+                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                class="button red">Читать дальше
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +100,9 @@
                                         <p class="card-text">{{ i.description|truncatechars:92 }}</p>
                                     </div>
                                     <div>
-                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'" class="button yellow">Читать дальше</button>
+                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                class="button yellow">Читать дальше
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +117,9 @@
                                         <p class="card-text">{{ i.description|truncatechars:92 }}</p>
                                     </div>
                                     <div>
-                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'" class="button yellow">Читать дальше</button>
+                                        <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                class="button yellow">Читать дальше
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +133,13 @@
                 {% endfor %}
             </div>
             <div class="button-container">
-                <button class="button">отправить заявку</button>
+                <a href="{% if request.user.is_authenticated %}
+                {% url 'contest:anketa' %}
+                {% else %}
+                {% url 'user:login' %}
+                {% endif %}" class="text-decoration-none text-white">
+                    <button class="button">отправить заявку</button>
+                </a>
             </div>
         </div>
     </div>

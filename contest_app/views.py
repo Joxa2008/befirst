@@ -3,9 +3,15 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm
-from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel, Region
+from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel, Region, CommentModel
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+# import user_app
+# from user_app.models import CustomUserModel
+from datetime import date
+import requests
+from django.core.paginator import Paginator
 
 User = get_user_model()
 
@@ -104,33 +110,34 @@ def user_update_view(request):
         'form': user_form,
     })
 
-def contests(requests):
+
+def contests(request):
     contest = ContestModel.objects.all()
-    return render(requests, 'contests.html', context={
+    return render(request, 'contests.html', context={
         'contests': contest
     })
 
 
-def ditail(requests, slug):
+def ditail(request, slug):
     contest = ContestModel.objects.get(slug=slug)
     comments = CommentModel.objects.select_related().filter(comment_receiver=contest)[::-1]
     comments = comments[:4]
     form = PostComment()
     if requests.method == 'POST':
-        form = PostComment(requests.POST)
+        form = PostComment(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
             data.comment_receiver = contest
             data.comment_owner = ProfileModel.objects.get(user=requests.user)
             data.save()
 
-    return render(requests, 'ditail.html', context={
+    return render(request, 'ditail.html', context={
         'contest': contest,
         'comments': comments,
     })
 
 
-def statistic(requests):
+def statistic(request):
     regions = Region.objects.all()
     data = ProfileModel.objects.all()
     data_list = []
@@ -147,11 +154,68 @@ def statistic(requests):
 
     # Filter qilishim mumkun lekin queery kopayib ketadi
 
-    return render(requests, 'map.html', context={
+    return render(request, 'map.html', context={
         'data': data_list
     })
 
 
-def results(requests):
-    return render(requests, 'resoults.html')
+def results(request):
+    return render(request, 'resoults.html')
+
+
+def contactsView(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        email = request.POST["email"]
+        message = request.POST["message"]
+
+        text = "Customer details: \n"
+        text += f"Name: {name}\n"
+        text += f"Email: {email}\n"
+        text += f"Message from customer: {message}\n"
+        token = '6776522922:AAGwx9g2ez2l-0M40r2sJ2npNpH2rV_V0dY'
+        id = "957633020"
+        url = 'https://api.telegram.org/bot' + token + '/sendMessage?chat_id='
+        requests.get(url + id + '&text=' + text)
+        return redirect('contest:contacts')
+    return render(request, template_name='contact-page.html', context={})
+
+
+def anketaView(request):
+    year = date.today().year
+    profile_m = ProfileModel.user
+    print(year)
+    user = request.user
+    if request.method == 'POST':
+        profile = request.user.profile
+        print(profile)
+        # contest = ContestModel.objects.get("dada")
+        comment = request.POST['comment']
+        file_u = request.FILES["file"]
+        work_m = WorkModel(profile=profile, title=comment, file=file_u)
+        work_m.save()
+        return redirect('contest:anketa')
+    return render(request, template_name='anketa-page.html', context={"user": user, "year": year})
+
+
+def workView(request):
+    works = WorkModel.objects.all()
+    paginator = Paginator(works, 6)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator()
+    if request.method == "POST":
+        search = request.POST['search']
+        print(search)
+        # if search != "":
+        works = works.filter(~Q(title__icontains=search))
+        searched = WorkModel.objects.filter(title__icontains=search)
+        print(searched)
+        return render(request, template_name='works-page.html',
+                      context={"works": works, "search": search, "searched": searched, "page_obj": page_obj})
+    else:
+        return render(request, template_name='works-page.html',
+                      context={"works": works, "page_obj": page_obj
+                               })
+
 

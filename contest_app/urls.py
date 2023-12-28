@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import main_view, register_complete_view, experts_score_view, work_detail_view, \
-    user_update_view, contests, ditail, statistic, results
+    user_update_view, contests, ditail, statistic, results, contactsView, anketaView, workView
 
 app_name = 'contest'
 urlpatterns = [
@@ -13,4 +13,7 @@ urlpatterns = [
     path('ditail/<str:slug>/', ditail, name='contest-ditail'),
     path('statistic/', statistic, name='static'),
     path('results_data/', results, name='results'),
+    path('contacts/', contactsView, name='contacts'),
+    path('contests/anketa/', anketaView, name='anketa'),
+    path('contests/work/', workView, name='work'),
 ]
