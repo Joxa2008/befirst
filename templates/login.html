@@ -22,6 +22,12 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        .to-the-end {
+            text-align: end;
+            color: #564f4f;
+            margin-right: 20px;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -47,8 +53,10 @@
 
                     <div class="col-12 col-md-8 offset-md-2">
                         {{ form.password|as_crispy_field }}
+                        <div class="w-100 d-flex justify-content-end">
+                            <a class="to-the-end" href="{% url 'user:enter_email' %}">Forget Password</a>
+                        </div>
                     </div>
-
                 </div>
                 <div class="row d-flex mt-lg-3 mt-3">
                     <button type="submit" class="btn mx-auto submit-button btn-success">ГОТОВО

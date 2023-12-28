@@ -55,9 +55,9 @@
 
         <ul class="d-flex gap-3 gap-lg-4 gap-xxl-5 align-items-center">
             <li class="d-none d-md-block"><a href="">Главная </a></li>
-            <li class="d-none d-xxl-block"><a href="">Работы </a></li>
-            <li class="d-none d-xxl-block"><a href="">Результаты </a></li>
-            <li class="d-none d-md-block"><a href="">Конкурс</a></li>
+            <li class="d-none d-xxl-block"><a href="{% url 'contest:static' %}">Работы </a></li>
+            <li class="d-none d-xxl-block"><a href="{% url 'contest:results' %}">Результаты </a></li>
+            <li class="d-none d-md-block"><a href="{% url 'contest:contests' %}">Конкурс</a></li>
             {% if not request.user.expert %}
                 <li class="d-none d-md-block"><a href="">О нас</a></li>
                 <li class="d-none d-xxl-block"><a href="">Личный кабинет</a></li>

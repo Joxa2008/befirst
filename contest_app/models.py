@@ -180,3 +180,15 @@ class ScoreModel(models.Model):
         db_table = 'score'
         unique_together = ('expert', 'work')
 
+
+class CommentModel(models.Model):
+    comment_receiver = models.ForeignKey(ContestModel, on_delete=models.CASCADE)
+    comment_text = models.TextField(help_text=_('Write your comment'))
+    comment_owner = models.ForeignKey(ProfileModel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment_text[:30]
+
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'

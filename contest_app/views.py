@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm
-from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel
+from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel, Region
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 
@@ -103,4 +103,55 @@ def user_update_view(request):
     return render(request, 'profile_user_update.html', context={
         'form': user_form,
     })
+
+def contests(requests):
+    contest = ContestModel.objects.all()
+    return render(requests, 'contests.html', context={
+        'contests': contest
+    })
+
+
+def ditail(requests, slug):
+    contest = ContestModel.objects.get(slug=slug)
+    comments = CommentModel.objects.select_related().filter(comment_receiver=contest)[::-1]
+    comments = comments[:4]
+    form = PostComment()
+    if requests.method == 'POST':
+        form = PostComment(requests.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.comment_receiver = contest
+            data.comment_owner = ProfileModel.objects.get(user=requests.user)
+            data.save()
+
+    return render(requests, 'ditail.html', context={
+        'contest': contest,
+        'comments': comments,
+    })
+
+
+def statistic(requests):
+    regions = Region.objects.all()
+    data = ProfileModel.objects.all()
+    data_list = []
+    for i in regions:
+        v = 0
+        for j in data:
+            if j.region == i:
+                v += 1
+        t = {
+            'region': i.name,
+            'users': v
+        }
+        data_list.append(t)
+
+    # Filter qilishim mumkun lekin queery kopayib ketadi
+
+    return render(requests, 'map.html', context={
+        'data': data_list
+    })
+
+
+def results(requests):
+    return render(requests, 'resoults.html')
 
