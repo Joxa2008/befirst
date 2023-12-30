@@ -3,7 +3,6 @@ from django.core.mail import send_mail
 from django.conf import settings
 from user_app.models import CustomUserModel
 from .models import ContestModel, WorkModel, ScoreModel, ProfileModel
-from contest_app.views import test
 
 
 @shared_task
