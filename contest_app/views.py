@@ -4,14 +4,18 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm, PostComment
 from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel, Region, CommentModel
+from user_app.models import CustomUserModel
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+from datetime import date
+import requests
+from django.core.paginator import Paginator
 
 User = get_user_model()
 
-
 def main_view(request):
-    return render(request, 'main.html')
+    return render(request, 'main-page.html')
 
 
 @login_required
@@ -125,6 +129,7 @@ def ditail(requests, slug):
                 data.comment_receiver = contest
                 data.comment_owner = ProfileModel.objects.get(user=requests.user)
                 data.save()
+                return redirect('contest:contest-ditail', slug)
     else:
         messages = 'Please Sign Up Before Posting Comments'
 
@@ -160,3 +165,61 @@ def statistic(requests):
 def results(requests):
     return render(requests, 'resoults.html')
 
+def contactsView(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        email = request.POST["email"]
+        message = request.POST["message"]
+
+        text = "Customer details: \n"
+        text += f"Name: {name}\n"
+        text += f"Email: {email}\n"
+        text += f"Message from customer: {message}\n"
+        token = '6776522922:AAGwx9g2ez2l-0M40r2sJ2npNpH2rV_V0dY'
+        id = "957633020"
+        url = 'https://api.telegram.org/bot' + token + '/sendMessage?chat_id='
+        requests.get(url + id + '&text=' + text)
+        return redirect('contest:main')
+    return render(request, template_name='contact-page.html', context={})
+
+@login_required(login_url='user:login')
+def anketaView(request, id):
+    profile_m = CustomUserModel.objects.get(email=request.user.email)
+    contest_m = ContestModel.objects.get(id=id)
+    year = date.today().year
+    year = year - profile_m.birth_date.year
+    user = request.user
+    if request.method == 'POST':
+        profile = ProfileModel.objects.get(user=request.user)
+        contest = contest_m
+        comment = request.POST['comment']
+        file_u = request.FILES["file"]
+        work_m = WorkModel(profile=profile, contest=contest, title=comment, file=file_u)
+        work_m.save()
+        return redirect('contest:contests')
+    return render(request, template_name='anketa-page.html', context={"user": user, "year": year, "contest_m":contest_m})
+
+
+def workView(request):
+    works = WorkModel.objects.all()
+    paginator = Paginator(works, 9)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator()
+    if request.method == "POST":
+        search = request.POST['search']
+        print(search)
+        # if search != "":
+        works = works.filter(~Q(title__icontains=search))
+        searched = WorkModel.objects.filter(title__icontains=search)
+        print(searched)
+        return render(request, template_name='works-page.html',
+                      context={"works": works, "search": search, "searched": searched, "page_obj": page_obj})
+    else:
+        return render(request, template_name='works-page.html',
+                      context={"works": works, "page_obj": page_obj
+                               })
+
+
+def privacyView(request):
+    return render(request, template_name='privacy-page.html')

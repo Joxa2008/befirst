@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+/* My added things */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+:root {
+    --yellow: #F5C24D;
+    --black: #000;
+    --red: #ED6059;
+    --green: #2DF57D;
+    --blue: #2A819E;
+    --grey: #737171;
+
+    --back-img: url(/img/back-img.svg);
+
+
+    --abel-font: 'Abel', sans-serif;
+    --exo-font: 'Exo', sans-serif;
+    --baloo-font: 'Baloo 2', sans-serif;
+    --inter-font: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--back-img);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Starting anketa */
+
+.anketa > .konkurs {
+    background: url(/img/konkurs.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 80px 87px 80px 87px;
+}
+
+.anketa > .konkurs > .main_t > p {
+    max-width: 700px;
+}
+
+.anketa > .konkurs > .main_t > button {
+    background-color: #6495C2;
+    font-family: var(--inter-font);
+    max-width: 180px;
+}
+
+.anketa > .konkurs > .main_t > button:hover {
+    background-color: #7bb3fc;
+}
+
+.anketa > .anketa_k {
+    background-color: var(--yellow);
+    padding: 20px 87px 65px 87px;
+    border-radius: 25px;
+}
+
+.anketa > .anketa_k > .ak_info > h3 {
+    font-family: var(--abel-font);
+}
+
+.anketa > .anketa_k > .ak_info > p {
+    font-family: var(--abel-font);
+    /* max-width: 43%; */
+}
+
+/* .anketa > .anketa_k > .ak_info > .hr_l {
+    width: 43%;
+} */
+
+.anketa > .anketa_k > form > div > .ak_button> a > button {
+    background-color: var(--green);
+    padding: 15px 90px 15px 90px;
+    font-family: var(--abel-font);
+}
+
+.anketa > .anketa_k > form > div > .ak_button> a > .akb_chan {
+        background-color: var(--green);
+    padding: 15px 50px 15px 50px;
+    font-family: var(--abel-font);
+}
+
+.anketa > .anketa_k > form > div > .ak_button> a > button:hover {
+    background-color: #3de07e;
+}
+
+.anketa > #anketa_k > form > .ak_input > .f_name,
+.anketa > #anketa_k > form > .ak_input > .l_name {
+    display: none;
+}
+/* Finishing anketa */
+
+@media (max-width: 1400px) {
+}
+
+@media (max-width: 1200px) {
+
+    .anketa > .konkurs {
+        padding: 80px 60px 80px 60px;
+    }
+    .anketa > #anketa_k {
+        padding: 18px 60px 65px 60px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .anketa > .konkurs {
+        padding: 80px 50px 80px 50px;
+    }
+    .anketa > #anketa_k {
+        padding: 16px 50px 65px 50px;
+    }
+
+    .anketa > #anketa_k > form > .ak_input > .name {
+        display: none;
+    }
+    .anketa > #anketa_k > form > .ak_input > .f_name,
+    .anketa > #anketa_k > form > .ak_input > .l_name {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .anketa > .konkurs > .main_t > p {
+        font-size: 14px;
+        text-align: justify;
+    }
+
+    .anketa > .konkurs {
+        padding: 80px 40px 80px 40px;
+    }
+    .anketa > #anketa_k {
+        padding: 14px 40px 65px 40px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .anketa > .konkurs > .main_t{
+        text-align: center;
+    }
+
+    .anketa > .konkurs > .main_t > h1 {
+        font-size: 30px;
+    }
+
+    .anketa > .konkurs {
+        padding: 80px 20px 80px 20px;
+    }
+    .anketa > #anketa_k {
+        padding: 14px 20px 65px 20px;
+    }
+
+    .anketa > #anketa_k > form > .ak_input > .gender {
+        display: flex;
+        justify-content: center;
+    }
+
+    .anketa > .anketa_k > form >  div > .ak_button {
+        text-align: center;
+    }
+
+    .anketa > .anketa_k > form > div > .ak_button> a > button{
+        padding-left: 130px;
+        padding-right: 130px;
+    }
+    .anketa > .anketa_k > form > div > .ak_button> a > .akb_chan {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+}

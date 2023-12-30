@@ -28,7 +28,7 @@
         {% endif %}
     </div>
 </div>
-<nav> 
+<nav>
     <div class="container px-3 px-sm py-2 d-flex align-items-center">
         <a href="{% url 'contest:main' %}" class="me-3 me-md-5 h-100">
             <img src="{% static 'main/img/navbar/site-log.svg' %}" class="object-fit-cover" alt="">
@@ -54,15 +54,16 @@
         </form>
 
         <ul class="d-flex gap-3 gap-lg-4 gap-xxl-5 align-items-center">
-            <li class="d-none d-md-block"><a href="">Главная </a></li>
-            <li class="d-none d-xxl-block"><a href="{% url 'contest:static' %}">Работы </a></li>
-            <li class="d-none d-xxl-block"><a href="{% url 'contest:results' %}">Результаты </a></li>
-            <li class="d-none d-md-block"><a href="{% url 'contest:contests' %}">Конкурс</a></li>
+            <li class="d-none d-md-block"><a href="{% url 'contest:main' %}"> Главная </a></li>
+            <li class="d-none d-xxl-block"><a href="{% url 'contest:static' %}"> Работы </a></li>
+            <li class="d-none d-xxl-block"><a href="{% url 'contest:privacy' %}"> Правило </a></li>
+            <li class="d-none d-xxl-block"><a href="{% url 'contest:results' %}"> Результаты </a></li>
+            <li class="d-none d-md-block"><a href="{% url 'contest:contests' %}"> Конкурс</a></li>
             {% if not request.user.expert %}
                 <li class="d-none d-md-block"><a href="">О нас</a></li>
                 <li class="d-none d-xxl-block"><a href="">Личный кабинет</a></li>
             {% else %}
-                <li class="d-none d-md-block"><a href="{% url 'contest:experts_score' %}">Оценить работы</a></li>
+                <li class="d-none d-md-block"><a href="{% url 'contest:experts_score' %}"> Оценить работы</a></li>
             {% endif %}
 
             <li class="">
