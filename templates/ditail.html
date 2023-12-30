@@ -3,84 +3,87 @@
 
 {% block content %}
 
-    <div class="ditail_page" style="background: url({% static 'main/img/ELEMENTLAR.png' %}) no-repeat center/cover;">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 vh-100"
-                     style="background: url({{ contest.banner_image.url }}) no-repeat center/cover; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
-                </div>
-                <div class="col-md-6">
-                    <div class="text p-md-5 py-5 px-4">
-                        <p>
-                            <a href="#"><span class="fa fa-calendar"></span>Sept. 27, 2020</a>
-                            <a href="#"><span class="fa fa-user"></span>Admin</a>
-                            <a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a>
-                        </p>
-                        <h2 class="mb-4">{{ contest.title }}</h2>
-                        <div class="icon d-flex align-items-center">
-                            <div class="img"
-                                 style="background: url({% static 'main/img/admin-img.jpg' %}) no-repeat center/cover;"></div>
-                            <div class="position pl-3">
-                                <h4 class="mb-0">BeFirst Organization</h4>
-                                <span>CEO, Admin</span>
-                            </div>
+<div class="ditail_page"
+     style="background: url({% static 'main/img/contests/ELEMENTLAR.png' %}) no-repeat center/cover; padding: 45px 0px;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 vh-100"
+                 style="background: url({{ contest.banner_image.url }}) no-repeat center/cover; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+            </div>
+            <div class="col-md-6">
+                <div class="text p-md-5 py-5 px-4">
+                    <p>
+                        <a href="#"><span class="fa fa-calendar"></span>Sept. 27, 2020</a>
+                        <a href="#"><span class="fa fa-user"></span>Admin</a>
+                        <a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a>
+                    </p>
+                    <h2 class="mb-4">{{ contest.title }}</h2>
+                    <div class="icon d-flex align-items-center">
+                        <div class="img"
+                             style="background: url({% static 'main/img/admin-img.jpg' %}) no-repeat center/cover;"></div>
+                        <div class="position pl-3">
+                            <h4 class="mb-0">BeFirst Organization</h4>
+                            <span>CEO, Admin</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center pt-4 py-md-5">
-                <div class="col-md-7">
-                    <div class="py-4">
-                        <p>{{ contest.description }}</p>
-                    </div>
+        <div class="row justify-content-center pt-4 py-md-5">
+            <div class="col-md-7">
+                <div class="py-4">
+                    <p>{{ contest.description }}</p>
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center pt-4 py-md-5">
-                <div class="col-md-7">
-                    <div class="comment-post py-5">
-                        <h3 class="mb-5">2 Comments</h3>
-                        <ul class="comment-list">
-                            {% for i in comments %}
-                                <li class="comment">
-                                    <div class="bio" style="background: url({{ i.comment_owner.profile_img.url }}) no-repeat center/cover;">
-                                    </div>
-                                    <div class="space"></div>
-                                    <div class="comment-body">
-                                        <h3>{{ i.comment_owner.user.first_name }} {{ i.comment_owner.user.last_name }}</h3>
-                                        <div class="meta">DEC. 13, 2023, 5:28 P.M.</div>
-                                        <hr>
-                                        <p class="comment-text">{{ i.comment_text }}</p>
-                                        <p><a href="#" class="reply">Reply</a></p>
-                                    </div>
-                                </li>
-                                <br>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="comment-form-wrap pt-5">
-                        <h3 class="mb-5">Leave a comment</h3>
-                        <form action="{% url 'contest:contest-ditail' contest.slug %}" class="comment-form" method="POST">{% csrf_token %}
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea name="comment_text" id="message" cols="30" rows="10" style="resize: none"
-                                              class="form-control mt-2"></textarea>
-                                </div>
+        <div class="row justify-content-center pt-4 py-md-5">
+            <div class="col-md-7">
+                <div class="comment-post py-5">
+                    <h3 class="mb-5">2 Comments</h3>
+                    <ul class="comment-list">
+                        {% for i in comments %}
+                        <li class="comment">
+                            <div class="bio"
+                                 style="background: url({{ i.comment_owner.profile_img.url }}) no-repeat center/cover;">
                             </div>
-                            <div class="col-md-12 mt-3">
-                                <div class="form-group">
-                                    <button class="btn py-3 px-4 btn-danger">Post Comment</button>
-                                </div>
+                            <div class="space"></div>
+                            <div class="comment-body">
+                                <h3>{{ i.comment_owner.user.first_name }} {{ i.comment_owner.user.last_name }}</h3>
+                                <div class="meta">DEC. 13, 2023, 5:28 P.M.</div>
+                                <hr>
+                                <p class="comment-text">{{ i.comment_text }}</p>
+                                <p><a href="#" class="reply">Reply</a></p>
                             </div>
-                        </form>
-                    </div>
+                        </li>
+                        <br>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="comment-form-wrap pt-5">
+                    <h3 class="mb-5">Leave a comment</h3>
+                    <form action="{% url 'contest:contest-ditail' contest.slug %}" class="comment-form" method="POST">{% csrf_token %}
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea name="comment_text" id="message" cols="30" rows="10" style="resize: none"
+                                          class="form-control mt-2" {% if messages %} disabled {% endif %}></textarea>
+                                {% if messages %} <p style="color: red">{{ messages }}</p> {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <div class="form-group">
+                                <button class="btn py-3 px-4 btn-danger" {% if messages %} disabled {% endif %}>Post Comment</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://kit.fontawesome.com/f268549e46.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/f268549e46.js" crossorigin="anonymous"></script>
 
 {% endblock content %}

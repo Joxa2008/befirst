@@ -1571,7 +1571,7 @@ footer .last-footer-column p {
     gap: 10px;
 }
 
-.password input {
+.password > .input_int {
     width: 30px;
     height: 40px;
     text-align: center;

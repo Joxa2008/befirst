@@ -1,7 +1,7 @@
 from django.utils import timezone
 
 from django import forms
-from .models import ProfileModel, ScoreModel, Region
+from .models import ProfileModel, ScoreModel, Region, CommentModel
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -97,3 +97,9 @@ class UserProfileUpdateForm(forms.ModelForm):
             user_instance.save()
             user_instance.profile.save()
         return user_instance
+
+
+class PostComment(forms.ModelForm):
+    class Meta:
+        model = CommentModel
+        fields = ['comment_text']

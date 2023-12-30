@@ -2,8 +2,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm
-from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel, Region
+from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm, PostComment
+from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel, Region, CommentModel
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 
@@ -116,17 +116,22 @@ def ditail(requests, slug):
     comments = CommentModel.objects.select_related().filter(comment_receiver=contest)[::-1]
     comments = comments[:4]
     form = PostComment()
-    if requests.method == 'POST':
-        form = PostComment(requests.POST)
-        if form.is_valid():
-            data = form.save(commit=False)
-            data.comment_receiver = contest
-            data.comment_owner = ProfileModel.objects.get(user=requests.user)
-            data.save()
+    messages = ''
+    if requests.user.is_authenticated:
+        if requests.method == 'POST':
+            form = PostComment(requests.POST)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.comment_receiver = contest
+                data.comment_owner = ProfileModel.objects.get(user=requests.user)
+                data.save()
+    else:
+        messages = 'Please Sign Up Before Posting Comments'
 
     return render(requests, 'ditail.html', context={
         'contest': contest,
         'comments': comments,
+        'messages': messages
     })
 
 

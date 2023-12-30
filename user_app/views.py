@@ -165,11 +165,14 @@ def password_change(request, uuid):
         new_p = request.POST['password']
         comf_p = request.POST['password2']
         if new_p == comf_p:
-            user = CustomUserModel.objects.get(uuid=uuid)
+            try:
+                user = CustomUserModel.objects.get(uuid=uuid)
+            except:
+                return redirect('contest:main')
             user.password = make_password(new_p)
             user.uuid = ui.uuid4()
             user.save()
-            return redirect('contest:main')
+            return redirect('user:login')
         else:
             messages = 'Passwords doesn\'t match!'
     return render(request, 'forget_p.html', context={
