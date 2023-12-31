@@ -1,15 +1,12 @@
-
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = 'django-insecure-5s&k%37b$(%jt!4#pb1gwflbh02+zoqtla1$y8^0i8t@_sbr*f'
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,7 +17,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'contest_app',
-    'user_app'
+    'user_app',
+    'aboutUs',
+
+    "debug_toolbar",
+    "crispy_forms",
+    "crispy_bootstrap5"
 ]
 
 MIDDLEWARE = [
@@ -31,6 +33,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -108,3 +112,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_app.CustomUserModel'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+LOGIN_URL = '/user/login/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -1,29 +1,106 @@
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import ProfileUpdateForm
-from .models import ProfileModel
+from django.utils import timezone
+from .forms import RegistrationCompleteForm, GiveScoreForm, UserProfileUpdateForm
+from .models import ProfileModel, ExpertModel, ScoreModel, WorkModel, ContestModel
 from django.contrib import messages
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
-def main(request):
+def main_view(request):
     return render(request, 'main.html')
 
 
-def profile_update(request):
+@login_required
+def register_complete_view(request):
     if request.method == 'POST':
-        print('got posted!!!')
         obj = ProfileModel.objects.get(user=request.user)
-        form = ProfileUpdateForm(request.POST, request.FILES, instance=obj)
+        form = RegistrationCompleteForm(request.POST, request.FILES, instance=obj)
         if form.is_valid():
-            print('got valid!!!')
             form.save()
-            print('got saved!!!')
             messages.success(request, 'You successfully completed your profile!')
             return redirect('contest:main')
-        logout(request.user)
-        print('did no get valid!!!')
         messages.success(request, 'Form is invalid!')
         return redirect('contest:main')
-    print('did not get posted!!!')
-    logout(request.user)
+    messages.error(request, 'Ooops!')
     return redirect('contest:main')
+
+
+@login_required
+def experts_score_view(request):
+    try:
+        expert = ExpertModel.objects.prefetch_related('contests__works__scores__expert__user') \
+            .get(id=request.user.expert.id)
+        return render(request, 'experts_score.html', {'expert': expert})
+    except ExpertModel.DoesNotExist:
+        return redirect('contest:main')
+
+
+@login_required
+def work_detail_view(request, uuid):
+    expert = request.user.expert
+    work = WorkModel.objects.get(uuid=uuid)
+    if request.method == 'POST':
+        form = GiveScoreForm(request.POST)
+        if form.is_valid():
+            if ScoreModel.objects.filter(expert=request.user.expert, work=work).exists():
+                form.add_error('scale', "Expert is already assigned to this work.")
+                messages.error(request, 'Expert is already assigned to this work.')
+                return render(request, 'work_detail.html', context={
+                    'work': work,
+                    'form': form})
+
+            score = ScoreModel.objects.create(expert=request.user.expert,
+                                              work=work,
+                                              scale=form.cleaned_data['scale'])
+            return redirect('contest:experts_score')
+
+        return render(request, 'work_detail.html', context={
+            'work': work,
+            'form': form})
+
+    if request.method == 'GET':
+        if work.contest.publish_date <= timezone.now():
+            return redirect('contest:experts_score')
+        form = GiveScoreForm()
+        return render(request, 'work_detail.html', context={
+            'form': form,
+            'work': work,
+        })
+
+
+@login_required
+def user_update_view(request):
+    user_instance = User.objects.get(id=request.user.id)
+    initial_data = {
+        'region': user_instance.profile.region,
+        'address': user_instance.profile.address,
+        'news_agreement': user_instance.profile.news_agreement,
+        'profile_img': user_instance.profile.profile_img,
+    }
+
+    user_form = UserProfileUpdateForm(instance=user_instance, initial=initial_data)
+
+    if request.method == 'POST':
+        form1 = UserProfileUpdateForm(request.POST, request.FILES, instance=user_instance)
+        if form1.is_valid():
+            if not form1.cleaned_data['profile_img']:
+                form1.cleaned_data['profile_img'] = initial_data['profile_img']
+                form1.save()
+            form1.save()
+            messages.success(request, 'Successfully updated')
+            return redirect('contest:user_update')
+
+        if not form1.cleaned_data['profile_img']:
+            form1.cleaned_data['profile_img'] = initial_data['profile_img']
+        print(form1.cleaned_data)
+        return render(request, 'profile_user_update.html', context={
+            'form': form1,
+        })
+    return render(request, 'profile_user_update.html', context={
+        'form': user_form,
+    })
+

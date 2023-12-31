@@ -1,0 +1,135 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page_title %}
+    About Us
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/aboutUsPage.css' %}">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+{% endblock %}
+
+
+{% block content %}
+
+{{ experts }}
+
+<section class="container about_us-page">
+  <!-- <a href="#about_us-page-works">id="about_us-page-works"</a> -->
+
+    <div class="card mt-2 about_us-page-intro">
+      <img src="{% static 'main/img/aboutUs-page/backgroundTop.png' %}" class="card-img" alt="intro background">
+      <div class="card-img-overlay mx-auto">
+        <h1 class="card-title">О НАС</h1>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.</p>
+      </div>
+    </div>
+
+    <div class="card mt-5 event-info" id="about_us-page-works">
+      <div class="card-body mx-auto mb-5">
+        <h2 class="card-title mt-2">О НАС</h2>
+        <h4 class="card-subtitle mb-4 ">информация о конкурсах</h4>
+        <p class="card-text mt-4">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+          euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+          nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis
+          autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
+          eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blanddit praesent
+          luptatum zzril delenit augue duis dolore te feugait nulla facilisi.<span id="dots">...</span>
+          <span id="more">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+            euismod tincidunt ut
+            laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+            tation
+            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
+            dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla
+            facilisis at vero eros et accumsan et iusto odio dignissim qui blanddit praesent luptatum zzril
+            delenit augue duis dolore te feugait nulla facilisi.</span>
+          <span onclick="myFunction()" id="myBtn" style="cursor: pointer;">Read more</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="slick-slider aboutUs-page-works mt-5">
+      {% for work in works %}
+      <div class="card bg-dark text-white">
+        <img src="/media/{{ work.file }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">{{ work.title }}</h5>
+          <p class="card-text">{{ work.contest }}</p>
+        </div>
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+    <div class="card mt-5">
+      <div class="advantages mt-5">
+        <div class="advantages-card-title">
+          <h2 class="card-title">некоторые преимущества</h2>
+          <h4 class="card-subtitle mb-2 text-body-secondary">Lorem ipsum dolor sit amet, consectetur
+            adipisicing
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+        </div>
+        <div class="advantages-card-body card-body d-flex flex-row flex-wrap justify-content-between mt-2">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="experts mt-3">
+        <div class="experts-card-title">
+          <h2 class="card-title">ЭКСПЕРТЫ</h2>
+          <h4 class="card-subtitle mb-2 text-body-secondary">Lorem ipsum dolor sit amet, consectetur
+            adipisicing
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+        </div>
+        <div class="aboutUs-page-experts-imgList" >
+          <div class="slick-slider mt-5">
+            {% for expert in experts %}
+            <img src="{{ expert }}" class="img-fluid rounded-start ms-2 me-2" alt="person1"
+              data-person="person1">
+            {% endfor %}
+
+          </div>
+        </div>
+
+        <div class="aboutUs-page-exportInfo mt-5 col-11 mx-auto">
+          <div id="person1" class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="/img/apout-page/experts/person1.png" class="img-fluid rounded-start" alt="...">
+                <h5 class="card-title">Card title</h5>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+
+{% block extra_js %}
+<script type="text/javascript">
+
+  </script>
+   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+   <script src="{% static 'main/js/aboutUs.js' %}"></script>
+   
+{% endblock %}

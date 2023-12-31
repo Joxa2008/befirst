@@ -1,0 +1,193 @@
+#profile-page{
+    max-width: fit-content;
+}
+
+.profile-page_header{
+    /* background: var(--profile_bg-img) lightgray 50% / cover no-repeat; */
+    width: 71.3125rem;
+    height: 31.5625rem;
+    flex-shrink: 0;
+}
+
+.profile-page_header h1{
+    /* margin-top: 3.5rem;
+    margin-left: 5.8rem; */
+    color: var(--black);
+    font-family: 'Baloo 2';
+    font-size: 4.375rem;
+    font-weight: bold;
+    line-height: 7rem;
+    text-transform: uppercase;
+}
+
+.profile-page_form{
+    width: 71.375rem;
+    /* height: 61.0625rem; */
+    flex-shrink: 0;
+    background-color: var(--yellow);
+    
+}
+
+.profile-page_form input {
+    border: none;
+    outline: none;
+    height: 5.1875rem;
+    background: #FAFAFA;
+    border-radius: 0;
+}
+
+.profile-page_form input::placeholder {
+    color: #737171;
+    font-family: Alegreya Sans;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: small-caps;
+}
+.profile-page_form input ~ textarea{
+    border: none !important;
+    outline: none !important;
+    height: 200px;
+}
+
+.profile-page_form__top{
+    justify-content: space-between;
+}
+
+.profile-page__top_right .personal-image{
+    max-height: 25.625rem;
+background-color: transparent;
+border: none;
+}
+
+.profile-page__top_right .personal-image:hover{
+    cursor: pointer;
+    opacity: 65%;
+}
+
+.profile-page__top_right .card-img-top{
+    color: #D4D4D4;
+    text-align: center;
+    background: #FAFAFA;
+    width: 14.3125rem;
+    height: 15.625rem;
+}
+
+.profile-page__top_right .card-img-top:hover{
+    /* background: var(--grey); */
+   
+}
+
+.profile-page__top_right .card-img-top img{
+    display: none;
+}
+
+.profile-page__top_right .personal-img-title{
+    padding-top: 50%;
+    font-family: Alegreya Sans;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.profile-page__top_right .card-body{
+    color: #E6E6E6;
+    font-family: Alef;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: small-caps;
+}
+
+.profile-page__top_right .card-body label:hover,
+.gender-logo_list label:hover{
+    cursor: pointer;
+}
+
+.profile-page__top_right .card-body input{
+    display: none;
+}
+
+.profile-page__top_right .gender-logo_list{
+    width: 100%;
+}
+
+.gender-logo_list label>img:nth-child(1){
+    width: 3.5625rem;
+height: 4.0625rem;
+}
+
+.gender-logo_list label>img:nth-child(2){
+    width: 1.5625rem;
+    height: 1.625rem;
+}
+
+.gender-logo_list input[type="radio"]:checked+label>img:nth-child(1){
+    width: 3.5rem;
+    height: 3.5625rem;
+}
+
+.gender-logo_list input[type="radio"]:checked+label>img:nth-child(2){
+    content:url(/static/main/img/profile-user-update/checked-logo.png);
+    width: 1.5625rem;
+    height: 1.8125rem;
+}
+
+.profile-page_form__middle input{
+    width: 80%;
+}
+
+.profile-page_form__bottom input #addresInput{
+    width: 100%;
+}
+.checkbox-for-emails{
+    border-top: 3px solid #fff;
+    color: #FFF;
+    font-family: Alegreya Sans;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: small-caps;
+}
+
+.checkbox-for-emails input{
+    margin: auto;
+}
+
+.checkbox-for-emails label{
+    margin-top: auto;
+    margin-left: 2rem;
+}
+
+.profile-page_form__bottom button{
+    background-color: var(--green);
+    border: none;
+    color: #000;
+    text-align: center;
+    font-family: Alegreya Sans;
+    font-size: 2.1875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+#hide_eye{
+    display: none;
+}
+
+@media screen and (max-width:1200px) {
+.profile-page_header,
+.profile-page_form{
+    width: inherit;
+}    
+}
+
+@media screen and (max-width:778px) {
+
+}

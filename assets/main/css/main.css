@@ -1,0 +1,1248 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+/* registration page fonts */
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600&family=Inter:wght@400;700&display=swap');
+
+/*login font*/
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
+
+:root {
+    --yellow: #F5C24D;
+    --yellow-hover: #b28737;
+    --title-yellow: #F2D146;
+    --black: #000;
+    --red: #ED6059;
+    --green: #2DF57D;
+    --blue: #2A819E;
+    --grey: #737171;
+    --text-gray: #60606E;
+    --white: #fff;
+
+    --back-img: url(/static/main/img/back-img.svg);
+
+
+    --abel-font: 'Abel', sans-serif;
+    --exo-font: 'Exo', sans-serif;
+    --baloo-font: 'Baloo 2', sans-serif;
+    --acme-font: 'Acme', sans-serif;
+    --register-head-font: 'Advent Pro', sans-serif;
+    --register-body-font: 'Inter', sans-serif;
+    --login-label-font: 'Alegreya Sans', sans-serif;
+}
+
+
+@keyframes alert-fade-in {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes alert-fade-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+
+    90% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(100px);
+        opacity: 0;
+        display: none;
+    }
+}
+
+body{
+    background-image: var(--back-img);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.alert {
+    position: absolute;
+    top: 20%;
+    right: 30px;
+    animation: alert-fade-in 1.5s forwards, alert-fade-out 1.5s forwards 4s;
+}
+
+/*NAVBAR STYLE START*/
+
+/* Dropdown Button */
+.small-nav-bar .dropbtn {
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.small-nav-bar .container > a {
+    color: #808080;
+    font-family: var(--register-body-font);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Dropdown button on hover & focus */
+.small-nav-bar .dropbtn:hover, .dropbtn:focus {
+    /*background-color: #2980B9;*/
+}
+
+/* The container <div> - needed to position the dropdown content */
+.small-nav-bar .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.small-nav-bar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 30px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.small-nav-bar .dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.small-nav-bar .dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.small-nav-bar .show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+nav {
+    background-color: var(--yellow);
+}
+
+nav img {
+    height: min(108px, 20vw);
+}
+
+nav ul,
+section.nav-side-bar {
+    list-style: none;
+    margin: 0;
+    font-family: var(--register-body-font);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+nav ul a,
+section.nav-side-bar ul a {
+    text-decoration: none;
+    color: #241F1F;
+    white-space: nowrap;
+}
+
+nav ul button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+nav #search-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    transition: 400ms ease;
+    color: #fff;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+nav #nav-search {
+    opacity: 1;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    transition: 500ms ease;
+    cursor: pointer;
+}
+
+
+nav #nav-search:focus,
+nav #nav-search:not(:invalid) {
+    background-color: var(--yellow-hover);
+    cursor: text;
+    width: 150px;
+    color: #fff;
+}
+
+nav #nav-search:not(:placeholder-shown) ~ #search-button {
+    opacity: 0;
+    visibility: hidden;
+    cursor: text;
+}
+
+
+nav #nav-search:focus ~ #search-button,
+nav #nav-search:not(:invalid) ~ #search-button {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+nav #nav-search::placeholder {
+    color: #fff;
+}
+
+
+nav #search-submit {
+    transition: 750ms ease;
+    background-color: var(--title-yellow);
+    box-shadow: rgba(0, 0, 0, 0.16) 3px 1px 6px, rgba(0, 0, 0, 0.23) 3px 1px 6px;
+    outline: none;
+    border: none;
+    visibility: hidden;
+    width: 0;
+}
+
+
+/*END OF NAV BAR*/
+
+
+/* FOOTER STYLE START*/
+footer {
+    background-color: #F5C24D;;
+}
+
+footer .fisrt-footer-column,
+footer .fisrt-footer-column + .col {
+    display: none;
+}
+
+footer .fisrt-footer-column p,
+footer .last-footer-column p {
+    color: #FFF;
+    --bs-text-opacity: 1;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media screen and (max-width: 991px) {
+
+
+}
+
+
+#followCursor {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+
+/* Contest Part */
+
+.home-page {
+    height: 100%;
+    width: 100%;
+    padding: 19px 0px;
+}
+
+.home-page > .container > .banner {
+    display: flex;
+    align-items: center;
+    padding: 0 98px;
+    height: 419px;
+    width: 100%;
+}
+
+.home-page > .container > .mobile {
+    display: none;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container {
+    width: 300px;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > h1 {
+    font-weight: 900;
+    font-size: 70px;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > button {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    background-color: var(--red);
+    color: white;
+}
+
+.home-page > .container > .row {
+    margin-top: 36px;
+}
+
+.home-page > .container > .row > .reveal {
+    position: relative;
+    transform: translateY(70px);
+    opacity: 0;
+    transition: all 1.5s ease;
+}
+
+.home-page > .container > .row > .reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.home-page > .container > .row > .col > .card {
+    height: 450px;
+    border-radius: 14px;
+}
+
+.home-page > .container > .row > .col > .yellow {
+    background-color: var(--yellow);
+}
+
+.home-page > .container > .row > .col > .red {
+    background-color: var(--red);
+}
+
+.home-page > .container > .row > .col > .card > .top-it {
+    border-radius: 14px;
+    height: 245px;
+    width: 100%;
+}
+
+.home-page > .container > .row > .col > .card > div > .button {
+    border: none;
+    border-radius: 10px;
+    margin: 14px 15px;
+    padding: 8px 31px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    font-size: 14px;
+}
+
+.home-page > .container > .row > .col > .card > div > .button:hover {
+    box-shadow: none;
+    background-color: var(--yellow-hover);
+}
+
+.home-page > .container > .row > .col > .card > div > .yellow {
+    background-color: var(--yellow);
+}
+
+.home-page > .container > .row > .col > .card > div > .red {
+    background-color: var(--red);
+}
+
+.home-page > .container > .button-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: end;
+}
+
+.home-page > .container > .button-container > .button {
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+    padding: 18px 30px;
+    border-radius: 15px;
+}
+
+/* End of contest part */
+/* Beginning of ditail part */
+
+.ditail_page {
+}
+
+.ditail_page > .container {
+    background-color: rgba(0, 0, 0, 0.07);
+    backdrop-filter: blur(50px);
+}
+
+.ditail_page > .container > .align-items-center {
+    background-color: var(--yellow);
+    border-radius: 20px;
+}
+
+.ditail_page > .container > .align-items-center > .col-md-6 > .text > .icon > .img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .bio {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: aqua;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment {
+    display: flex;
+    list-style: none;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body {
+    width: 90%;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .space {
+    width: 20px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > h2 {
+    font-weight: 800;
+    font-size: 40px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > .icon > .position > span {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > p > a {
+    color: var(--red);
+    text-decoration: none;
+    margin-right: 3px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > p > a > span {
+    margin-right: 5px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > .icon > .position > h4 {
+    font-weight: 600;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment {
+    background-color: var(--red);
+    border-radius: 10px;
+    padding: 20px 20px 10px 20px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > h3 {
+    font-size: 20px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > .meta {
+    font-size: 14px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > .comment-text {
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > p > .reply {
+    background-color: var(--yellow);
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .py-4 > p {
+    font-size: 18px;
+}
+
+
+/* End of ditail part */
+/* Map part */
+
+.home-page {
+    height: 100%;
+    width: 100%;
+    padding: 79px 0px;
+    margin-top: 19px;
+}
+
+.home-page > .container > .hr {
+    margin-top: 23px;
+    width: 80%;
+    height: 19px;
+    background-color: #F5C24D;
+}
+
+.home-page > .container > .hr {
+    margin-top: 50px;
+}
+
+.home-page > .container > .tables-container {
+    margin-top: 108px;
+    width: 100%;
+    overflow: auto;
+}
+
+.home-page > .container > .title {
+    font-size: 50px;
+    margin-top: 36px;
+}
+
+.home-page > .container > .map {
+    margin-top: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-page > .container > div > .head {
+    font-size: 50px;
+}
+
+/* Uzb Map */
+
+.home-page > .container > .map > .map-uzb {
+    cursor: pointer;
+}
+
+
+#UZB354:hover {
+    fill: red;
+}
+
+#Karakalpakstan:hover {
+    fill: #00942F;
+}
+
+#Khorezm:hover {
+    fill: #80378A;
+}
+
+#Navoi:hover {
+    fill: #0A72B5;
+}
+
+#Kashkadarya:hover {
+    fill: #F9B234;
+}
+
+#Surkhandarya:hover {
+    fill: #00942F;
+}
+
+#Samarkand:hover {
+    fill: #80378A;
+}
+
+#Jizzakh:hover {
+    fill: #E95E0E;
+}
+
+#Sirdaryo:hover {
+    fill: #00942F;
+}
+
+#Tashkent:hover {
+    fill: #F9B234;
+}
+
+#Namangan:hover {
+    fill: #0574B6;
+}
+
+#Ferghana:hover {
+    fill: #E9011D;
+}
+
+#Andijon:hover {
+    fill: #80378A;
+}
+
+/* End of Map part*/
+
+
+/*START OF REGISTRATION PAGE*/
+
+/* register banner start */
+.registration-page .banner {
+    background-color: rgba(242, 209, 70, 1);
+
+}
+
+.registration-page .banner img {
+    bottom: -15px;
+}
+
+.registration-page .banner h1 {
+    font-family: var(--register-head-font);
+    color: var(--black);
+    font-weight: 600;
+    font-size: min(13vw, 70px);
+}
+
+/* end of banner */
+
+/* form style */
+.registration-page .form-wrapper {
+    background-color: #f0f0f0;
+}
+
+.registration-page .registration-form .text-input-wrapper > label {
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    font-size: min(4.5vw, 20px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.registration-page .registration-form .text-input-wrapper > label.text-input-label {
+    left: 12px;
+    font-weight: 400;
+    transform: translateY(22px);
+    transition: 250ms ease;
+    pointer-events: none;
+
+}
+
+.registration-page .form-control,
+.registration-page .form-select {
+    height: min(12vw, 65px);
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    font-size: min(4.5vw, 20px);
+    font-style: normal;
+    font-weight: 400;
+    outline: none;
+    border: #F5C24D 1px solid;
+    border-radius: 0px;
+    padding: 0px 10px;
+    background-color: rgba(211, 211, 211, 1);
+}
+
+.registration-page .form-control::placeholder {
+    color: #7f7f7f !important;
+}
+
+
+.registration-page .form-label {
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.registration-page span.asteriskField {
+    margin-left: 3px;
+    color: var(--blue);
+    font-size: 20px;
+
+}
+
+.login-page span.asteriskField {
+    font-size: min(10vw, 50px);
+}
+
+.registration-page .invalid-feedback,
+.login-page .invalid-feedback {
+    color: var(--red);
+    font-family: var(--register-body-font) !important;
+}
+
+.registration-page .was-validated .form-control:invalid,
+.registration-page .form-control.is-invalid,
+.login-page .was-validated .form-control:invalid,
+.login-page .form-control,
+.work_assess_detail-page .form-control {
+    background-image: none !important;
+}
+
+.registration-page .form-control.is-invalid,
+.login-page .form-control.is-invalid {
+    border: var(--red) 1px solid;
+}
+
+.registration-page .form-text {
+    color: #939393;
+    font-family: var(--register-body-font);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.registration-page .form-agreement {
+    box-sizing: border-box !important;
+    color: #494949;
+    font-family: var(--register-body-font);
+    font-size: min(4.5vw, 20px);
+    font-style: normal;
+    font-weight: 400;
+}
+
+.registration-page .form-agreement .agreement-section {
+    min-height: 65px;
+    box-sizing: border-box !important;
+    border: #F5C24D 5px solid;
+    background-color: transparent;
+}
+
+.registration-page .form-agreement .agreement-section h5 {
+    font-weight: 700 !important;
+}
+
+
+.registration-page .checkbox-input-wrapper .input-w {
+    width: 65px;
+    height: 65px;
+}
+
+
+.registration-page .checkbox-input-wrapper .checkbox-rounded {
+    width: 65px;
+    height: 65px;
+    outline: 5px solid #F5C24D !important;
+    border-radius: 15px;
+    background-color: rgba(211, 211, 211, 1);
+
+}
+
+.registration-page .checkbox-input-wrapper input[type='checkbox'] {
+    width: 65px;
+    height: 65px;
+    border-radius: 15px;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.registration-page .checkbox-input-wrapper .tick {
+    left: 10px;
+    height: 70px;
+    width: 70px;
+    display: none;
+    top: -8px;
+}
+
+.registration-page .checkbox-input-wrapper input[type='checkbox']:checked ~ img.tick {
+    display: block;
+}
+
+.registration-page .checkbox-input-wrapper > button {
+    background-color: rgba(211, 211, 211, 1) !important;
+    color: #494949 !important;
+    border-color: #494949 !important;
+}
+
+.registration-page .checkbox-input-wrapper > button i {
+    color: #494949 !important;
+}
+
+.registration-page .conditions {
+    background-color: rgba(211, 211, 211, 0.684) !important;
+    border: solid 1px rgba(242, 209, 70, 1);
+}
+
+.registration-page .submit-button,
+.login-page .submit-button {
+    width: min(60vw, 359px);
+    height: min(12vw, 65px);
+    color: #000;
+    text-align: center;
+    font-family: var(--register-body-font);
+    font-size: min(5vw, 35px);
+    font-weight: 400;
+    text-transform: uppercase;
+    border-radius: 35px;
+    background-color: var(--green) !important;
+    outline: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    transition: 250ms all;
+}
+
+.login-page .submit-button {
+    width: min(50vw, 260px);
+    font-size: min(5vw, 25px);
+}
+
+.registration-page button.submit-button:hover,
+.login-page button.submit-button:hover {
+    background-color: #29d36d !important;
+}
+
+.registration-page input[type='file']::file-selector-button {
+    display: none;
+}
+
+/*REGISTRATION 2nd STAGE*/
+.registration-page .checkbox-input-wrapper.x {
+    height: 100%;
+}
+
+.registration-page .checkbox-input-wrapper.x .input-w.x {
+    width: 45px;
+    height: 45px;
+}
+
+
+.registration-page .checkbox-input-wrapper.x .checkbox-rounded.x {
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 10px !important;
+
+}
+
+.registration-page .checkbox-input-wrapper.x input[type='checkbox'] {
+    width: 45px;
+    height: 45px;
+}
+
+.registration-page .checkbox-input-wrapper.x .tick.x {
+    left: 6px;
+    height: 55px;
+    width: 55px;
+    display: none;
+    top: -10px;
+}
+
+/*REGISTER 2nd STAGE END
+*/
+
+
+/*LOGIN PAGE START*/
+
+.login-page .banner {
+    color: #000;
+    font-family: var(--baloo-font);
+    font-size: min(13vw, 70px);
+    font-style: normal;
+    font-weight: 800 !important;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.login-page .form-wrapper {
+    background-color: var(--yellow);
+}
+
+.login-page .form-control {
+    font-size: min(4vw, 20px);
+    padding-left: 25px !important;
+    height: min(12vw, 62px);
+    outline: none;
+    border: none;
+    border-radius: 35px;
+    background: #F2F2F2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;;
+}
+
+.login-page .form-control::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+.login-page .form-label {
+    color: #000;
+    font-family: var(--login-label-font);
+    font-size: min(5vw, 35px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.login-page .form-text {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: var(--register-body-font);
+    font-size: min(4vw, 20px);
+}
+
+.login-page .invalid-feedback {
+    color: var(--red);
+    font-family: var(--register-body-font);
+    font-size: min(4vw, 20px);
+}
+
+.experts-score-page {
+    font-family: var(--register-body-font);
+}
+
+.experts-score-page .card {
+    height: 300px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.70);;
+}
+
+.experts-score-page h1 {
+    font-family: var(--register-head-font);
+    font-weight: 600;
+}
+
+.experts-score-page .card-body .btn.btn-primary {
+    transition: 250ms ease;
+}
+
+.experts-score-page .card-body .btn.btn-primary:hover {
+    filter: brightness(0.85);
+}
+
+
+.work_assess_detail-page {
+    font-family: var(--register-body-font) !important;
+}
+
+.work_assess_detail-page .modal-header,
+.work_assess_detail-page .modal-body,
+.work_assess_detail-page .modal-footer {
+    border: none;
+    background-color: #f0f0f0;
+
+}
+
+.work_assess_detail-page .modal-header {
+    border-bottom: 1px #000 solid;
+}
+
+.work_assess_detail-page select {
+    margin-inline: auto;
+    margin-bottom: 20px;
+    width: 100px;
+    padding: 5px 20px;
+    text-align: center;
+    height: min(20vw, 65px);
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    outline: none;
+    border: #F5C24D 1px solid;
+    border-radius: 0px;
+    background-color: #d3d3d3
+}
+
+.work_assess_detail-page .form-label {
+    color: #494949 !important;
+    font-family: var(--register-body-font) !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.work_assess_detail-page span.asteriskField {
+    font-size: 25px;
+    color: var(--blue);
+}
+
+.work_assess_detail-page .form-text {
+    color: #939393;
+    font-family: var(--register-body-font);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.work_assess_detail-page button[type='submit'] {
+    background-color: var(--green);
+    border: none;
+}
+
+.work_assess_detail-page .modal-footer button.btn.btn-secondary {
+    background-color: var(--grey) !important;
+    border: none;
+}
+
+.work_assess_detail-page h1 {
+    font-family: var(--register-head-font);
+    font-weight: 600;
+}
+
+.profile-user-update-page .banner {
+    color: #000;
+    font-family: var(--baloo-font);
+    font-size: min(13vw, 70px);
+    font-style: normal;
+    font-weight: 800 !important;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.profile-user-update-page input:not([type='checkbox']),
+.profile-user-update-page textarea,
+.profile-user-update-page select {
+    border-radius: 0px;
+    font-family: var(--register-body-font);
+    height: 80px;
+}
+
+
+.profile-user-update-page #imageContainer {
+    border-radius: 5px;
+}
+
+
+.profile-user-update-page #imageContainer img {
+    border-radius: 5px;
+    left: 0;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 250ms ease;
+}
+
+.profile-user-update-page #imageContainer input:hover ~ img {
+    filter: brightness(0.7);
+}
+
+.profile-user-update-page #imageContainer input {
+    width: 100%;
+    height: 100%;
+    position: absolute !important;
+    z-index: 100 !important;
+    opacity: 0;
+}
+
+.profile-user-update-page .row:nth-child(2) {
+    background-color: var(--yellow);
+}
+
+.profile-user-update-page button {
+    color: #000;
+    text-align: center;
+    background-color: var(--green);
+    border: none;
+    font-family: var(--login-label-font);
+    font-size: min(5.5vw, 35px);
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: 250ms ease;
+}
+
+.profile-user-update-page button:hover{
+    color: #000;
+    background-color: #22b35c;
+}
+
+
+@media (max-width: 1400px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+
+    /* Contest media */
+    .home-page > .container > .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 0 20px 0 20px;
+        height: 419px;
+        width: 100%;
+        color: #fff;
+        position: relative;
+        isolation: isolate;
+    }
+
+    .home-page > .container > .mobile::after {
+        content: '';
+        position: absolute;
+        background: black;
+        z-index: -1;
+        inset: 0;
+        opacity: .5;
+    }
+
+
+    .home-page > .container > .desktop {
+        display: none;
+    }
+
+    /* End of contest media */
+    /* Map part */
+    .home-page > .container > div > .head {
+        font-size: 40px;
+    }
+
+    .home-page {
+        padding: 19px 0px;
+    }
+
+    /* End of Map part */
+    /*REGISTRATION PAGE START*/
+    .registration-page .checkbox-input-wrapper {
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper .input-w {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .registration-page .checkbox-input-wrapper .checkbox-rounded {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px !important;
+
+    }
+
+    .registration-page .checkbox-input-wrapper input[type='checkbox'] {
+        width: 40px;
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper .tick {
+        left: 6px;
+        height: 50px;
+        width: 50px;
+        display: none;
+        top: -8px;
+    }
+
+    .registration-page .checkbox-input-wrapper.x {
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper.x .input-w.x {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .registration-page .checkbox-input-wrapper.x .checkbox-rounded.x {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px !important;
+
+    }
+
+    .registration-page .checkbox-input-wrapper.x input[type='checkbox'] {
+        width: 40px;
+        height: 40px;
+    }
+
+    .registration-page .checkbox-input-wrapper.x .tick.x {
+        left: 6px;
+        height: 50px;
+        width: 50px;
+        display: none;
+        top: -8px;
+    }
+
+    /* REGISTRATION PAGE END*/
+    /*    FOOTER START*/
+    footer .fisrt-footer-column,
+    footer .fisrt-footer-column + .col {
+        display: block;
+    }
+
+    footer .last-footer-column,
+    footer .fisrt-footer-column + .col {
+        display: none;
+    }
+
+    /*    FOOTER END*/
+    /*    LOGIN PAGE START*/
+}
+
+
+@media (max-width: 768px) {
+    /*  Map part  */
+    .home-page > .container > div > .head {
+        font-size: 30px;
+    }
+
+    .home-page > .container > .map {
+        margin-top: 10px;
+    }
+
+    .home-page > .container > .title {
+        font-size: 50px;
+        margin-top: 16px;
+    }
+
+    .home-page > .container > .tables-container {
+        margin-top: 50px;
+        width: 100%;
+        overflow: auto;
+    }
+
+    .home-page > .container > .map > .map-uzb {
+        margin-top: 20px;
+        height: 40%;
+    }
+
+    /* End of Map part */
+    .login-page .banner {
+        text-align: center;
+        height: 200px !important;
+    }
+
+    .profile-user-update-page .banner {
+        text-align: center;
+        height: 200px !important;
+    }
+
+    /*    profile update page*/
+    .profile-user-update-page #imageContainer {
+        height: 300px;
+        width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Contest media */
+    .home-page > .container > .banner > .container-texts > .text-container > h1 {
+        width: 100%;
+        font-size: 38px;
+    }
+
+    .home-page > .container > .banner > .container-texts > .text-container {
+        font-size: 11px;
+    }
+
+    /* End of contest media */
+    /* Map part */
+    .home-page > .container > .title {
+        font-size: 30px;
+    }
+
+    /* End of Map part */
+    /*    profile update page*/
+    .profile-user-update-page #imageContainer {
+        width: 250px;
+        height: 250px;
+    }
+
+}
