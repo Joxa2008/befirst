@@ -78,7 +78,7 @@ def work_detail_view(request, uuid):
 @login_required
 def user_update_view(request):
     user_instance = User.objects.get(id=request.user.id)
-    print('USER: ', user_instance)
+
     initial_data = {
         'region': user_instance.profile.region,
         'address': user_instance.profile.address,
@@ -86,7 +86,7 @@ def user_update_view(request):
         'profile_img': user_instance.profile.profile_img,
     }
 
-    print('USER_inital: ', initial_data)
+
 
     user_form = UserProfileUpdateForm(instance=user_instance, initial=initial_data)
 
