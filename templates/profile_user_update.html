@@ -1,0 +1,177 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block page_title %}
+    Update My Profile
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .profile-user-update-page .banner {
+            height: 500px;
+            background-image: url("{% static 'main/img/login-page/login-banner.svg' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+    <link rel="stylesheet" href="{% static 'main/css/profile/profilePage.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+            {#                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+        </div>
+    {% endfor %}
+
+
+    <div class="container profile-user-update-page">
+
+        <div class="banner row mt-3 mb-0 mb-md-5">
+            <p class="ms-md-5 mt-3 mt-md-5 ps-md-5 pb-5 pb-lg-0 pt-5">
+                PROFILE
+            </p>
+        </div>
+
+        <div class="row p-3 mb-5 p-md-5">
+            <form action="{% url 'contest:user_update' %}" method="post" enctype="multipart/form-data"
+                  class="d-flex flex-column">
+                {% csrf_token %}
+                <div class="row mb-4 mx-1 mx-sm-5 mx-md-0">
+                    <div class="mx-auto mx-md-0 col-12 col-md-5 col-lg-4 col-xl-3 me-md-4 col-lg-3 bg-warning-subtle position-relative" id="imageContainer"
+                         >
+                        {{ form.profile_img }}
+                    </div>
+
+                    <div class="col d-none d-md-block">
+                        <div class="row d-none d-md-flex">
+
+                            <div class="col-12 col-lg">
+                                {{ form.first_name|as_crispy_field }}
+                            </div>
+
+                            <div class="col-12 col-lg">
+                                {{ form.last_name|as_crispy_field }}
+                            </div>
+
+                        </div>
+
+                        <div class="row d-none d-lg-flex">
+                            <div class="col-12 col-lg">{{ form.email|as_crispy_field }}</div>
+                            <div class="col-12 col-lg">{{ form.birth_date|as_crispy_field }}</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row d-flex d-md-none">
+
+                    <div class="col-12 col-lg">
+                        {{ form.first_name|as_crispy_field }}
+                    </div>
+
+                    <div class="col-12 col-lg">
+                        {{ form.last_name|as_crispy_field }}
+                    </div>
+
+                </div>
+
+
+                <div class="row d-lg-none d-block">
+                    <div class="col-12 col-lg">{{ form.email|as_crispy_field }}</div>
+                    <div class="col-12 col-lg">{{ form.birth_date|as_crispy_field }}</div>
+                </div>
+
+
+                
+                {% comment %} <div class="row">
+                    <div class="col-12 col-lg">
+                        <div class="gender-logo_list d-flex flex-row justify-content-evenly">
+                            <div class="female-check  d-flex flex-column ">
+                                <input required="true" type="radio" class="btn-check" name="{{ form.gender.name }}" id="female"
+                                       value="F" {% if form.gender.value == 'F' %}checked{% endif %}>
+                                <label class="d-flex flex-column align-items-center " for="female">
+                                    <img src="/static/main/img/profile-user-update/female-logo.png" alt="female logo">
+                                    <img src="/static/main/img/profile-user-update/unchecked-logo.png" alt="unchecked logo">
+                                </label>
+                            </div>
+                
+                            <div class="male-check  d-flex flex-column">
+                                <input required="true" type="radio" class="btn-check" name="{{ form.gender.name }}" id="male"
+                                       value="M" {% if form.gender.value == 'M' %}checked{% endif %}>
+                                <label class="d-flex flex-column align-items-center" for="male">
+                                    <img src="/static/main/img/profile-user-update/male-logo.png" alt="male logo">
+                                    <img src="/static/main/img/profile-user-update/unchecked-logo.png" alt="unchecked logo">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg">{{ form.region|as_crispy_field }}</div>
+                </div> {% endcomment %}
+                
+
+                <div class="row">
+                     <div class="col-12 col-lg">{{ form.gender|as_crispy_field }}</div> 
+                    <div class="col-12 col-lg">{{ form.region|as_crispy_field }}</div>
+                </div> 
+
+                <div class="row">
+                    <div class="col-12 col-lg">{{ form.address|as_crispy_field }}</div>
+                    <div class="col-12 col-lg">{{ form.phone_number|as_crispy_field }}</div>
+
+                </div>
+                <div class="row">
+                    <div class="col">{{ form.news_agreement|as_crispy_field }}</div>
+                </div>
+
+                <button type="submit" id="profile_update_btn" class="btn btn-dark py-md-3 px-4 px-md-5 ms-auto">
+                    Save
+                </button>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+    <script>
+        var image = document.createElement('img');
+        var input = document.getElementById('imageInput');
+        var container = document.getElementById('imageContainer');
+        {% if form.initial.profile_img %}
+            image.src = '{{form.initial.profile_img.url}}';
+        {% else %}
+            image.src = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+        {% endif %}
+        container.appendChild(image);
+
+        function displayImage() {
+            var input = document.getElementById('imageInput');
+            var container = document.getElementById('imageContainer');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var image = document.createElement('img');
+                    image.src = e.target.result;
+                    container.appendChild(image);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+
+    </script>
+{% endblock %}

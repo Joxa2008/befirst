@@ -24,7 +24,6 @@ urlpatterns = [
     path('', include('contest_app.urls')),
     path('user/', include('user_app.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
-    path("aboutUs/", include("aboutUs.urls"))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

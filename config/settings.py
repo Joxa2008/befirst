@@ -6,6 +6,13 @@ SECRET_KEY = 'django-insecure-5s&k%37b$(%jt!4#pb1gwflbh02+zoqtla1$y8^0i8t@_sbr*f
 
 DEBUG = True
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'javohir.akhmad@gmail.com'
+EMAIL_HOST_PASSWORD = 'kvac tyai ivvq pncj'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -16,9 +23,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_celery_beat',
+    'django_celery_results',
+
     'contest_app',
     'user_app',
-    'aboutUs',
 
     "debug_toolbar",
     "crispy_forms",
@@ -92,9 +101,11 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Tashkent'
 
+CELERY_TIMEZONE = "Asia/Tashkent"
+
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -122,3 +133,24 @@ LOGIN_URL = '/user/login/'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:16379/0'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:16379/1',
+    }
+}
+
+CELERY_CACHE_BACKEND = 'default'
+
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+# CSRF_TRUSTED_ORIGINS = ["https://yourdomain.com"]
+
+

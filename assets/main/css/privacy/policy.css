@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap');
+
+
+
+
+.privacy > .container-m {
+    height: 429px;
+    top: 166px;
+    left: 391px;
+    background: #FFDE59;
+}
+
+.privacy > .container-m .rules {
+    width: 347px;
+    height: 112px;
+    top: 237px;
+    left: 481px;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 71px;
+    line-height: 112px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding-top: 50px;
+    padding-left:91px;
+
+}
+
+/*body {*/
+/*    background-image: url('./photo_2023-12-09\ 15.07.44.jpeg');*/
+/*    width: 100%;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    */
+/*}*/
+
+.privacy > .img img {
+    /*padding-right: 50px;*/
+}
+
+.privacy > .privacy_p {
+    border: 5px solid #FFDE59;
+}
+
+.privacy > .privacy_p > div > h2 > button {
+    padding: 20px 90px 20px 90px;
+}
+
+.privacy > .privacy_p > div > div > div > p {
+    padding: 20px 90px 20px 90px;
+}
+
+.privacy > .accordion {
+    border: 5px solid #F5C24D;
+}
+
+.privacy > .accordion-button {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+.privacy > .hr1 {
+    background: #2DF57D;
+    width: 660px;
+    padding: 3px;
+    margin-top: -30px;
+}
+
+.privacy > .hr2 {
+    background: #2DF57D;
+    width: 734px;
+    padding: 3px;
+    margin-top: -30px;
+}
+
+
+.privacy > .hr3 {
+    background: #2DF57D;
+    width: 550px;
+    padding: 3px;
+    margin-top: -30px;
+}
+
+
+.privacy > .hr4 {
+    background: #2DF57D;
+    width: 955px;
+    padding: 3px;
+    height: 10px;
+    margin-top: -30px;
+}
+
+@media (max-width: 1400px) {
+    .privacy > .img img {
+    width: 500px;
+}
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+
+}

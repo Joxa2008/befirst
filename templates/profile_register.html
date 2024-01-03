@@ -1,20 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% for message in messages %}
-	<h1>{{ message }}</h1>
-{% endfor %}
-<form action="{% url 'contest:profile_update' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">
-        Register
-    </button>
-</form>
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
 
-</body>
-</html>
+
+{% block page_title %}
+	Register
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .bg-img-wrapper {
+            background-image: url("{% static 'main/img/registration-page/registration-back.png' %}");
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+            {#                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+        </div>
+    {% endfor %}
+    <div class="container registration-page bg-body-secondary py-4 my-5 px-3 px-md">
+        <h1 class="text-center">
+            <strong> You have registered !</strong>
+        </h1>
+
+        <h2 class="text-center mb-4">
+            In order to participate in competitions, fill this form!
+        </h2>
+        <form action="{% url 'contest:register_complete' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 col-md">
+                    {{ form.region|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md">
+                    {{ form.address|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg">
+                    {{ form.profile_img|as_crispy_field }}
+                </div>
+
+                <div class="col-12 col-lg d-flex align-items-center mt-4 my-lg-0">
+
+
+                    <div class="checkbox-input-wrapper x  col-12 d-flex column-gap-4 align-items-center">
+                        <div class="">
+                            <div class="position-relative input-w x">
+                                <div class="checkbox-rounded x position-absolute"></div>
+                                {{ form.news_agreement }}
+                                <img src="{% static 'main/img/registration-page/registration-check-tick.svg' %}"
+                                     class="tick x position-absolute" alt="">
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <p class="form-label mb-0 mb-md-2">{{ form.news_agreement.label }}</p>
+                            <p class="form-text">{{ form.news_agreement.help_text }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row d-flex mt-lg-3 mt-4">
+                <button class="btn mx-auto submit-button btn-success" type="submit">COMPLETE
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+{% endblock %}
+

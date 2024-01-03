@@ -1,7 +1,7 @@
 from django.utils import timezone
 
 from django import forms
-from .models import ProfileModel, ScoreModel, Region
+from .models import ProfileModel, ScoreModel, Region, CommentModel
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -49,18 +49,21 @@ class UserProfileUpdateForm(forms.ModelForm):
     profile_img = forms.FileField(required=False,
                                   widget=forms.FileInput(attrs={'accept': '.jpg, .jpeg, .png',
                                                                 'id': 'imageInput', 'onchange': 'displayImage()',
-                                                                'title': 'Change Profile Image',
-                                                                "src" : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-                                                                })) 
+                                                                'title': 'Change Profile Image'}))
 
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'birth_date', 'gender', 'phone_number')
         widgets = {
-            'email': forms.EmailInput(attrs={'placeholder': 'example@gmail.com', 'class': "form-control"}),
+            'email': forms.EmailInput(attrs={
+                'placeholder': 'example@gmail.com', 
+                'class': "form-control",
+
+                }),
             'first_name': forms.TextInput(attrs={
                 'placeholder': 'first name',
-                'class': "form-control"}),
+                'class': "form-control",
+                }),
 
             'last_name': forms.TextInput(attrs={
                 'placeholder': 'last name',
@@ -88,6 +91,8 @@ class UserProfileUpdateForm(forms.ModelForm):
         super(UserProfileUpdateForm, self).__init__(*args, **kwargs)
         self.fields['region'].choices = [(region.name, region.name) for region in Region.objects.all()]
 
+        
+
     def save(self, commit=True):
         user_instance = super(UserProfileUpdateForm, self).save(commit=False)
         user_instance.profile.region = Region.objects.get(name=self.cleaned_data.get('region'))
@@ -99,3 +104,9 @@ class UserProfileUpdateForm(forms.ModelForm):
             user_instance.save()
             user_instance.profile.save()
         return user_instance
+
+
+class PostComment(forms.ModelForm):
+    class Meta:
+        model = CommentModel
+        fields = ['comment_text']

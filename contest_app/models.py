@@ -30,7 +30,7 @@ class ProfileModel(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, help_text=_("Choose a user."), related_name='profile')
 
-    profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True,
+    profile_img = models.ImageField(upload_to=user_directory_path, null=True, blank=True, default='avatar-no-image.png',
                                     help_text=_('Your profile picture. .jpg, .jpeg, .png only!'))
 
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True,
@@ -53,8 +53,6 @@ class ExpertModel(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, help_text=_("Choose an expert."),
                                 related_name='expert')
     detail = models.TextField(blank=True, null=True, help_text=_("Some details about the expert."))
-    # job_title = models.CharField(blank=False, max_length=150, help_text=_("Working sphere"))
-    # score = models.PositiveFloatField()
 
     def __str__(self):
         return f'{self.user}'
@@ -182,3 +180,15 @@ class ScoreModel(models.Model):
         db_table = 'score'
         unique_together = ('expert', 'work')
 
+
+class CommentModel(models.Model):
+    comment_receiver = models.ForeignKey(ContestModel, on_delete=models.CASCADE)
+    comment_text = models.TextField(help_text=_('Write your comment'))
+    comment_owner = models.ForeignKey(ProfileModel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment_text[:30]
+
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'

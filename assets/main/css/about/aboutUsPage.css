@@ -1,0 +1,270 @@
+
+.about_us-page .card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.about_us-page-intro .card-img-overlay{
+  width: 85%;
+}
+
+.about_us-page-intro .card-text{
+  color: #000;
+  text-align: justify;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.about_us-page-intro .card-title{
+  color: #000;
+  font-family: Advent Pro;
+  font-size: 5.7rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+#more {display: none;}
+#myBtn{color: blue}
+
+.about_us-page .event-info{
+  border-bottom: 4px solid #E2DFDF;
+}
+
+.about_us-page .event-info .card-body{
+  width: 85%;
+}
+
+.about_us-page .event-info .card-title{
+  color: #000;
+  font-family: Inter;
+  font-size: 2.3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.about_us-page .event-info .card-subtitle{
+  color: #60606E;
+  font-family: Inter;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.about_us-page .event-info .card-text{
+  color: #60606E;
+  text-align: justify;
+  font-family: Inter;
+  font-size: 1.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.slick-prev::before, 
+.slick-next::before {
+  content:url("/static/main/img/aboutUs-page/sliderPrevIcon.png") !important;
+  background-color: transparent;
+}
+
+.slick-prev{
+  left: -2rem !important;
+} 
+
+.slick-next::before {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.aboutUs-page-works .slick-track .card-img-overlay{
+  display: none;
+
+}
+
+.aboutUs-page-works .card{
+  min-height: 16rem;
+}
+
+.aboutUs-page-works .card img{
+  min-height: inherit;
+  max-height: 18rem;
+}
+
+
+.aboutUs-page-works .slick-track .card:hover .card-img-overlay{
+display: block;
+background-color: #4c4c52a6;
+}
+
+.aboutUs-page-works .slick-dots {
+  bottom: -3rem!important;
+}
+
+.advantages{
+  background-color:hsla(0, 0%, 100%, 0.14);
+  border-top: 4px solid #E2DFDF !important;
+}
+
+.advantages-card-title>.card-title{
+  width: fit-content;
+  margin: auto;
+  margin-top: 4rem;
+  color: #60606E;
+  font-family: Baloo 2;
+  font-size: 2.7rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.5rem solid #7BEEC7;
+}
+
+.advantages-card-title>.card-subtitle{
+  width: fit-content;
+  margin: auto;
+  margin-top: 2rem;
+  color: #60606E;
+  font-family: Inter;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.advantages-card-body .card-title {
+  color: #60606E;
+  font-family: Inter;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  /* text-align: center; */
+  margin-left: 1rem;
+}
+
+.advantages-card-body .card-body{
+  padding-left: 0;
+  padding-right: 0;
+  color: #60606E;
+  font-family: Inter;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+} 
+
+.experts{
+  background-color:hsla(0, 0%, 100%, 0.74);
+}
+
+.experts-card-title>.card-title{
+  width: 90%;
+  padding-top:2rem;
+  margin: auto;
+  margin-top: 4rem;
+  color: #60606E;
+  font-family: Baloo 2;
+  font-size: 2.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+  border-top: 4px solid #EAB801 !important;
+}
+
+.experts-card-title>.card-subtitle{
+  width: fit-content;
+  margin: auto;
+  color: #60606E;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.experts-card-body .card-title {
+  color: #60606E;
+  font-family: Inter;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  /* text-align: center; */
+  margin-left: 1rem;
+}
+
+.experts-card-body .card-body{
+  padding-left: 0;
+  padding-right: 0;
+  color: #60606E;
+  font-family: Inter;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+} 
+
+.aboutUs-page-experts-imgList{
+  border-bottom: 2rem solid var(--yellow);
+}
+
+.aboutUs-page-exportInfo{
+
+}
+
+.aboutUs-page-exportInfo img{
+  max-height: 15rem;
+  margin: auto;
+}
+
+.aboutUs-page-exportInfo .expert_card_top{
+  display: flex;
+    flex-direction: column;
+    align-items: self-end;
+}
+
+.aboutUs-page-exportInfo .expert_card_top .card-title{
+  background-color: var(--title-yellow);
+}
+
+.experts .slick-slider img{
+height: 17rem;
+}
+
+.experts .slick-dots {
+  bottom: 105%;
+}
+
+.slick-dots li {
+  margin: 0 1rem !important;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1!important;
+}
+
+.slick-dots li button:before {
+  font-size: 1.5rem!important;
+  line-height: 1.5rem!important;
+  width: 1.5rem!important;
+  height: 1.5rem!important;
+  color: var(--yellow)!important;
+  opacity: .55!important;
+}
+

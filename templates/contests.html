@@ -1,0 +1,154 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="home-page"
+         style="background: url({% static 'main/img/contests/home-back.svg' %}) no-repeat center/cover;margin-top: 0px">
+        <div class="container">
+            <div class="banner desktop"
+                 style="background: url({% static 'main/img/contests/home-page-girl.svg' %}) no-repeat center/cover;">
+                <div class="container-texts">
+                    <div class="text-container">
+                        <h1>КОНКУРС</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis Lorem
+                            ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore
+                            magna aliqua. </p>
+
+                        <a href="{% url 'contest:contacts' %}" class="text-decoration-none text-white">
+                            <button>Свизатся С Нами</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="banner mobile"
+                 style="background: url({% static 'main/img/contests/tablet-back.jpg' %}) no-repeat center/cover;">
+                <div class="container-texts">
+                    <div class="text-container">
+                        <h1>КОНКУРС</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis Lorem
+                            ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore
+                            magna aliqua. </p>
+
+                        <a href="{% url 'contest:contacts' %" class="text-decoration-none text-white"><button>Свизатся С Нами</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class=" row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                        {% for i in contests %}
+                            {% if forloop.counter|divisibleby:2 %}
+                                {% if forloop.counter > 3 %}
+                                    <div class="col reveal">
+                                        <div class="card yellow">
+                                            <div class="top-it"
+                                                 style="background: url({{ i.banner_image.url }}) no-repeat center/cover;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ i.title }}</h5>
+                                                <p class="card-text">{{ i.description|truncatechars:92 }}</p>
+                                            </div>
+                                            <div>
+                                                <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                        class="button red">Читать дальше
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="col">
+                                        <div class="card yellow">
+                                            <div class="top-it"
+                                                 style="background: url({{ i.banner_image.url }}) no-repeat center/cover;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ i.title }}</h5>
+                                                <p class="card-text">{{ i.description|truncatechars:92 }}</p>
+                                            </div>
+                                            <div>
+                                                <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                        class="button red">Читать дальше
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                {% if forloop.counter > 3 %}
+                                    <div class="col">
+                                        <div class="card red">
+                                            <div class="top-it"
+                                                 style="background: url({{ i.banner_image.url }}) no-repeat center/cover;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ i.title }}</h5>
+                                                <p class="card-text">{{ i.description|truncatechars:92 }}</p>
+                                            </div>
+                                            <div>
+                                                <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                        class="button yellow">Читать дальше
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="col">
+                                        <div class="card red">
+                                            <div class="top-it"
+                                                 style="background: url({{ i.banner_image.url }}) no-repeat center/cover;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ i.title }}</h5>
+                                                <p class="card-text">{{ i.description|truncatechars:92 }}</p>
+                                            </div>
+                                            <div>
+                                                <button onclick="window.location.href='{% url 'contest:contest-ditail' i.slug %}'"
+                                                        class="button yellow">Читать дальше
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+
+
+
+
+                        {% endfor %}
+                    </div>
+                    <div class="button-container">
+                        <a href="{% url 'contest:contacts' %}" class="text-decoration-none text-white">
+                            <button>свизатся с нами</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener('scroll', reveal);
+
+            function reveal() {
+                var reveals = document.querySelectorAll('.reveal');
+
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowheight = window.innerHeight;
+                    var revealtop = reveals[i].getBoundingClientRect().top;
+                    var revealpoint = 150;
+
+                    if (revealtop < windowheight - revealpoint) {
+                        reveals[i].classList.add('active')
+                    } else {
+                        reveals[i].classList.remove('active')
+                    }
+                }
+            }
+        </script>
+
+{% endblock content %}

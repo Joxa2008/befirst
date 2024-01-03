@@ -14,13 +14,14 @@
     --title-yellow: #F2D146;
     --black: #000;
     --red: #ED6059;
+    --red-hover: #e1463d;
     --green: #2DF57D;
     --blue: #2A819E;
     --grey: #737171;
     --text-gray: #60606E;
     --white: #fff;
 
-    --back-img: url(/static/main/img/back-img.svg);
+    /*--back-img: url(/img/back-img.svg);*/
 
 
     --abel-font: 'Abel', sans-serif;
@@ -63,12 +64,6 @@
         opacity: 0;
         display: none;
     }
-}
-
-body{
-    background-image: var(--back-img);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 
@@ -369,12 +364,17 @@ footer .last-footer-column p {
     justify-content: end;
 }
 
-.home-page > .container > .button-container > .button {
+.home-page > .container > .button-container > a > button {
     border: none;
     background-color: var(--red);
     color: var(--white);
     padding: 18px 30px;
     border-radius: 15px;
+}
+
+.home-page > .container > .button-container > a > button:hover {
+    background-color: var(--red-hover);
+    transition: 0.6s ease-in-out;
 }
 
 /* End of contest part */
@@ -1046,16 +1046,605 @@ footer .last-footer-column p {
     transition: 250ms ease;
 }
 
-.profile-user-update-page button:hover{
+.profile-user-update-page button:hover {
     color: #000;
     background-color: #22b35c;
 }
 
+/* Contest Part */
+
+.home-page {
+    height: 100%;
+    width: 100%;
+    padding: 19px 0px;
+}
+
+.home-page > .container > .banner {
+    display: flex;
+    align-items: center;
+    padding: 0 98px;
+    height: 419px;
+    width: 100%;
+}
+
+.home-page > .container > .mobile {
+    display: none;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container {
+    width: 300px;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > h1 {
+    font-weight: 900;
+    font-size: 70px;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > a > button {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    background-color: var(--red);
+    color: white;
+}
+
+.home-page > .container > .banner > .container-texts > .text-container > a > button:hover {
+    background-color: var(--red-hover);
+    transition: 0.7s ease-in-out;
+}
+
+.home-page > .container > .row {
+    margin-top: 36px;
+}
+
+.home-page > .container > .row > .reveal {
+    position: relative;
+    transform: translateY(70px);
+    opacity: 0;
+    transition: all 1.5s ease;
+}
+
+.home-page > .container > .row > .reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.home-page > .container > .row > .col > .card {
+    height: 450px;
+    border-radius: 14px;
+}
+
+.home-page > .container > .row > .col > .yellow {
+    background-color: var(--yellow);
+}
+
+.home-page > .container > .row > .col > .red {
+    background-color: var(--red);
+}
+
+.home-page > .container > .row > .col > .card > .top-it {
+    border-radius: 14px;
+    height: 245px;
+    width: 100%;
+}
+
+.home-page > .container > .row > .col > .card > div > .button {
+    border: none;
+    border-radius: 10px;
+    margin: 14px 15px;
+    padding: 8px 31px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    font-size: 14px;
+}
+
+.home-page > .container > .row > .col > .card > div > .button:hover {
+    box-shadow: none;
+    background-color: var(--yellow-hover);
+}
+
+.home-page > .container > .row > .col > .card > div > .yellow {
+    background-color: var(--yellow);
+}
+
+.home-page > .container > .row > .col > .card > div > .red {
+    background-color: var(--red);
+}
+
+.home-page > .container > .button-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: end;
+}
+
+.home-page > .container > .button-container > .button {
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+    padding: 18px 30px;
+    border-radius: 15px;
+}
+
+/* End of contest part */
+/* Beginning of ditail part */
+
+/* Beginning of ditail part */
+
+.ditail_page {
+}
+
+.ditail_page > .container {
+    background-color: rgba(0, 0, 0, 0.07);
+    backdrop-filter: blur(50px);
+}
+
+.ditail_page > .container > .align-items-center {
+    background-color: var(--yellow);
+    border-radius: 20px;
+}
+
+.ditail_page > .container > .align-items-center > .col-md-6 > .text > .iconice > .img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .bio {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: aqua;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment {
+    display: flex;
+    list-style: none;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body {
+    width: 90%;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .space {
+    width: 20px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > h2 {
+    font-weight: 800;
+    font-size: 40px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > .iconice > .position > span {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > p > a {
+    color: var(--red);
+    text-decoration: none;
+    margin-right: 3px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > p > a > span {
+    margin-right: 5px;
+}
+
+.ditail_page > .container > .row > .col-md-6 > .text > .iconice > .position > h4 {
+    font-weight: 600;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment {
+    background-color: var(--red);
+    border-radius: 10px;
+    padding: 20px 20px 10px 20px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > h3 {
+    font-size: 20px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > .meta {
+    font-size: 14px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > .comment-text {
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .comment-post > .comment-list > .comment > .comment-body > p > .reply {
+    background-color: var(--yellow);
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.ditail_page > .container > .row > .col-md-7 > .py-4 > p {
+    font-size: 18px;
+}
+
+.mega-btn > a > button {
+    margin-top: 40px;
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+    padding: 13px 30px;
+    border-radius: 15px;
+}
+
+.mega-btn > a > button:hover {
+    background-color: var(--red-hover);
+    transition: 0.6s ease-in-out;
+}
+
+
+/* End of ditail part */
+/* Map part */
+
+.home-page {
+    height: 100%;
+    width: 100%;
+    padding: 19px 0px 60px 0px;
+}
+
+.home-page > .container > .hr {
+    margin-top: 23px;
+    width: 80%;
+    height: 19px;
+    background-color: #F5C24D;
+}
+
+.home-page > .container > .hr {
+    margin-top: 50px;
+}
+
+.home-page > .container > .tables-container {
+    margin-top: 108px;
+    width: 100%;
+    overflow: auto;
+}
+
+.home-page > .container > .title {
+    font-size: 50px;
+    margin-top: 36px;
+}
+
+.home-page > .container > .map {
+    margin-top: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-page > .container > div > .head {
+    font-size: 50px;
+}
+
+/* Uzb Map */
+
+.home-page > .container > .map > .map-uzb {
+    cursor: none;
+}
+
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--yellow);
+}
+
+.cursor-dot,
+.cursor-outline,
+.cursor-data {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.cursor-data {
+    width: 100px;
+    height: 50px;
+    border-radius: 0%;
+    background-color: #0a53be;
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+
+#UZB354:hover {
+    fill: red;
+}
+
+#Karakalpakstan:hover {
+    fill: #00942F;
+}
+
+#Khorezm:hover {
+    fill: #80378A;
+}
+
+#Navoi:hover {
+    fill: #0A72B5;
+}
+
+#Kashkadarya:hover {
+    fill: #F9B234;
+}
+
+#Surkhandarya:hover {
+    fill: #00942F;
+}
+
+#Samarkand:hover {
+    fill: #80378A;
+}
+
+#Jizzakh:hover {
+    fill: #E95E0E;
+}
+
+#Sirdaryo:hover {
+    fill: #00942F;
+}
+
+#Tashkent:hover {
+    fill: #F9B234;
+}
+
+#Namangan:hover {
+    fill: #0574B6;
+}
+
+#Ferghana:hover {
+    fill: #E9011D;
+}
+
+#Andijon:hover {
+    fill: #80378A;
+}
+
+/* End of Map part */
+/* Resaults Data part */
+
+.results-page {
+    padding: 19px 0 97px 0;
+}
+
+.results-page > .container > .text-center {
+    margin-top: 47px;
+    font-size: 40px;
+    font-weight: 800;
+    font-family: var(--baloo-font);
+}
+
+.results-page > .container > .hr {
+    height: 16px;
+    background-color: var(--yellow);
+    width: 100%;
+    margin-top: 26px;
+}
+
+.results-page > .container > .card {
+    height: 430px;
+}
+
+.results-page > .container > .card > .d-flex > .h-100 > .card-body {
+    text-align: justify;
+    padding: 0 70px;
+}
+
+.results-page > .container > .card > .d-flex > .h-100 > .card-body > .card-title {
+    font-size: 70px;
+    font-weight: 800;
+}
+
+.results-page > .container > .card > .d-flex > .h-100 > .card-body > .card-text {
+    font-size: 20px;
+    color: var(--text-gray);
+    font-family: var(--abel-font);
+}
+
+.results-page > .container > .card {
+    background-color: var(--title-yellow);
+}
+
+.results-page > .container > .d-flex > .row {
+    margin-top: 90px;
+}
+
+.results-page > .container > .d-flex > .row > .col {
+    display: flex;
+    justify-content: center;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card {
+    background-color: rgba(255, 0, 0, 0);
+    width: 182px;
+    border: none;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .img-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    width: 180px;
+    height: 180px;
+    border-radius: 15px;
+    background-color: var(--yellow);
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .img-cont > img {
+    height: 120px;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .card-body {
+    padding-top: 40px;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .card-body > .card-title {
+    font-size: 47px;
+    color: var(--red);
+    font-family: var(--acme-font);
+    line-height: 26px;
+}
+
+.results-page > .container > .d-flex > .row > .col > .card > .card-body > .card-text {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.results-page > .container > .card > .invis > .imgs > img {
+    height: 100%;
+    width: auto;
+}
+
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container {
+    display: flex;
+    border-radius: 8px;
+    width: 198px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container .circular-progress {
+    position: relative;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background: conic-gradient(#F5C24D 0deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container > .circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background-color: #e7e4e4;
+
+}
+
+.results-page > .container > .d-lg-flex > .d-sm-flex > .progress-container > .circular-progress > .progress-value {
+    position: relative;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--yellow);
+}
+
+/* End of resaults data part */
+/* Forget password part */
+
+/* Starting log in */
+
+.login > .kabinet {
+    padding: 80px 87px 300px 87px;
+}
+
+.login > .login_k {
+    background-color: var(--yellow);
+    padding: 20px 170px 65px 170px;
+}
+
+.login > .kabinet > .main_t > h1 {
+    font-size: 72px;
+}
+
+.login > .login_k > .lk_button > button {
+    background-color: var(--green);
+    padding: 15px 85px 15px 85px;
+    font-family: var(--abel-font);
+}
+
+.login > .login_k > .lk_button > button:hover {
+    background-color: #3de07e;
+}
+
+.login > .login_k > .l_parol > .lchp > label {
+    font-family: var(--abel-font);
+    font-weight: 300;
+}
+
+.login > .login_k > .l_parol > .lch_p > h2 {
+    font-family: var(--abel-font);
+    font-weight: 300;
+}
+
+.login > .login_k > .lk_sen > h2 {
+    border-bottom: 3px solid white;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.password > .input_int {
+    width: 30px;
+    height: 40px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 2px rgb(20, 181, 230);
+    font-size: 20px;
+    color: white;
+    outline: none;
+}
+
+
+/* Finishing log in */
+
+/* Start of main */
+
+.main-page {
+    width: 100%;
+    height: 900px;
+    /*padding-top: ;*/
+    /*padding-bottom: ;*/
+}
+
+/* Finishing main */
+
+/* End Of Forget password */
+
 
 @media (max-width: 1400px) {
+    /* Finishing log in media */
+    .login > .kabinet > .main_t > h1 {
+        font-size: 60px;
+    }
+
+    /* End Of Forget password media */
 }
 
 @media (max-width: 1200px) {
+    /* Finishing log in media */
+    .login > .kabinet {
+        padding: 80px 60px 280px 60px;
+    }
+
+    .login > .kabinet > .main_t > h1 {
+        font-size: 50px;
+    }
+
+    /* End Of Forget password media */
 }
 
 @media (max-width: 992px) {
@@ -1173,6 +1762,54 @@ footer .last-footer-column p {
 
     /*    FOOTER END*/
     /*    LOGIN PAGE START*/
+    /* Contest media */
+    .home-page > .container > .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 0 20px 0 20px;
+        height: 419px;
+        width: 100%;
+        color: #fff;
+        position: relative;
+        isolation: isolate;
+    }
+
+    .home-page > .container > .mobile::after {
+        content: '';
+        position: absolute;
+        background: black;
+        z-index: -1;
+        inset: 0;
+        opacity: .5;
+    }
+
+
+    .home-page > .container > .desktop {
+        display: none;
+    }
+
+    /* End of contest media */
+    /* Map part */
+    .home-page > .container > div > .head {
+        font-size: 40px;
+    }
+
+    .home-page {
+        padding: 19px 0px;
+    }
+
+    /* End of Map part */
+    /* Finishing log in media */
+    .login > .kabinet > .main_t > h1 {
+        font-size: 40px;
+    }
+
+    .login > .kabinet {
+        padding: 80px 60px 150px 60px;
+    }
+
+    /* End Of Forget password media */
 }
 
 
@@ -1218,6 +1855,33 @@ footer .last-footer-column p {
         height: 300px;
         width: 300px;
     }
+
+    /*  Map part  */
+    .home-page > .container > div > .head {
+        font-size: 30px;
+    }
+
+    .home-page > .container > .map {
+        margin-top: 10px;
+    }
+
+    .home-page > .container > .title {
+        font-size: 50px;
+        margin-top: 16px;
+    }
+
+    .home-page > .container > .tables-container {
+        margin-top: 50px;
+        width: 100%;
+        overflow: auto;
+    }
+
+    .home-page > .container > .map > .map-uzb {
+        margin-top: 20px;
+        height: 40%;
+    }
+
+    /* End of Map part */
 }
 
 @media (max-width: 576px) {
@@ -1244,5 +1908,37 @@ footer .last-footer-column p {
         width: 250px;
         height: 250px;
     }
+
+    /* Contest media */
+    .home-page > .container > .banner > .container-texts > .text-container > h1 {
+        width: 100%;
+        font-size: 38px;
+    }
+
+    .home-page > .container > .banner > .container-texts > .text-container {
+        font-size: 11px;
+    }
+
+    /* End of contest media */
+    /* Map part */
+    .home-page > .container > .title {
+        font-size: 30px;
+    }
+
+    /* End of Map part */
+    /* Finishing log in media */
+    .login > .kabinet {
+        padding: 80px 60px 150px 60px;
+    }
+
+    .login > .kabinet > .main_t {
+        text-align: center;
+    }
+
+    .login > .kabinet > .main_t > h1 {
+        font-size: 35px;
+    }
+
+    /* End Of Forget password media */
 
 }

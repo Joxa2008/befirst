@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'main/css/aboutUsPage.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/about/aboutUsPage.css' %}">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
@@ -14,8 +14,6 @@
 
 
 {% block content %}
-
-{{ experts }}
 
 <section class="container about_us-page">
   <!-- <a href="#about_us-page-works">id="about_us-page-works"</a> -->
@@ -93,28 +91,15 @@
         <div class="aboutUs-page-experts-imgList" >
           <div class="slick-slider mt-5">
             {% for expert in experts %}
-            <img src="{{ expert }}" class="img-fluid rounded-start ms-2 me-2" alt="person1"
-              data-person="person1">
+         
+            <img src="{{ expert.user.profile.profile_img.url }}" class="img-fluid rounded-start ms-2 me-2" alt="{{ expert.user }}"
+              data-info="{{ expert.detail }}" data-jobtitle="{Experts job}}" data-name="{{expert.user }}" data-person="person1">
             {% endfor %}
 
           </div>
         </div>
 
         <div class="aboutUs-page-exportInfo mt-5 col-11 mx-auto">
-          <div id="person1" class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/img/apout-page/experts/person1.png" class="img-fluid rounded-start" alt="...">
-                <h5 class="card-title">Card title</h5>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -125,11 +110,11 @@
 
 {% block extra_js %}
 <script type="text/javascript">
-
+  
   </script>
    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-   <script src="{% static 'main/js/aboutUs.js' %}"></script>
+   <script src="{% static 'main/js/about/aboutUs.js' %}"></script>
    
 {% endblock %}

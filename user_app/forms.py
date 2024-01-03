@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+
 User = get_user_model()
-from django.utils.translation import gettext_lazy as _
 
 
 class RegisterForm(forms.ModelForm):
@@ -33,13 +34,14 @@ class RegisterForm(forms.ModelForm):
                 'type': 'date',
                 'min': f'{timezone.now().year - 18}-{timezone.now().month}-{timezone.now().day}',
                 'max': f'{timezone.now().year}-{timezone.now().month}-{timezone.now().day}'},
-                format=('%Y-%m-%d')),
+                format='%Y-%m-%d'),
 
             'gender': forms.Select(attrs={
-                'class': "form-control"}),
+                'class': "form-select"}),
 
             'phone_number': forms.TextInput(attrs={
-                'class': "form-control"}),
+                'class': "form-control",
+                'placeholder': '+998 XX XXX XX XX'}),
 
             'password': forms.PasswordInput(attrs={
                 'class': "form-control",
@@ -56,7 +58,8 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email_or_phone = forms.CharField(label=_('Email or Mobile'),
                                      widget=forms.TextInput(attrs={
-                                         'class': "form-control"
+                                         'class': "form-control",
+                                         'placeholder': '+998... or example@gmail.com'
                                      }),
                                      help_text=_("Enter your email or phone number"), required=True)
 
@@ -66,3 +69,6 @@ class LoginForm(forms.Form):
                                    'class': "form-control"
                                }),
                                help_text=_("Enter your password"), required=True)
+
+
+

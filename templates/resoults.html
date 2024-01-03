@@ -1,0 +1,218 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="results-page" style="background: url({% static 'main/img/contests/back-img.svg' %}) no-repeat center/cover;">
+        <div class="container">
+              <div class="card mb-3">
+                <div class="h-100 d-flex justify-content-between invis">
+                    <div class="h-100">
+                        <div class="card-body h-100 d-flex flex-column justify-content-center">
+                            <h1 class="card-title">О Результатax</h1>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula sagittis libero quis sodales. Sed gravida augue eu odio ultrices, et cursus turpis maximus. Nam aliquam efficitur posuere. Nulla egestas, massa ac pretium luctus, mi lacus pulvinar turpis, at laoreet risus elit at sapien. Curabitur sagittis, neque id pulvinar pellentesque, magna libero consequat sapien, sed vehicula erat arcu vel velit. In cursus, dui ultricies tristique bibendum, nunc orci molestie lacus, a ultrices justo mauris eu </p>
+                        </div>
+                    </div>
+                    <div class="h-100 imgs">
+                        <img src="{% static 'main/img/contests/kids.svg' %}" class="object-fit-cover" alt="...">
+                    </div>
+                </div>
+              </div>
+              
+              <div class="d-flex justify-content-center">
+                <div class="row w-100 row-cols-2 row-cols-md-3 row-cols-xl-6 g-4 justify-content-center" id="section1">
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="img-cont">
+                          <img src="{% static 'main/img/contests/image.svg' %}" class=" card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title text-center nums" id="odometer1" data-val="980">0</h5>
+                        <p class="card-text text-center">участники</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="img-cont">
+                          <img src="{% static 'main/img/contests/globe 1.svg' %}" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title text-center nums" id="odometer2" data-val="30">0</h5>
+                        <p class="card-text text-center">победители</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="img-cont">
+                          <img src="{% static 'main/img/contests/image 21.svg' %}" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title text-center nums" id="odometer3" data-val="990">0</h5>
+                        <p class="card-text text-center">награды</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="img-cont">
+                          <img src="{% static 'main/img/contests/sertificat 1.svg' %}" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title text-center nums" id="odometer4" data-val="2023">0</h5>
+                        <p class="card-text text-center">сертификаты</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100">
+                          <div class="img-cont">
+                              <img src="{% static 'main/img/contests/272139 1.svg' %}" class="card-img-top" alt="...">
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title text-center nums" id="odometer5" data-val="350">0</h5>
+                              <p class="card-text text-center">подарки</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100">
+                          <div class="img-cont">
+                              <img src="{% static 'main/img/contests/comp 1.svg' %}" class="card-img-top" alt="...">
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title text-center nums" id="odometer6" data-val="5000">0</h5>
+                              <p class="card-text text-center">творческие
+                                  работы</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="hr"></div>
+
+              <h1 class="text-center">СТАТИСТИКА</h1>
+
+              <div class="d-lg-flex d-sm-block justify-content-center mt-5">
+                <div class="d-sm-flex justify-content-md-center justify-content-center first">
+                    <div class="progress-container" id="progressSection1">
+                      <div class="circular-progress" id="circularProgress1">
+                        <div class="progress-value" id="progressValue1">42%</div>
+                      </div>
+                    </div>
+                    <div class="progress-container" id="progressSection2">
+                      <div class="circular-progress" id="circularProgress2">
+                        <div class="progress-value" id="progressValue2">25%</div>
+                      </div>
+                    </div>
+                    <div class="progress-container spec" id="progressSection3">
+                      <div class="circular-progress" id="circularProgress3">
+                        <div class="progress-value" id="progressValue3">42%</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="d-sm-flex justify-content-md-center justify-content-center second">
+                  <div class="progress-container" id="progressSection4">
+                    <div class="circular-progress" id="circularProgress4">
+                      <div class="progress-value" id="progressValue4">50%</div>
+                    </div>
+                  </div>
+                  <div class="progress-container" id="progressSection5">
+                    <div class="circular-progress" id="circularProgress5">
+                      <div class="progress-value" id="progressValue5">75%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+    </div>
+
+      <script>
+        function startCounting(id, targetCount) {
+          var countElement = document.getElementById(id);
+          var speed = 50; // Change this to control the speed of counting
+    
+          function updateCount() {
+            var currentCount = parseInt(countElement.innerText, 10);
+            var increment = Math.ceil(targetCount / (1000 / speed));
+    
+            if (currentCount + increment < targetCount) {
+              countElement.innerText = currentCount + increment;
+              setTimeout(updateCount, speed);
+            } else {
+              countElement.innerText = targetCount;
+            }
+          }
+    
+          updateCount();
+        }
+    
+        function handleIntersection(entries, observer) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Start counting when the section is in view
+              startCounting('odometer1', 980);
+              startCounting('odometer2', 30);
+              startCounting('odometer3', 990);
+              startCounting('odometer4', 990);  
+              startCounting('odometer5', 350);  
+              startCounting('odometer6', 5000);  
+    
+              // Stop observing once started
+              observer.unobserve(entry.target);
+            }
+          });
+        }
+    
+        // Set up Intersection Observer
+        var observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+    
+        // Observe the section you want to trigger the animation
+        var targetSection = document.getElementById('section1');
+        observer.observe(targetSection);
+
+    </script>
+
+
+
+      <script>
+        function handleIntersection(entries, observer) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateProgressBar(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }
+    
+        function animateProgressBar(progressContainer) {
+          let circularProgress = progressContainer.querySelector(".circular-progress");
+          let progressValue = progressContainer.querySelector(".progress-value");
+    
+          let progressStartValue = 0;
+          let progressEndValue = parseInt(progressValue.textContent); // Get the target value from the progressValue element
+          let speed = 100;
+    
+          function updateProgress() {
+            if (progressStartValue < progressEndValue) {
+              progressStartValue++;
+              progressValue.textContent = `${progressStartValue}%`;
+              circularProgress.style.background = `conic-gradient(#F5C24D ${progressStartValue * 3.6}deg, #ededed 0deg)`;
+              requestAnimationFrame(updateProgress);
+            }
+          }
+    
+          updateProgress();
+        }
+    
+        // Set up Intersection Observer for each section
+        for (let i = 1; i <= 5; i++) {
+          let targetSection = document.getElementById(`progressSection${i}`);
+          let observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+          observer.observe(targetSection);
+        }
+      </script>
+{% endblock content %}
+

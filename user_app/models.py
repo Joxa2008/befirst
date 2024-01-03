@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.password_validation import validate_password
 from .validators import validate_email, PhoneValidator
+import uuid
 
 
 class BaseUserManager(DjangoBaseUserManager):
@@ -54,6 +55,8 @@ class CustomUserModel(AbstractUser):
                               error_messages={"unique": _("A user with that email already exists")},
                               validators=[validate_email])
 
+    uuid = models.UUIDField(default=uuid.uuid4)
+
     birth_date = models.DateField(default=timezone.now, help_text=_("Required. Your birth date."))
 
     CHOICES = (('M', 'Male'), ('F', 'Female'))
@@ -80,3 +83,7 @@ class CustomUserModel(AbstractUser):
         db_table = 'user'
         verbose_name = "user"
         verbose_name_plural = "users"
+
+class CodeCheck(models.Model):
+    email = models.EmailField()
+    code = models.CharField(max_length=6)

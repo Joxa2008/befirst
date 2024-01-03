@@ -1,0 +1,90 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container login anketa" style="margin-bottom: 45px;">
+
+        <div class="d-flex justify-content-between kabinet mt-4"
+             style="background: url({% static 'main/img/contests/login.svg' %}) no-repeat center/cover;">
+            <div class="main_t">
+                <h1 class="display-md-1 text-uppercase">Измените пароль</h1>
+            </div>
+        </div>
+
+        <form class="login_k mt-5" method="POST" id="anketa_k">{% csrf_token %}
+            <div class="bg-none" style="background: none;">
+                <div class="row pt-5 pb-3">
+                    <div class="col">
+                        <p class="mb-0 pb-3 fs-1 fw-light">Пароль *</p>
+                        <div class="password">
+                            <input class="input_int" type="text" name="inp1" id="otpInput1" maxlength="1" pattern="\d"
+                                   title="Please enter a digit" oninput="moveToNextInput(this, 1)">
+                            <input class="input_int" type="text" name="inp2" id="otpInput2" maxlength="1" pattern="\d"
+                                   title="Please enter a digit" oninput="moveToNextInput(this, 2)">
+                            <input class="input_int" type="text" name="inp3" id="otpInput3" maxlength="1" pattern="\d"
+                                   title="Please enter a digit" oninput="moveToNextInput(this, 3)">
+                            <input class="input_int" type="text" name="inp4" id="otpInput4" maxlength="1" pattern="\d"
+                                   title="Please enter a digit" oninput="moveToNextInput(this, 4)">
+                            <input class="input_int" type="text" name="inp5" id="otpInput5" maxlength="1" pattern="\d"
+                                   title="Please enter a digit" oninput="moveToNextInput(this, 5)">
+                            <input class="input_int" type="text" name="inp6" id="otpInput6" maxlength="1" pattern="\d"
+                                   title="Please enter a digit" oninput="moveToNextInput(this, 6)">
+                        </div>
+                        {% if message %}
+                        	<small>{{ message }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="lk_button d-flex justify-content-center pt-5 pb-5">
+                <button type="submit" class="btn shadow bg-body-tertiary py-md-3 rounded-pill text-uppercase"
+                        >Изменить пароль
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function moveToNextInput(input, currentInput) {
+            var value = input.value;
+
+            // Move to the next input if a digit is entered
+            if (/^\d$/.test(value)) {
+                var nextInput = document.getElementById('otpInput' + (currentInput + 1));
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            } else if (value === '') {
+                // If a digit is deleted, move to the previous input
+                var prevInput = document.getElementById('otpInput' + (currentInput - 1));
+                if (prevInput) {
+                    prevInput.focus();
+                }
+            }
+        }
+
+        function validateOTP() {
+            var otpInput1 = document.getElementById('otpInput1').value;
+            var otpInput2 = document.getElementById('otpInput2').value;
+            var otpInput3 = document.getElementById('otpInput3').value;
+            var otpInput4 = document.getElementById('otpInput4').value;
+            var otpInput5 = document.getElementById('otpInput5').value;
+            var otpInput6 = document.getElementById('otpInput6').value;
+
+            // Check if all inputs are digits
+            if (/^\d$/.test(otpInput1) && /^\d$/.test(otpInput2) && /^\d$/.test(otpInput3) &&
+                /^\d$/.test(otpInput4) && /^\d$/.test(otpInput5) && /^\d$/.test(otpInput6)) {
+                var otp = otpInput1 + otpInput2 + otpInput3 + otpInput4 + otpInput5 + otpInput6;
+                alert('OTP is valid: ' + otp);
+                // You can further process the valid OTP here
+            } else {
+                alert('Please enter a valid 6-digit OTP.');
+            }
+        }
+    </script>
+
+
+{% endblock content %}
