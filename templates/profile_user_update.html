@@ -90,7 +90,7 @@
 
 
                 
-                {% comment %} <div class="row">
+                 <div class="row">
                     <div class="col-12 col-lg">
                         <div class="gender-logo_list d-flex flex-row justify-content-evenly">
                             <div class="female-check  d-flex flex-column ">
@@ -113,13 +113,13 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg">{{ form.region|as_crispy_field }}</div>
-                </div> {% endcomment %}
+                </div>
                 
 
-                <div class="row">
+                {% comment %} <div class="row">
                      <div class="col-12 col-lg">{{ form.gender|as_crispy_field }}</div> 
                     <div class="col-12 col-lg">{{ form.region|as_crispy_field }}</div>
-                </div> 
+                </div>  {% endcomment %}
 
                 <div class="row">
                     <div class="col-12 col-lg">{{ form.address|as_crispy_field }}</div>
