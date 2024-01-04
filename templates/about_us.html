@@ -93,7 +93,11 @@
             {% for expert in experts %}
          
             <img src="{{ expert.user.profile.profile_img.url }}" class="img-fluid rounded-start ms-2 me-2" alt="{{ expert.user }}"
-              data-info="{{ expert.detail }}" data-jobtitle="{Experts job}}" data-name="{{expert.user }}" data-person="person1">
+              data-info="{{ expert.detail }}" 
+              data-jobtitle="{{expert.job_title}}"
+              data-name="{{expert.user }}" 
+              data-person="person1"
+            >
             {% endfor %}
 
           </div>

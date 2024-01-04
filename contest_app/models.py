@@ -54,6 +54,8 @@ class ExpertModel(models.Model):
                                 related_name='expert')
     detail = models.TextField(blank=True, null=True, help_text=_("Some details about the expert."))
 
+    job_title = models.CharField(max_length=150, help_text=_("Experts job title."))
+
     def __str__(self):
         return f'{self.user}'
 
