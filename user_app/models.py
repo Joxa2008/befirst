@@ -84,6 +84,7 @@ class CustomUserModel(AbstractUser):
         verbose_name = "user"
         verbose_name_plural = "users"
 
+
 class CodeCheck(models.Model):
     email = models.EmailField()
     code = models.CharField(max_length=6)

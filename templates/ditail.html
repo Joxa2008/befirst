@@ -20,7 +20,7 @@
         <h2 class="mb-4">{{ contest.title }}</h2>
         <div class="iconice d-flex align-items-center">
             <div class="img"
-                 style="background: url({% static 'main/img/admin-img.jpg' %}) no-repeat center/cover;"></div>
+                 style="background: url({% static 'main/img/navbar/site-log.svg' %}) no-repeat center/cover;"></div>
             <div class="position pl-3">
                 <h4 class="mb-0">BeFirst Organization</h4>
                 <span>CEO, Admin</span>
@@ -48,7 +48,7 @@
             <div class="row justify-content-center pt-4 py-md-5">
                 <div class="col-md-7">
                     <div class="comment-post py-5">
-                        <h3 class="mb-5">2 Comments</h3>
+                        <h3 class="mb-5">{{comments|length}} Comment</h3>
                         <ul class="comment-list">
                             {% for i in comments %}
                                 <li class="comment">
@@ -61,7 +61,6 @@
                                         <div class="meta">DEC. 13, 2023, 5:28 P.M.</div>
                                         <hr>
                                         <p class="comment-text">{{ i.comment_text }}</p>
-                                        <p><a href="#" class="reply">Reply</a></p>
                                     </div>
                                 </li>
                                 <br>

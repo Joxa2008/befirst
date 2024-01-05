@@ -14,6 +14,7 @@ from django.core.paginator import Paginator
 
 User = get_user_model()
 
+
 def main_view(request):
     return render(request, 'main-page.html')
 
@@ -43,7 +44,7 @@ def experts_score_view(request):
         return redirect('contest:main')
 
 
-@login_required
+@login_required(login_url='user:login')
 def work_detail_view(request, uuid):
     expert = request.user.expert
     work = WorkModel.objects.get(uuid=uuid)
@@ -76,7 +77,7 @@ def work_detail_view(request, uuid):
         })
 
 
-@login_required
+@login_required(login_url='user:login')
 def user_update_view(request):
     user_instance = User.objects.get(id=request.user.id)
     initial_data = {
@@ -107,6 +108,7 @@ def user_update_view(request):
     return render(request, 'profile_user_update.html', context={
         'form': user_form,
     })
+
 
 def contests(requests):
     contest = ContestModel.objects.all()
@@ -163,7 +165,19 @@ def statistic(requests):
 
 
 def results(requests):
-    return render(requests, 'resoults.html')
+    users = ProfileModel.objects.all()
+    works = WorkModel.objects.all()
+    winners = works.filter(place=1)
+
+    winners_in_procent = (len(winners) / len(users)) * 100
+
+    return render(requests, 'resoults.html', context={
+        'users': len(users),
+        'works': len(works),
+        'winners': len(winners),
+        'winners_p': winners_in_procent
+    })
+
 
 def contactsView(request):
     if request.method == "POST":
@@ -182,6 +196,7 @@ def contactsView(request):
         return redirect('contest:main')
     return render(request, template_name='contact-page.html', context={})
 
+
 @login_required(login_url='user:login')
 def anketaView(request, id):
     profile_m = CustomUserModel.objects.get(email=request.user.email)
@@ -197,7 +212,8 @@ def anketaView(request, id):
         work_m = WorkModel(profile=profile, contest=contest, title=comment, file=file_u)
         work_m.save()
         return redirect('contest:contests')
-    return render(request, template_name='anketa-page.html', context={"user": user, "year": year, "contest_m":contest_m})
+    return render(request, template_name='anketa-page.html',
+                  context={"user": user, "year": year, "contest_m": contest_m})
 
 
 def workView(request):
@@ -223,3 +239,18 @@ def workView(request):
 
 def privacyView(request):
     return render(request, template_name='privacy-page.html')
+
+
+def aboutUsView(request):
+    experts = ExpertModel.objects.all()
+    expert_profiles = ProfileModel.objects.filter(user__expert__in=experts)
+
+    works = WorkModel.objects.all()
+
+    context = {
+        'experts': experts,
+        'expert_profiles': expert_profiles,
+        "works": works
+    }
+
+    return render(request, 'about_us.html', context)

@@ -22,7 +22,7 @@ class ExpertAdmin(admin.ModelAdmin):
 
 @admin.register(WorkModel)
 class WorkModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'contest', 'uploaded_at')
+    list_display = ('title', 'contest', 'uploaded_at', 'place')
     list_display_links = ('title', 'uploaded_at')
     date_hierarchy = 'uploaded_at'
     list_filter = ('uploaded_at',)

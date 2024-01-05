@@ -99,7 +99,7 @@
                 <div class="d-sm-flex justify-content-md-center justify-content-center first">
                     <div class="progress-container" id="progressSection1">
                       <div class="circular-progress" id="circularProgress1">
-                        <div class="progress-value" id="progressValue1">42%</div>
+                        <div class="progress-value" id="progressValue1">{{ winners_p }}</div>
                       </div>
                     </div>
                     <div class="progress-container" id="progressSection2">
@@ -153,12 +153,12 @@
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               // Start counting when the section is in view
-              startCounting('odometer1', 980);
-              startCounting('odometer2', 30);
+              startCounting('odometer1', {{ users }});
+              startCounting('odometer2', {{ winners }});
               startCounting('odometer3', 990);
               startCounting('odometer4', 990);  
               startCounting('odometer5', 350);  
-              startCounting('odometer6', 5000);  
+              startCounting('odometer6', {{ works }});
     
               // Stop observing once started
               observer.unobserve(entry.target);

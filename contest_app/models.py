@@ -145,6 +145,8 @@ class WorkModel(models.Model):
 
     uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
 
+    place = models.PositiveIntegerField(null=True, blank=True)
+
     def __str__(self):
         return self.title
 
